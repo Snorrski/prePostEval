@@ -50,7 +50,7 @@ function checkData(event = null, check = true) {
     check,
     "pre/post": preOrPost
   };
-
+console.log(jsonData);
   // Add form data if not checking
   if (!check && event) {
     const formData = new FormData(event.target);
