@@ -156,9 +156,9 @@ function thankYou() {
 }
 
 // Initialize the script
-function init() {
+function prePostInit() {
   adjustIframe();
   checkData(null, true);  // Initially check if the survey is already completed
 }
 
-init();
+prePostInit();
