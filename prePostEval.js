@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("15:21")
+console.log("15:27")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -137,8 +137,8 @@ function createRadioButton(name, id, value) {
   const radioWrapper = document.createElement('div');
   radioWrapper.appendChild(radioInput);
   //radioWrapper.appendChild(label);
-  radioWrapper.innerHTML += '<label for="' + id + 'style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: #fff;; border: 2px solid #14143c; z-index: 10;" onclick="highlightLabel(event)"></label>';
-  radioWrapper.style.zIndex = "2";
+  radioWrapper.innerHTML += '<label for="' + id + '" style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: #fff;; border: 2px solid #14143c; z-index: 2;" onclick="highlightLabel(event)"></label>';
+  //radioWrapper.style.zIndex = "2";
   radioWrapper.className = "radioWrapper";
   return radioWrapper;
 }
