@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("13:16")
+console.log("13:45")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -125,6 +125,7 @@ function createRadioButton(name, id, value) {
   radioInput.name = name;
   radioInput.value = value;
   radioInput.id = id;
+  radioInput.className 
   radioInput.style.display = "none";
 
   // Use addEventListener to attach the event listener explicitly
@@ -165,13 +166,25 @@ function createRadioButton(name, id, value) {
 */
 // Highlight the label when a radio button is clicked
 function highlightLabel(event) {
+    console.log("highlightLabel");
+    const label = event.target;  // The clicked label
+    const radioWrapper = label.closest('.likert');
+    const labels = radioWrapper.querySelectorAll('label');
+
+    // Reset the background color for all labels
+    labels.forEach(label => label.style.backgroundColor = "#fff");
+
+    // Set the background color for the clicked label
+    label.style.backgroundColor = "#14143c";
+}
+/*function highlightLabel(event) {
     const radioWrapper = event.target.closest('.likert');
     const labels = radioWrapper.querySelectorAll('label');
     labels.forEach(label => label.style.backgroundColor = "#fff");
     console.log(event.target)
     console.log(event.target.labels[0])
     event.target.labels[0].style.backgroundColor = "#14143c";
-}
+}*/
 
 // Create a submit button for the form
 function createSubmitButton() {
