@@ -141,11 +141,12 @@ function createRadioButton(name, id, value) {
 
 // Highlight the label when a radio button is clicked
 function highlightLabel(event) {
-  const labels = event.target.parentNode.querySelectorAll('label');
-  labels.forEach(label => label.style.backgroundColor = "#fff");
-  console.log(event.target)
-  console.log(event.target.labels[0])
-  event.target.labels[0].style.backgroundColor = "#14143c";
+    const radioWrapper = event.target.closest('.likert');
+    const labels = radioWrapper.querySelectorAll('label');
+    labels.forEach(label => label.style.backgroundColor = "#fff");
+    console.log(event.target)
+    console.log(event.target.labels[0])
+    event.target.labels[0].style.backgroundColor = "#14143c";
 }
 
 // Create a submit button for the form
@@ -158,9 +159,10 @@ function createSubmitButton() {
 
 // Display thank you message if the survey is already completed
 function thankYou() {
-  const message = p.GetVar('preOrPost') === "pre" ? "præmålingingen" : "postmålingingen";
-  const html = `<div style="color: grey;">Du har allerede udfyldt ${message} for ${p.GetVar('course')}.</div>`;
-  document.body.innerHTML = html;
+    const courseName = document.getElementsByClassName('nav-sidebar-header__title')[0].text;
+  const message = p.GetVar('preOrPost') === "pre" ? "præmålingen" : "postmålingen";
+  const html = `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>`;
+  parentElement.innerHTML = html;
 }
 
 // Initialize the script
