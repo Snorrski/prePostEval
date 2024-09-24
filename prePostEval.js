@@ -1,4 +1,4 @@
-a// Initialize global variables
+// Initialize global variables
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 
