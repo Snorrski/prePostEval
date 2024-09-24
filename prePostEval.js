@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("12:19")
+console.log("12:31")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
