@@ -126,6 +126,29 @@ function createRadioButton(name, id, value) {
   radioInput.value = value;
   radioInput.id = id;
   radioInput.style.display = "none";
+
+  // Use addEventListener to attach the event listener explicitly
+  radioInput.addEventListener('click', highlightLabel);
+
+  const label = document.createElement('label');
+  label.setAttribute('for', id);
+  label.style.cssText = "display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #fff; border: 2px solid #14143c;";
+
+  const radioWrapper = document.createElement('div');
+  radioWrapper.appendChild(radioInput);
+  radioWrapper.appendChild(label);
+  radioWrapper.style.zIndex = "2";
+  return radioWrapper;
+}
+/*
+// Create a single radio button for the Likert scale
+function createRadioButton(name, id, value) {
+  const radioInput = document.createElement('input');
+  radioInput.type = "radio";
+  radioInput.name = name;
+  radioInput.value = value;
+  radioInput.id = id;
+  radioInput.style.display = "none";
   radioInput.onclick = highlightLabel;
   
   const label = document.createElement('label');
@@ -138,7 +161,7 @@ function createRadioButton(name, id, value) {
   radioWrapper.style.zIndex = "2";
   return radioWrapper;
 }
-
+*/
 // Highlight the label when a radio button is clicked
 function highlightLabel(event) {
     const radioWrapper = event.target.closest('.likert');
