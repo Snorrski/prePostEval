@@ -31,6 +31,7 @@ function sendDataToAPI(jsonData, check) {
 // Handle the response from the API
 function handleAPIResponse(data, check) {
   console.log(data.message);
+  console.log(data.data);
   if (check) {
     data.message !== "answered" ? buildForm() : thankYou();
   }
