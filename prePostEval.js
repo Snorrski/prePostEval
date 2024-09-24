@@ -1,4 +1,4 @@
-// Initialize global variables
+a// Initialize global variables
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 
@@ -30,7 +30,7 @@ function sendDataToAPI(jsonData, check) {
 
 // Handle the response from the API
 function handleAPIResponse(data, check) {
-  console.log(data);
+  console.log(data.message);
   if (check) {
     data.message !== "answered" ? buildForm() : thankYou();
   }
