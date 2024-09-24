@@ -1,10 +1,17 @@
 // Initialize global variables
-console.log("15:27")
+console.log("15:35")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
 var parentElement = iframe.parentElement;
-
+function highlightLabel(event) {
+    const radioWrapper = event.target.closest('.likert');
+    const labels = radioWrapper.querySelectorAll('label');
+    labels.forEach(label => label.style.backgroundColor = "#fff");
+    console.log(event.target)
+    console.log(event.target.labels[0])
+    event.target.labels[0].style.backgroundColor = "#14143c";
+}
 // Adjust iframe style
 function adjustIframe() {
   
@@ -137,7 +144,7 @@ function createRadioButton(name, id, value) {
   const radioWrapper = document.createElement('div');
   radioWrapper.appendChild(radioInput);
   //radioWrapper.appendChild(label);
-  radioWrapper.innerHTML += '<label for="' + id + '" style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: #fff;; border: 2px solid #14143c; z-index: 2;" onclick="highlightLabel(event)"></label>';
+  radioWrapper.innerHTML += '<label for="' + id + '" style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: #fff;; border: 2px solid #14143c;" onclick="highlightLabel(event)"></label>';
   //radioWrapper.style.zIndex = "2";
   radioWrapper.className = "radioWrapper";
   return radioWrapper;
@@ -166,15 +173,7 @@ function createRadioButton(name, id, value) {
 }
 */
 // Highlight the label when a radio button is clicked
-function highlightLabel(event) {
-  console.log(event.target);
-  const labels = event.target.parentNode.querySelectorAll('label');
-  //const labels = event.target.parentNode.querySelectorAll('label');
-  labels.forEach(label => label.style.backgroundColor = "#fff"); // Reset all labels
-  console.log(labels)
-  // Change the background color of the clicked label
-  event.target.labels[0].style.backgroundColor = "#14143c"; 
-}
+
 function addListenersToRadioButtons() {
   // If using method 1
   const labels = document.querySelectorAll('.label-class');
@@ -182,14 +181,7 @@ function addListenersToRadioButtons() {
     label.addEventListener('click', highlightLabel);
   });
 }
-/*function highlightLabel(event) {
-    const radioWrapper = event.target.closest('.likert');
-    const labels = radioWrapper.querySelectorAll('label');
-    labels.forEach(label => label.style.backgroundColor = "#fff");
-    console.log(event.target)
-    console.log(event.target.labels[0])
-    event.target.labels[0].style.backgroundColor = "#14143c";
-}*/
+/**/
 
 // Create a submit button for the form
 function createSubmitButton() {
