@@ -82,7 +82,7 @@ function buildForm() {
   questions.forEach((questionText, index) => {
   const questionDiv = document.createElement('div');
   questionDiv.className = "question";
-  
+  questionDiv += `<p>${questionText}</p>`;
   const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
   questionDiv.appendChild(likert);
   form.appendChild(questionDiv);
@@ -99,16 +99,16 @@ function createLikertScale(questionText, minText, maxText, name) {
   const likert = document.createElement('div');
   likert.className = "likert";
   likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 10px 0 20px 0;";
-  likert.innerHTML = `<p>${questionText}</p><span style="width: 10%; text-align: left;">${minText}</span>`;
+  likert.innerHTML = `<span style="width: 10%; text-align: left;">${minText}</span>`;
   
   const radioContainer = document.createElement('div');
-  radioContainer.style.cssText = "display: flex; justify-content: space-between; flex-grow: 1;";
+  radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: ";
   
   for (let i = 1; i <= 5; i++) {
     const radioId = `${name}-${i}`;
     radioContainer.appendChild(createRadioButton(name, radioId, i));
   }
-  
+  radioContainer += '<div style="position: absolute;width: 100%; height: 2px; top: 36%; background-color: #14143c;"></div>';
   likert.appendChild(radioContainer);
   likert.innerHTML += `<span style="width: 10%; text-align: right;">${maxText}</span>`;
   
@@ -127,7 +127,7 @@ function createRadioButton(name, id, value) {
   
   const label = document.createElement('label');
   label.setAttribute('for', id);
-  label.style.cssText = "display: inline-block; width: 20px; height: 20px; border-radius: 50%; border: 2px solid #14143c;";
+  label.style.cssText = "display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #fff; border: 2px solid #14143c;";
   
   const radioWrapper = document.createElement('div');
   radioWrapper.appendChild(radioInput);
@@ -140,6 +140,8 @@ function createRadioButton(name, id, value) {
 function highlightLabel(event) {
   const labels = event.target.parentNode.querySelectorAll('label');
   labels.forEach(label => label.style.backgroundColor = "#fff");
+  console.log(event.target)
+  console.log(event.target.labels[0])
   event.target.labels[0].style.backgroundColor = "#14143c";
 }
 
