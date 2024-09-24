@@ -83,7 +83,9 @@ function buildForm() {
   questions.forEach((questionText, index) => {
   const questionDiv = document.createElement('div');
   questionDiv.className = "question";
-  questionDiv += `<p>${questionText}</p>`;
+  const questionP = document.createElement('p');
+  questionP.innerHTML = `${questionText}`;
+    questionDiv.appendChild(questionP);
   const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
   questionDiv.appendChild(likert);
   form.appendChild(questionDiv);
