@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("12:31")
+console.log("12:36")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -111,7 +111,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     const radioId = `${name}-${i}`;
     radioContainer.appendChild(createRadioButton(name, radioId, i));
   }
-  radioContainer += '<div style="position: absolute;width: 100%; height: 2px; top: 36%; background-color: #14143c;"></div>';
+  radioContainer.innerHTML += '<div style="position: absolute;width: 100%; height: 2px; top: 36%; background-color: #14143c;"></div>';
   likert.appendChild(radioContainer);
   likert.innerHTML += `<span style="width: 10%; text-align: right;">${maxText}</span>`;
   
