@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("15:10")
+console.log("15:21")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -129,14 +129,15 @@ function createRadioButton(name, id, value) {
   radioInput.style.display = "none";
   
   const label = document.createElement('label');
-  label.setAttribute('for', id);
-  label.style.cssText = "display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #fff; border: 2px solid #14143c;";
+  //label.setAttribute('for', id);
+  //label.style.cssText = "display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #fff; border: 2px solid #14143c;";
   
   // Attach the click event to the label
   //label.onclick = highlightLabel;
   const radioWrapper = document.createElement('div');
   radioWrapper.appendChild(radioInput);
-  radioWrapper.appendChild(label);
+  //radioWrapper.appendChild(label);
+  radioWrapper.innerHTML += '<label for="' + id + 'style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: #fff;; border: 2px solid #14143c; z-index: 10;" onclick="highlightLabel(event)"></label>';
   radioWrapper.style.zIndex = "2";
   radioWrapper.className = "radioWrapper";
   return radioWrapper;
