@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("14:50")
+console.log("15:10")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -95,11 +95,7 @@ function buildForm() {
   form.onsubmit = event => checkData(event, false);
   //document.body.appendChild(form); // Append the form to the body
   parentElement.appendChild(form);
-  const elements = document.querySelectorAll('.radioWrapper');
-
-  elements.forEach(element => {
-    element.addEventListener('click', highlightLabel)
-  });
+  addListenersToRadioButtons();
 }
 
 // Create Likert scale options for each question
@@ -176,7 +172,14 @@ function highlightLabel(event) {
   labels.forEach(label => label.style.backgroundColor = "#fff"); // Reset all labels
   console.log(labels)
   // Change the background color of the clicked label
-  event.target.querySelector('label').style.backgroundColor = "#14143c"; 
+  event.target.labels[0].style.backgroundColor = "#14143c"; 
+}
+function addListenersToRadioButtons() {
+  // If using method 1
+  const labels = document.querySelectorAll('.label-class');
+  labels.forEach(label => {
+    label.addEventListener('click', highlightLabel);
+  });
 }
 /*function highlightLabel(event) {
     const radioWrapper = event.target.closest('.likert');
