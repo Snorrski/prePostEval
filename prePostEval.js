@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("13:45")
+console.log("13:50")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -125,23 +125,21 @@ function createRadioButton(name, id, value) {
   radioInput.name = name;
   radioInput.value = value;
   radioInput.id = id;
-  radioInput.className 
   radioInput.style.display = "none";
-
-  // Use addEventListener to attach the event listener explicitly
-  radioInput.addEventListener('click', highlightLabel);
-
+  
   const label = document.createElement('label');
   label.setAttribute('for', id);
   label.style.cssText = "display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #fff; border: 2px solid #14143c;";
-  label.addEventListener('click', highlightLabel);
-
+  
+  // Attach the click event to the label
+  label.onclick = highlightLabel;
+  console.log(label);
   const radioWrapper = document.createElement('div');
   radioWrapper.appendChild(radioInput);
   radioWrapper.appendChild(label);
-  radioWrapper.style.zIndex = "2";
   return radioWrapper;
 }
+
 /*
 // Create a single radio button for the Likert scale
 function createRadioButton(name, id, value) {
@@ -166,16 +164,11 @@ function createRadioButton(name, id, value) {
 */
 // Highlight the label when a radio button is clicked
 function highlightLabel(event) {
-    console.log("highlightLabel");
-    const label = event.target;  // The clicked label
-    const radioWrapper = label.closest('.likert');
-    const labels = radioWrapper.querySelectorAll('label');
-
-    // Reset the background color for all labels
-    labels.forEach(label => label.style.backgroundColor = "#fff");
-
-    // Set the background color for the clicked label
-    label.style.backgroundColor = "#14143c";
+  const labels = event.target.parentNode.querySelectorAll('label');
+  labels.forEach(label => label.style.backgroundColor = "#fff"); // Reset all labels
+  
+  // Change the background color of the clicked label
+  event.target.style.backgroundColor = "#14143c"; 
 }
 /*function highlightLabel(event) {
     const radioWrapper = event.target.closest('.likert');
