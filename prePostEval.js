@@ -1,12 +1,12 @@
 // Initialize global variables
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
-
+var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
+var parentElement = iframe.parentElement;
 
 // Adjust iframe style
 function adjustIframe() {
-  var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
-  var parentElement = iframe.parentElement;
+  
   parentElement.style.cssText = "height: auto; padding: 0;";
   iframe.style.display = "none";
 }
@@ -90,7 +90,8 @@ function buildForm() {
   
   form.appendChild(createSubmitButton());
   form.onsubmit = event => checkData(event, false);
-  document.body.appendChild(form); // Append the form to the body
+  //document.body.appendChild(form); // Append the form to the body
+  parentElement.appendChild(form);
 }
 
 // Create Likert scale options for each question
