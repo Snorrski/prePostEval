@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("13:50")
+console.log("14:12")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -105,7 +105,7 @@ function createLikertScale(questionText, minText, maxText, name) {
   likert.innerHTML = `<span style="width: 10%; text-align: left;">${minText}</span>`;
   
   const radioContainer = document.createElement('div');
-  radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: ";
+  radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px;";
   
   for (let i = 1; i <= 5; i++) {
     const radioId = `${name}-${i}`;
@@ -132,11 +132,13 @@ function createRadioButton(name, id, value) {
   label.style.cssText = "display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #fff; border: 2px solid #14143c;";
   
   // Attach the click event to the label
-  label.onclick = highlightLabel;
+  //label.onclick = highlightLabel;
   console.log(label);
   const radioWrapper = document.createElement('div');
   radioWrapper.appendChild(radioInput);
   radioWrapper.appendChild(label);
+  radioWrapper.style.zIndex = "2";
+  radioWrapper.onclick = highlightLabel
   return radioWrapper;
 }
 
@@ -165,10 +167,11 @@ function createRadioButton(name, id, value) {
 // Highlight the label when a radio button is clicked
 function highlightLabel(event) {
   const labels = event.target.parentNode.querySelectorAll('label');
+  //const labels = event.target.parentNode.querySelectorAll('label');
   labels.forEach(label => label.style.backgroundColor = "#fff"); // Reset all labels
-  
+  console.log(labels)
   // Change the background color of the clicked label
-  event.target.style.backgroundColor = "#14143c"; 
+  event.target.querySelector('label').style.backgroundColor = "#14143c"; 
 }
 /*function highlightLabel(event) {
     const radioWrapper = event.target.closest('.likert');
