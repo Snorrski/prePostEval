@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("13:06")
+console.log("13:16")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -133,6 +133,7 @@ function createRadioButton(name, id, value) {
   const label = document.createElement('label');
   label.setAttribute('for', id);
   label.style.cssText = "display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #fff; border: 2px solid #14143c;";
+  label.addEventListener('click', highlightLabel);
 
   const radioWrapper = document.createElement('div');
   radioWrapper.appendChild(radioInput);
