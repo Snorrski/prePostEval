@@ -14,22 +14,23 @@ function adjustIframe() {
 // Send the JSON data to the API endpoint
 function sendDataToAPI(jsonData, check) {
   const apiURL = 'https://prod-236.westeurope.logic.azure.com:443/workflows/7fea2dec7f99427689f6b676bfbd5f29/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Nx_u-9wDlM8c7HrkQLIkx-7bhrQ5ml0IPGi452noa_U';
-
+  
   fetch(apiURL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(jsonData),
   })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      handleAPIResponse(data, check);
-    })
-    .catch(error => console.error('Error:', error));
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+    handleAPIResponse(data, check);
+  })
+  .catch(error => console.error('Error:', error));
 }
 
 // Handle the response from the API
 function handleAPIResponse(data, check) {
+  console.log(data);
   if (check) {
     data.message !== "answered" ? buildForm() : thankYou();
   }
@@ -38,7 +39,7 @@ function handleAPIResponse(data, check) {
 // Prepare the data and send it to the API
 function checkData(event = null, check = true) {
   if (event && event.preventDefault) event.preventDefault();
-
+  
   const studentId = lmsAPI.GetStudentID();
   const studentName = lmsAPI.GetStudentName();
   const course = p.GetVar('course');
@@ -50,14 +51,14 @@ function checkData(event = null, check = true) {
     check,
     "pre/post": preOrPost
   };
-console.log(jsonData);
+  console.log(jsonData);
   // Add form data if not checking
   if (!check && event) {
     const formData = new FormData(event.target);
-    formData.forEach((value, key) => jsonData[key] = value);
+    formData.forEach((value, key) => jsonData[key] = value);  
   }
 
-  sendDataToAPI(jsonData, check);
+sendDataToAPI(jsonData, check);
 }
 
 // Build the Likert scale form
@@ -69,23 +70,23 @@ function buildForm() {
   const preOrPost = p.GetVar('preOrPost');
   const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
   const formMessage = preOrPost === "pre" ?
-    'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet.' :
-    'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet.';
-
+  'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet.' :
+  'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet.';
+  
   const form = document.createElement('form');
   form.id = "likertForm";
   form.style.margin = "20px";
   form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p><br>`;
-
+  
   questions.forEach((questionText, index) => {
-    const questionDiv = document.createElement('div');
-    questionDiv.className = "question";
-
-    const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
-    questionDiv.appendChild(likert);
-    form.appendChild(questionDiv);
+  const questionDiv = document.createElement('div');
+  questionDiv.className = "question";
+  
+  const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
+  questionDiv.appendChild(likert);
+  form.appendChild(questionDiv);
   });
-
+  
   form.appendChild(createSubmitButton());
   form.onsubmit = event => checkData(event, false);
   document.body.appendChild(form); // Append the form to the body
@@ -97,7 +98,7 @@ function createLikertScale(questionText, minText, maxText, name) {
   likert.className = "likert";
   likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 10px 0 20px 0;";
   likert.innerHTML = `<p>${questionText}</p><span style="width: 10%; text-align: left;">${minText}</span>`;
-
+  
   const radioContainer = document.createElement('div');
   radioContainer.style.cssText = "display: flex; justify-content: space-between; flex-grow: 1;";
   
