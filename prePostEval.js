@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("14:12")
+console.log("14:50")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -95,6 +95,11 @@ function buildForm() {
   form.onsubmit = event => checkData(event, false);
   //document.body.appendChild(form); // Append the form to the body
   parentElement.appendChild(form);
+  const elements = document.querySelectorAll('.radioWrapper');
+
+  elements.forEach(element => {
+    element.addEventListener('click', highlightLabel)
+  });
 }
 
 // Create Likert scale options for each question
@@ -133,12 +138,11 @@ function createRadioButton(name, id, value) {
   
   // Attach the click event to the label
   //label.onclick = highlightLabel;
-  console.log(label);
   const radioWrapper = document.createElement('div');
   radioWrapper.appendChild(radioInput);
   radioWrapper.appendChild(label);
   radioWrapper.style.zIndex = "2";
-  radioWrapper.onclick = highlightLabel
+  radioWrapper.className = "radioWrapper";
   return radioWrapper;
 }
 
@@ -151,7 +155,7 @@ function createRadioButton(name, id, value) {
   radioInput.value = value;
   radioInput.id = id;
   radioInput.style.display = "none";
-  radioInput.onclick = highlightLabel;
+  //radioInput.onclick = highlightLabel;
   
   const label = document.createElement('label');
   label.setAttribute('for', id);
@@ -166,6 +170,7 @@ function createRadioButton(name, id, value) {
 */
 // Highlight the label when a radio button is clicked
 function highlightLabel(event) {
+  console.log(event.target);
   const labels = event.target.parentNode.querySelectorAll('label');
   //const labels = event.target.parentNode.querySelectorAll('label');
   labels.forEach(label => label.style.backgroundColor = "#fff"); // Reset all labels
