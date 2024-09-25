@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("13:05")
+console.log("13:14")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -95,15 +95,16 @@ function checkData(event = null, check = true) {
 
 // Build the Likert scale form
 function buildForm() {
-  const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
-  const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
-  const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
-  const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
-  const preOrPost = p.GetVar('preOrPost');
-  const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
-  const formMessage = preOrPost === "pre" ?
-  'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet.' :
-  'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet.';
+  	const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
+  	const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
+  	const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
+  	const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
+  	const preOrPost = p.GetVar('preOrPost');
+  	const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
+  	const formMessage = preOrPost === "pre" ?
+  		'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet.' :
+  		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet.';
+	const qPretext = preOrPost === "pre" ? "Før du har taget modulet, " : "Efter du har taget modulet., ";
   
   const form = document.createElement('form');
   form.id = "likertForm";
@@ -113,8 +114,8 @@ function buildForm() {
   questions.forEach((questionText, index) => {
 	const questionDiv = document.createElement('div');
 	questionDiv.className = "question";
-	const questionP = document.createElement('p');
-	questionP.innerHTML = `${questionText}`;
+	const questionP = document.createElement('p');qPretext
+	questionP.innerHTML = `${qPretext}${questionText}`;
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
 	questionDiv.appendChild(likert);
