@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("12:06")
+console.log("12:10")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -152,9 +152,11 @@ function createRadioButton(name, id, value) {
 // Highlight the label when a radio button is clicked
 
 function addListenersToRadioButtons() {
-  const labels = document.querySelectorAll('label');
-  labels.forEach(label => {
-    label.addEventListener('click', highlightLabel);
+  //const labels = document.querySelectorAll('label');
+  const inputs = document.querySelectorAll('input[type="radio"]');
+  inputs.forEach(input => {
+    input.addEventListener('click', highlightLabel);
+    console.log(input)
   });
 }
 
