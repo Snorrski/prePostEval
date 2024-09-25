@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("12:21")
+console.log("12:26")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -12,12 +12,12 @@ function adjustIframe() {
 }
 function highlightLabel(event) {
     console.log('hey!');
-        /*const radioWrapper = event.target.closest('.likert');
+        const radioWrapper = event.target.closest('.likert');
         const labels = radioWrapper.querySelectorAll('label');
         labels.forEach(label => label.style.backgroundColor = "#fff");
         console.log(event.target)
         console.log(event.target.labels[0])
-        event.target.labels[0].style.backgroundColor = "#14143c";*/
+        event.target.labels[0].style.backgroundColor = "#14143c";
     }
 // Send the JSON data to the API endpoint
 function sendDataToAPI(jsonData, check) {
@@ -164,7 +164,7 @@ function addListenersToRadioButtons(form) {
 	console.log(inputs);
   inputs.forEach(input => {
     input.addEventListener('click', highlightLabel);
-    console.log(input)
+    //console.log(input)
   });
 }
 
