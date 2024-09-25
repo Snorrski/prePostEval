@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("14:22")
+console.log("15:23")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -9,20 +9,6 @@ const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
 const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
 const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
 
-function allQuestionsAnswered(form) {
-    // Get all unique radio button groups by name
-    const radioGroups = new Set([...form.querySelectorAll('input[type="radio"]')].map(radio => radio.name));
-
-    // Check if each group has a checked option
-    for (const groupName of radioGroups) {
-        const isGroupChecked = [...form.querySelectorAll(`input[name="${groupName}"]`)].some(radio => radio.checked);
-        if (!isGroupChecked) {
-            return false; // If any group doesn't have a checked radio button, return false
-        }
-    }
-
-    return true; // If all groups have a checked radio button, return true
-}
 // Adjust iframe style
 function adjustIframe() {
   parentElement.style.cssText = "height: auto; padding: 0;";
@@ -58,13 +44,12 @@ function highlightLabel(event) {
 
 // Send the JSON data to the API endpoint
 function sendDataToAPI(jsonData, check) {
-  const apiURL = 'https://prod-236.westeurope.logic.azure.com:443/workflows/7fea2dec7f99427689f6b676bfbd5f29/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Nx_u-9wDlM8c7HrkQLIkx-7bhrQ5ml0IPGi452noa_U';
-  
-  fetch(apiURL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(jsonData),
-  })
+	const apiURL = 'https://prod-236.westeurope.logic.azure.com:443/workflows/7fea2dec7f99427689f6b676bfbd5f29/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Nx_u-9wDlM8c7HrkQLIkx-7bhrQ5ml0IPGi452noa_U';
+  	fetch(apiURL, {
+    	method: 'POST',
+    	headers: { 'Content-Type': 'application/json' },
+    	body: JSON.stringify(jsonData),
+  	})
   .then(response => response.json())
   .then(data => {
     console.log('Success:', data);
@@ -78,7 +63,9 @@ function handleAPIResponse(data, check) {
   console.log(data.message);
   console.log(data.data);
   if (check) {
-    data.message !== "answered" ? buildForm() : thankYou();
+    data.message !== "answered" ? buildForm() : thankYou(check);
+  } else {
+	  thankYou(check)
   }
 }
 
@@ -245,10 +232,10 @@ function createSubmitButton() {
 }
 
 // Display thank you message if the survey is already completed
-function thankYou() {
+function thankYou(check) {
     const courseName = document.getElementsByClassName('nav-sidebar-header__title')[0].text;
   const message = p.GetVar('preOrPost') === "pre" ? "præmålingen" : "postmålingen";
-  const html = `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>`;
+	if check ? const html = `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>` : `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
   parentElement.innerHTML = html;
 }
 
