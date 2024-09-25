@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("09:43")
+console.log("09:47")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -97,14 +97,6 @@ sendDataToAPI(jsonData, check);
 
 // Build the Likert scale form
 function buildForm() {
-    function highlightLabel(event) {
-        const radioWrapper = event.target.closest('.likert');
-        const labels = radioWrapper.querySelectorAll('label');
-        labels.forEach(label => label.style.backgroundColor = "#fff");
-        console.log(event.target)
-        console.log(event.target.labels[0])
-        event.target.labels[0].style.backgroundColor = "#14143c";
-    }
   const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
   const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
   const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
@@ -126,20 +118,19 @@ function buildForm() {
   const questionP = document.createElement('p');
   questionP.innerHTML = `${questionText}`;
     questionDiv.appendChild(questionP);
-  const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`, highlightLabel);
+  const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
   questionDiv.appendChild(likert);
   form.appendChild(questionDiv);
   });
   
   form.appendChild(createSubmitButton());
   form.onsubmit = event => checkData(event, false);
-  //document.body.appendChild(form); // Append the form to the body
   parentElement.appendChild(form);
-  addListenersToRadioButtons();
+  //addListenersToRadioButtons();
 }
 
 // Create Likert scale options for each question
-function createLikertScale(questionText, minText, maxText, name, fn) {
+function createLikertScale(questionText, minText, maxText, name) {
   const likert = document.createElement('div');
   likert.className = "likert";
   likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 10px 0 20px 0;";
@@ -150,7 +141,7 @@ function createLikertScale(questionText, minText, maxText, name, fn) {
    radioContainer.innerHTML += '<div style="position: absolute;width: 100%; height: 2px; top: 36%; background-color: #14143c;z-index: 1;"></div>';
   for (let i = 1; i <= 5; i++) {
     const radioId = `${name}-${i}`;
-    radioContainer.appendChild(createRadioButton(name, radioId, i, fn));
+    radioContainer.appendChild(createRadioButton(name, radioId, i));
   }
  
   likert.appendChild(radioContainer);
@@ -160,7 +151,7 @@ function createLikertScale(questionText, minText, maxText, name, fn) {
 }
 
 // Create a single radio button for the Likert scale
-function createRadioButton(name, id, value, fn) {
+function createRadioButton(name, id, value) {
   const radioInput = document.createElement('input');
   radioInput.type = "radio";
   radioInput.name = name;
@@ -173,7 +164,6 @@ function createRadioButton(name, id, value, fn) {
   label.style.cssText = "display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #fff; border: 2px solid #14143c;";
   
   // Attach the click event to the label
-  label.onclick = fn;
   const radioWrapper = document.createElement('div');
   radioWrapper.appendChild(radioInput);
   //radioWrapper.appendChild(label);
