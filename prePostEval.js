@@ -1,44 +1,10 @@
 // Initialize global variables
-console.log("11:19")
+console.log("12:04")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
 var parentElement = iframe.parentElement;
-(function() {
-  // Check if jQuery is already loaded
-  var script = document.createElement('script');
-    
-    // Set the source to load jQuery from a CDN
-    script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
-    
-    // Set the script to be asynchronous (optional but recommended)
-    script.async = true;
-    
-    // Add an onload handler to run code after jQuery is loaded
-    script.onload = function() {
-      console.log("jQuery loaded successfully!");
-      // You can execute jQuery dependent code here
-      prePostInit();
-    };
-  if (typeof window.jQuery === 'undefined') {
-    console.log("jQuery not found. Loading jQuery...");
-    
-    // Create a script element
-    
 
-    // Append the script to the head or body to load it
-    document.head.appendChild(script);
-    window.parent.document.head.appendChild(script);
-  } else {
-    if (typeof window.parent.jQuery === 'undefined') {window.parent.document.head.appendChild(script);console.log("jQuery is added.");}
-    console.log("jQuery is already loaded.");
-    script.onload = function() {
-      console.log("jQuery loaded successfully!");
-      // You can execute jQuery dependent code here
-      prePostInit();
-    };
-  }
-})();
 // Adjust iframe style
 function adjustIframe() {
   parentElement.style.cssText = "height: auto; padding: 0;";
@@ -186,13 +152,10 @@ function createRadioButton(name, id, value) {
 // Highlight the label when a radio button is clicked
 
 function addListenersToRadioButtons() {
-  $('label').on('click', function(){console.log('hey!!')})
-  /*
-  If using method 1
-  const labels = document.querySelectorAll('.label-class');
+  const labels = document.querySelectorAll('label');
   labels.forEach(label => {
     label.addEventListener('click', highlightLabel);
-  });*/
+  });
 }
 
 // Create a submit button for the form
