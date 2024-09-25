@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("10:36")
+console.log("11:19")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -18,6 +18,7 @@ var parentElement = iframe.parentElement;
     script.onload = function() {
       console.log("jQuery loaded successfully!");
       // You can execute jQuery dependent code here
+      prePostInit();
     };
   if (typeof window.jQuery === 'undefined') {
     console.log("jQuery not found. Loading jQuery...");
@@ -28,11 +29,14 @@ var parentElement = iframe.parentElement;
     // Append the script to the head or body to load it
     document.head.appendChild(script);
     window.parent.document.head.appendChild(script);
-    prePostInit();
   } else {
     if (typeof window.parent.jQuery === 'undefined') {window.parent.document.head.appendChild(script);console.log("jQuery is added.");}
     console.log("jQuery is already loaded.");
-    prePostInit();
+    script.onload = function() {
+      console.log("jQuery loaded successfully!");
+      // You can execute jQuery dependent code here
+      prePostInit();
+    };
   }
 })();
 // Adjust iframe style
