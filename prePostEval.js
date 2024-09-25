@@ -1,10 +1,14 @@
 // Initialize global variables
-console.log("13:14")
+console.log("14:22")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
 var parentElement = iframe.parentElement;
-var checked;
+var checked = [];
+const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
+const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
+const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
+
 function allQuestionsAnswered(form) {
     // Get all unique radio button groups by name
     const radioGroups = new Set([...form.querySelectorAll('input[type="radio"]')].map(radio => radio.name));
@@ -24,19 +28,15 @@ function adjustIframe() {
   parentElement.style.cssText = "height: auto; padding: 0;";
   iframe.style.display = "none";
 }
-/*function highlightLabel(event) {
-    console.log('hey!');
-        const radioWrapper = event.target.closest('.likert');
-        const labels = radioWrapper.querySelectorAll('label');
-        labels.forEach(label => label.style.backgroundColor = "#fff");
-        event.target.labels[0].style.backgroundColor = "#14143c";
-    }*/
 
 function highlightLabel(event) {
-    console.log('Label clicked');
-    const radioWrapper = event.target.closest('.likert');
-    const labels = radioWrapper.querySelectorAll('label');
+	console.log('Label clicked');
+    	const radioWrapper = event.target.closest('.likert');
+    	const labels = radioWrapper.querySelectorAll('label');
 	const q = event.target.name;
+	if (!checked.includes(q)) {
+		checked.push(q)
+	};
     // Reset background for all labels
     labels.forEach(label => {
         label.style.backgroundColor = "#fff";
@@ -84,34 +84,32 @@ function handleAPIResponse(data, check) {
 
 // Prepare the data and send it to the API
 function checkData(event = null, check = true) {
-  if (event && event.preventDefault) event.preventDefault();
-  
-  const studentId = lmsAPI.GetStudentID();
-  const studentName = lmsAPI.GetStudentName();
-  const course = p.GetVar('course');
-  const preOrPost = p.GetVar('preOrPost');
-  const jsonData = {
-    name: studentName,
-    id: studentId,
-    course,
-    check,
-    "pre/post": preOrPost
-  };
-  console.log(jsonData);
-  // Add form data if not checking
-  if (!check && event) {
-    const formData = new FormData(event.target);
-    formData.forEach((value, key) => jsonData[key] = value);  
-  }
-
-	sendDataToAPI(jsonData, check);
+	if (event && event.preventDefault) event.preventDefault();
+	const studentId = lmsAPI.GetStudentID();
+	const studentName = lmsAPI.GetStudentName();
+	const course = p.GetVar('course');
+	const preOrPost = p.GetVar('preOrPost');
+	const jsonData = {
+		name: studentName,
+		id: studentId,
+		course,
+		check,
+		"pre/post": preOrPost
+	};
+  	console.log(jsonData);
+  	// Add form data if not checking
+	console.log(checked);
+  	if (!check && event && checked.length === questions.length) {
+		const formData = new FormData(event.target);
+    	formData.forEach((value, key) => jsonData[key] = value);  
+  	}
+	if (check || checked.length === questions.length) {
+		sendDataToAPI(jsonData, check);
+	}
 }
 
 // Build the Likert scale form
 function buildForm() {
-  	const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
-  	const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
-  	const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
   	const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
   	const preOrPost = p.GetVar('preOrPost');
   	const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
@@ -142,7 +140,6 @@ function buildForm() {
   addListenersToRadioButtons(form);
 }
 
-// Create Likert scale options for each question
 // Create Likert scale options for each question
 function createLikertScale(questionText, minText, maxText, name) {
     const likert = document.createElement('div');
@@ -220,54 +217,23 @@ function createRadioButton(name, id, value) {
     return radioWrapper;
 }
 
-/*function createLikertScale(questionText, minText, maxText, name) {
-	const likert = document.createElement('div');
-	likert.className = "likert";
-	likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 10px 0 20px 0;";
-	likert.innerHTML = `<span style="width: 10%; text-align: left;">${minText}</span>`;
-  	const radioContainer = document.createElement('div');
-  	radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px;";
-   	radioContainer.innerHTML += '<div style="position: absolute;width: 100%; height: 2px; top: 36%; background-color: #14143c;z-index: 1;"></div>';
-  	for (let i = 1; i <= 5; i++) {
-    		const radioId = `${name}-${i}`;
-    		radioContainer.appendChild(createRadioButton(name, radioId, i));
-  	}
- 
-  	likert.appendChild(radioContainer);
-  	likert.innerHTML += `<span style="width: 10%; text-align: right;">${maxText}</span>`;
-  	return likert;
-}*/
-
-// Create a single radio button for the Likert scale
-/*function createRadioButton(name, id, value) {
-  	const radioInput = document.createElement('input');
-  	radioInput.type = "radio";
-  	radioInput.name = name;
-  	radioInput.value = value;
-  	radioInput.id = id;
-  	radioInput.style.display = "none";
-  
-  	const label = document.createElement('label');
-  	label.setAttribute('for', id);
-  	label.style.cssText = "display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #fff; border: 2px solid #14143c;";
-  
-  	// Attach the click event to the label
-  	const radioWrapper = document.createElement('div');
-  	radioWrapper.appendChild(radioInput);
-  	radioWrapper.innerHTML += '<label for="' + id + '" style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: #fff;; border: 2px solid #14143c;"></label>';
-  	radioWrapper.className = "radioWrapper";
-  	return radioWrapper;
-}*/
-
-
 // Highlight the label when a radio button is clicked
 
 function addListenersToRadioButtons(form) {
-	console.log('addListenersToRadioButtons');
-  	const inputs = form.querySelectorAll('input[type="radio"]');
-	inputs.forEach(input => {
-    		input.addEventListener('click', highlightLabel);
-	});
+    // Add 'click' event listener to radio buttons
+    const inputs = form.querySelectorAll('input[type="radio"]');
+    inputs.forEach(input => {
+        input.addEventListener('click', highlightLabel);
+    });
+
+    // Add 'focusout' event listener to the form
+    form.addEventListener('focusout', function(event) {
+        // Check if the focus is moving outside the form
+        if (!form.contains(event.relatedTarget)) {
+            console.log('Focus left the form, submitting...');
+            form.submit();  // Trigger form submission
+        }
+    });
 }
 
 // Create a submit button for the form
