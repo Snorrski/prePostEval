@@ -1,10 +1,35 @@
 // Initialize global variables
-console.log("09:05")
+console.log("09:23")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
 var parentElement = iframe.parentElement;
+(function() {
+  // Check if jQuery is already loaded
+  if (typeof window.jQuery === 'undefined') {
+    console.log("jQuery not found. Loading jQuery...");
+    
+    // Create a script element
+    var script = document.createElement('script');
+    
+    // Set the source to load jQuery from a CDN
+    script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
+    
+    // Set the script to be asynchronous (optional but recommended)
+    script.async = true;
+    
+    // Add an onload handler to run code after jQuery is loaded
+    script.onload = function() {
+      console.log("jQuery loaded successfully!");
+      // You can execute jQuery dependent code here
+    };
 
+    // Append the script to the head or body to load it
+    document.head.appendChild(script);
+  } else {
+    console.log("jQuery is already loaded.");
+  }
+})();
 // Adjust iframe style
 function adjustIframe() {
   
@@ -144,8 +169,8 @@ function createRadioButton(name, id, value, fn) {
   label.onclick = fn;
   const radioWrapper = document.createElement('div');
   radioWrapper.appendChild(radioInput);
-  radioWrapper.appendChild(label);
-  //radioWrapper.innerHTML += '<label for="' + id + '" style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: #fff;; border: 2px solid #14143c;" onclick="highlightLabel(event)"></label>';
+  //radioWrapper.appendChild(label);
+  radioWrapper.innerHTML += '<label for="' + id + '" style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: #fff;; border: 2px solid #14143c;" onclick="highlightLabel(event)"></label>';
   //radioWrapper.style.zIndex = "2";
   radioWrapper.className = "radioWrapper";
   return radioWrapper;
