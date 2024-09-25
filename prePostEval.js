@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("12:46")
+console.log("13:05")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -10,13 +10,38 @@ function adjustIframe() {
   parentElement.style.cssText = "height: auto; padding: 0;";
   iframe.style.display = "none";
 }
-function highlightLabel(event) {
+/*function highlightLabel(event) {
     console.log('hey!');
         const radioWrapper = event.target.closest('.likert');
         const labels = radioWrapper.querySelectorAll('label');
         labels.forEach(label => label.style.backgroundColor = "#fff");
         event.target.labels[0].style.backgroundColor = "#14143c";
-    }
+    }*/
+
+function highlightLabel(event) {
+    console.log('Label clicked');
+    const radioWrapper = event.target.closest('.likert');
+    const labels = radioWrapper.querySelectorAll('label');
+
+    // Reset background for all labels
+    labels.forEach(label => {
+        label.style.backgroundColor = "#fff";
+        label.style.backgroundImage = "none"; // Remove background image from all labels
+        label.style.border = "2px solid #14143c"; // Restore the border color
+    });
+
+    // Highlight the clicked label
+    const selectedLabel = event.target.labels[0];
+    selectedLabel.style.backgroundColor = "#14143c";
+    selectedLabel.style.backgroundImage = "url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 8 8%27%3e%3cpath fill=%27%23FFF%27 d=%27M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z%27/%3e%3c/svg%3e')";
+    selectedLabel.style.backgroundRepeat = "no-repeat";
+    selectedLabel.style.backgroundPosition = "center";
+    selectedLabel.style.backgroundSize = "10px 10px"; // Adjust size of checkmark
+    selectedLabel.style.border = "2px solid #14143c"; // Ensure border remains visible
+}
+
+
+
 // Send the JSON data to the API endpoint
 function sendDataToAPI(jsonData, check) {
   const apiURL = 'https://prod-236.westeurope.logic.azure.com:443/workflows/7fea2dec7f99427689f6b676bfbd5f29/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Nx_u-9wDlM8c7HrkQLIkx-7bhrQ5ml0IPGi452noa_U';
@@ -130,7 +155,7 @@ function createLikertScale(questionText, minText, maxText, name) {
         height: 2px; 
         top: 50%; 
         background-color: #14143c; 
-        z-index: -1; /* Ensures it's behind the labels */
+        z-index: 0; /* Ensures it's behind the labels */
     `;
     radioContainer.appendChild(line);
 
