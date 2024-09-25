@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("09:23")
+console.log("09:43")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -36,7 +36,14 @@ function adjustIframe() {
   parentElement.style.cssText = "height: auto; padding: 0;";
   iframe.style.display = "none";
 }
-
+function highlightLabel(event) {
+        const radioWrapper = event.target.closest('.likert');
+        const labels = radioWrapper.querySelectorAll('label');
+        labels.forEach(label => label.style.backgroundColor = "#fff");
+        console.log(event.target)
+        console.log(event.target.labels[0])
+        event.target.labels[0].style.backgroundColor = "#14143c";
+    }
 // Send the JSON data to the API endpoint
 function sendDataToAPI(jsonData, check) {
   const apiURL = 'https://prod-236.westeurope.logic.azure.com:443/workflows/7fea2dec7f99427689f6b676bfbd5f29/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Nx_u-9wDlM8c7HrkQLIkx-7bhrQ5ml0IPGi452noa_U';
