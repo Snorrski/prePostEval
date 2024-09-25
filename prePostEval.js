@@ -1,16 +1,12 @@
 // Initialize global variables
-console.log("10:29")
+console.log("10:36")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
 var parentElement = iframe.parentElement;
 (function() {
   // Check if jQuery is already loaded
-  if (typeof window.jQuery === 'undefined') {
-    console.log("jQuery not found. Loading jQuery...");
-    
-    // Create a script element
-    var script = document.createElement('script');
+  var script = document.createElement('script');
     
     // Set the source to load jQuery from a CDN
     script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
@@ -23,6 +19,11 @@ var parentElement = iframe.parentElement;
       console.log("jQuery loaded successfully!");
       // You can execute jQuery dependent code here
     };
+  if (typeof window.jQuery === 'undefined') {
+    console.log("jQuery not found. Loading jQuery...");
+    
+    // Create a script element
+    
 
     // Append the script to the head or body to load it
     document.head.appendChild(script);
