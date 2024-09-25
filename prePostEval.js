@@ -107,7 +107,7 @@ function buildForm() {
 }
 
 // Create Likert scale options for each question
-function createLikertScale(questionText, minText, maxText, name) {
+function createLikertScale(questionText, minText, maxText, name, fn) {
   const likert = document.createElement('div');
   likert.className = "likert";
   likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 10px 0 20px 0;";
