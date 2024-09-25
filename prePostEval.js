@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("12:04")
+console.log("12:06")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -180,4 +180,4 @@ function prePostInit() {
   checkData(null, true);  // Initially check if the survey is already completed
 }
 
-
+prePostInit();
