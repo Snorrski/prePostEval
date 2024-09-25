@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("09:47")
+console.log("09:53")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -26,23 +26,25 @@ var parentElement = iframe.parentElement;
 
     // Append the script to the head or body to load it
     document.head.appendChild(script);
+    prePostInit();
   } else {
     console.log("jQuery is already loaded.");
+    prePostInit();
   }
 })();
 // Adjust iframe style
 function adjustIframe() {
-  
   parentElement.style.cssText = "height: auto; padding: 0;";
   iframe.style.display = "none";
 }
 function highlightLabel(event) {
-        const radioWrapper = event.target.closest('.likert');
+    console.log('hey!');
+        /*const radioWrapper = event.target.closest('.likert');
         const labels = radioWrapper.querySelectorAll('label');
         labels.forEach(label => label.style.backgroundColor = "#fff");
         console.log(event.target)
         console.log(event.target.labels[0])
-        event.target.labels[0].style.backgroundColor = "#14143c";
+        event.target.labels[0].style.backgroundColor = "#14143c";*/
     }
 // Send the JSON data to the API endpoint
 function sendDataToAPI(jsonData, check) {
@@ -207,4 +209,4 @@ function prePostInit() {
   checkData(null, true);  // Initially check if the survey is already completed
 }
 
-prePostInit();
+
