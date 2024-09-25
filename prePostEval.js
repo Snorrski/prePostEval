@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("15:23")
+console.log("15:41")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -234,9 +234,9 @@ function createSubmitButton() {
 // Display thank you message if the survey is already completed
 function thankYou(check) {
     const courseName = document.getElementsByClassName('nav-sidebar-header__title')[0].text;
-  const message = p.GetVar('preOrPost') === "pre" ? "præmålingen" : "postmålingen";
-	if check ? const html = `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>` : `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
-  parentElement.innerHTML = html;
+  	const message = p.GetVar('preOrPost') === "pre" ? "præmålingen" : "postmålingen";
+	const html = check ? `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>` : `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
+  	parentElement.innerHTML = html;
 }
 
 // Initialize the script
