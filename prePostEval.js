@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("12:10")
+console.log("12:15")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -21,6 +21,7 @@ function highlightLabel(event) {
     }
 // Send the JSON data to the API endpoint
 function sendDataToAPI(jsonData, check) {
+	console.log('sendDataToAPI');
   const apiURL = 'https://prod-236.westeurope.logic.azure.com:443/workflows/7fea2dec7f99427689f6b676bfbd5f29/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Nx_u-9wDlM8c7HrkQLIkx-7bhrQ5ml0IPGi452noa_U';
   
   fetch(apiURL, {
@@ -38,6 +39,7 @@ function sendDataToAPI(jsonData, check) {
 
 // Handle the response from the API
 function handleAPIResponse(data, check) {
+	console.log('handleAPIResponse');
   console.log(data.message);
   console.log(data.data);
   if (check) {
@@ -47,6 +49,7 @@ function handleAPIResponse(data, check) {
 
 // Prepare the data and send it to the API
 function checkData(event = null, check = true) {
+	console.log('checkData');
   if (event && event.preventDefault) event.preventDefault();
   
   const studentId = lmsAPI.GetStudentID();
@@ -67,11 +70,12 @@ function checkData(event = null, check = true) {
     formData.forEach((value, key) => jsonData[key] = value);  
   }
 
-sendDataToAPI(jsonData, check);
+	sendDataToAPI(jsonData, check);
 }
 
 // Build the Likert scale form
 function buildForm() {
+	console.log('buildForm');
   const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
   const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
   const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
@@ -106,6 +110,7 @@ function buildForm() {
 
 // Create Likert scale options for each question
 function createLikertScale(questionText, minText, maxText, name) {
+	console.log('createLikertScale');
   const likert = document.createElement('div');
   likert.className = "likert";
   likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 10px 0 20px 0;";
@@ -127,6 +132,7 @@ function createLikertScale(questionText, minText, maxText, name) {
 
 // Create a single radio button for the Likert scale
 function createRadioButton(name, id, value) {
+	console.log('createRadioButton');
   const radioInput = document.createElement('input');
   radioInput.type = "radio";
   radioInput.name = name;
@@ -152,6 +158,7 @@ function createRadioButton(name, id, value) {
 // Highlight the label when a radio button is clicked
 
 function addListenersToRadioButtons() {
+	console.log('addListenersToRadioButtons');
   //const labels = document.querySelectorAll('label');
   const inputs = document.querySelectorAll('input[type="radio"]');
   inputs.forEach(input => {
@@ -162,6 +169,7 @@ function addListenersToRadioButtons() {
 
 // Create a submit button for the form
 function createSubmitButton() {
+	console.log('createSubmitButton');
   const btnDiv = document.createElement('div');
   btnDiv.style.cssText = "display: flex; justify-content: center;";
   btnDiv.innerHTML = '<input type="submit" value="Submit" />';
@@ -170,6 +178,7 @@ function createSubmitButton() {
 
 // Display thank you message if the survey is already completed
 function thankYou() {
+	console.log('thankYou');
     const courseName = document.getElementsByClassName('nav-sidebar-header__title')[0].text;
   const message = p.GetVar('preOrPost') === "pre" ? "præmålingen" : "postmålingen";
   const html = `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>`;
@@ -178,6 +187,7 @@ function thankYou() {
 
 // Initialize the script
 function prePostInit() {
+	console.log('prePostInit');
   adjustIframe();
   checkData(null, true);  // Initially check if the survey is already completed
 }
