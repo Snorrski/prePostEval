@@ -4,7 +4,21 @@ var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
 var parentElement = iframe.parentElement;
+var checked;
+function allQuestionsAnswered(form) {
+    // Get all unique radio button groups by name
+    const radioGroups = new Set([...form.querySelectorAll('input[type="radio"]')].map(radio => radio.name));
 
+    // Check if each group has a checked option
+    for (const groupName of radioGroups) {
+        const isGroupChecked = [...form.querySelectorAll(`input[name="${groupName}"]`)].some(radio => radio.checked);
+        if (!isGroupChecked) {
+            return false; // If any group doesn't have a checked radio button, return false
+        }
+    }
+
+    return true; // If all groups have a checked radio button, return true
+}
 // Adjust iframe style
 function adjustIframe() {
   parentElement.style.cssText = "height: auto; padding: 0;";
@@ -22,7 +36,7 @@ function highlightLabel(event) {
     console.log('Label clicked');
     const radioWrapper = event.target.closest('.likert');
     const labels = radioWrapper.querySelectorAll('label');
-
+	const q = event.target.name;
     // Reset background for all labels
     labels.forEach(label => {
         label.style.backgroundColor = "#fff";
