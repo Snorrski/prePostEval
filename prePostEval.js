@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("09:53")
+console.log("09:58")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -128,7 +128,7 @@ function buildForm() {
   form.appendChild(createSubmitButton());
   form.onsubmit = event => checkData(event, false);
   parentElement.appendChild(form);
-  //addListenersToRadioButtons();
+  addListenersToRadioButtons();
 }
 
 // Create Likert scale options for each question
@@ -169,7 +169,7 @@ function createRadioButton(name, id, value) {
   const radioWrapper = document.createElement('div');
   radioWrapper.appendChild(radioInput);
   //radioWrapper.appendChild(label);
-  radioWrapper.innerHTML += '<label for="' + id + '" style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: #fff;; border: 2px solid #14143c;" onclick="highlightLabel(event)"></label>';
+  radioWrapper.innerHTML += '<label for="' + id + '" style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: #fff;; border: 2px solid #14143c;"></label>';
   //radioWrapper.style.zIndex = "2";
   radioWrapper.className = "radioWrapper";
   return radioWrapper;
@@ -179,13 +179,14 @@ function createRadioButton(name, id, value) {
 // Highlight the label when a radio button is clicked
 
 function addListenersToRadioButtons() {
-  // If using method 1
+  $('label').on('click', function(){console.log('hey!!')})
+  /*
+  If using method 1
   const labels = document.querySelectorAll('.label-class');
   labels.forEach(label => {
     label.addEventListener('click', highlightLabel);
-  });
+  });*/
 }
-/**/
 
 // Create a submit button for the form
 function createSubmitButton() {
