@@ -115,12 +115,12 @@ function createLikertScale(questionText, minText, maxText, name, fn) {
   
   const radioContainer = document.createElement('div');
   radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px;";
-  
+   radioContainer.innerHTML += '<div style="position: absolute;width: 100%; height: 2px; top: 36%; background-color: #14143c;z-index: 1;"></div>';
   for (let i = 1; i <= 5; i++) {
     const radioId = `${name}-${i}`;
     radioContainer.appendChild(createRadioButton(name, radioId, i, fn));
   }
-  radioContainer.innerHTML += '<div style="position: absolute;width: 100%; height: 2px; top: 36%; background-color: #14143c;z-index: 1;"></div>';
+ 
   likert.appendChild(radioContainer);
   likert.innerHTML += `<span style="width: 10%; text-align: right;">${maxText}</span>`;
   
