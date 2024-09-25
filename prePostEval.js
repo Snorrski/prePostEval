@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("09:58")
+console.log("10:03")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -26,6 +26,7 @@ var parentElement = iframe.parentElement;
 
     // Append the script to the head or body to load it
     document.head.appendChild(script);
+    window.parent.document.head.appendChild(script);
     prePostInit();
   } else {
     console.log("jQuery is already loaded.");
