@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("12:18")
+console.log("12:21")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -105,7 +105,7 @@ function buildForm() {
   form.appendChild(createSubmitButton());
   form.onsubmit = event => checkData(event, false);
   parentElement.appendChild(form);
-  addListenersToRadioButtons();
+  addListenersToRadioButtons(form);
 }
 
 // Create Likert scale options for each question
@@ -157,10 +157,10 @@ function createRadioButton(name, id, value) {
 
 // Highlight the label when a radio button is clicked
 
-function addListenersToRadioButtons() {
+function addListenersToRadioButtons(form) {
 	console.log('addListenersToRadioButtons');
   //const labels = document.querySelectorAll('label');
-  const inputs = document.querySelectorAll('input[type="radio"]');
+  const inputs = form.querySelectorAll('input[type="radio"]');
 	console.log(inputs);
   inputs.forEach(input => {
     input.addEventListener('click', highlightLabel);
