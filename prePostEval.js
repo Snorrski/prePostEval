@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("12:37")
+console.log("12:46")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -103,6 +103,7 @@ function buildForm() {
 }
 
 // Create Likert scale options for each question
+// Create Likert scale options for each question
 function createLikertScale(questionText, minText, maxText, name) {
     const likert = document.createElement('div');
     likert.className = "likert";
@@ -114,7 +115,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     // Create a container for the radio buttons and labels
     const radioContainer = document.createElement('div');
     radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px;";
-
+    
     // Create and append the radio buttons with labels
     for (let i = 1; i <= 5; i++) {
         const radioId = `${name}-${i}`;
@@ -123,7 +124,14 @@ function createLikertScale(questionText, minText, maxText, name) {
 
     // Add the connecting line, placing it behind the labels and radio buttons
     const line = document.createElement('div');
-    line.style.cssText = "position: absolute; width: 100%; height: 2px; top: 50%; background-color: #14143c; z-index: 0;";
+    line.style.cssText = `
+        position: absolute; 
+        width: 100%; 
+        height: 2px; 
+        top: 50%; 
+        background-color: #14143c; 
+        z-index: -1; /* Ensures it's behind the labels */
+    `;
     radioContainer.appendChild(line);
 
     // Append the radio button container to the likert div
@@ -134,6 +142,44 @@ function createLikertScale(questionText, minText, maxText, name) {
     
     return likert;
 }
+
+// Create a single radio button for the Likert scale
+function createRadioButton(name, id, value) {
+    const radioInput = document.createElement('input');
+    radioInput.type = "radio";
+    radioInput.name = name;
+    radioInput.value = value;
+    radioInput.id = id;
+    radioInput.style.display = "none"; // Hide the actual radio button
+  
+    const label = document.createElement('label');
+    label.setAttribute('for', id);
+    label.style.cssText = `
+        display: inline-block; 
+        width: 20px; 
+        height: 20px; 
+        border-radius: 50%; 
+        background-color: #fff; 
+        border: 2px solid #14143c; 
+        position: relative; /* Ensure z-index works */
+        z-index: 1; /* Keep the label in front of the line */
+    `;
+
+    // Create the radio button wrapper
+    const radioWrapper = document.createElement('div');
+    radioWrapper.style.cssText = `
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        height: 20px; /* Match the label height to avoid the extra 26px */
+    `;
+    
+    radioWrapper.appendChild(radioInput);
+    radioWrapper.appendChild(label);
+
+    return radioWrapper;
+}
+
 /*function createLikertScale(questionText, minText, maxText, name) {
 	const likert = document.createElement('div');
 	likert.className = "likert";
@@ -153,7 +199,7 @@ function createLikertScale(questionText, minText, maxText, name) {
 }*/
 
 // Create a single radio button for the Likert scale
-function createRadioButton(name, id, value) {
+/*function createRadioButton(name, id, value) {
   	const radioInput = document.createElement('input');
   	radioInput.type = "radio";
   	radioInput.name = name;
@@ -171,7 +217,7 @@ function createRadioButton(name, id, value) {
   	radioWrapper.innerHTML += '<label for="' + id + '" style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: #fff;; border: 2px solid #14143c;"></label>';
   	radioWrapper.className = "radioWrapper";
   	return radioWrapper;
-}
+}*/
 
 
 // Highlight the label when a radio button is clicked
