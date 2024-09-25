@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("15:41")
+console.log("15:49")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -8,7 +8,7 @@ var checked = [];
 const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
 const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
 const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
-
+const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
 // Adjust iframe style
 function adjustIframe() {
   parentElement.style.cssText = "height: auto; padding: 0;";
@@ -97,7 +97,6 @@ function checkData(event = null, check = true) {
 
 // Build the Likert scale form
 function buildForm() {
-  	const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
   	const preOrPost = p.GetVar('preOrPost');
   	const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
   	const formMessage = preOrPost === "pre" ?
@@ -233,7 +232,6 @@ function createSubmitButton() {
 
 // Display thank you message if the survey is already completed
 function thankYou(check) {
-    const courseName = document.getElementsByClassName('nav-sidebar-header__title')[0].text;
   	const message = p.GetVar('preOrPost') === "pre" ? "præmålingen" : "postmålingen";
 	const html = check ? `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>` : `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
   	parentElement.innerHTML = html;
