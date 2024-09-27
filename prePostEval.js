@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("15:49")
+console.log("09:37")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -11,14 +11,14 @@ const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
 const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
 // Adjust iframe style
 function adjustIframe() {
-  parentElement.style.cssText = "height: auto; padding: 0;";
-  iframe.style.display = "none";
+  	parentElement.style.cssText = "height: auto; padding: 0;";
+  	iframe.style.display = "none";
 }
 
 function highlightLabel(event) {
 	console.log('Label clicked');
-    	const radioWrapper = event.target.closest('.likert');
-    	const labels = radioWrapper.querySelectorAll('label');
+    const radioWrapper = event.target.closest('.likert');
+    const labels = radioWrapper.querySelectorAll('label');
 	const q = event.target.name;
 	if (!checked.includes(q)) {
 		checked.push(q)
@@ -60,13 +60,13 @@ function sendDataToAPI(jsonData, check) {
 
 // Handle the response from the API
 function handleAPIResponse(data, check) {
-  console.log(data.message);
-  console.log(data.data);
-  if (check) {
-    data.message !== "answered" ? buildForm() : thankYou(check);
-  } else {
-	  thankYou(check)
-  }
+	console.log(data.message);
+	console.log(data.data);
+  	if (check) {
+    	data.message !== "answered" ? buildForm() : thankYou(check);
+  	} else {
+	  	thankYou(check)
+  	}
 }
 
 // Prepare the data and send it to the API
@@ -214,6 +214,7 @@ function addListenersToRadioButtons(form) {
 
     // Add 'focusout' event listener to the form
     form.addEventListener('focusout', function(event) {
+		console.log('focusOut added');
         // Check if the focus is moving outside the form
         if (!form.contains(event.relatedTarget)) {
             console.log('Focus left the form, submitting...');
