@@ -58,7 +58,7 @@ prnt.appendChild(div);
 
 // Save input data
 function saveInput(event) {
-    sendData.userData[s].notes = this.innerHTML;
+    sendData.userData[s]['notes'] = this.innerHTML;
     getSetNotes(sendData, true).then(result => {
         console.log('The data I got back:', result);
     });
