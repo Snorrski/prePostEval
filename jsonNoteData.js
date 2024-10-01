@@ -34,9 +34,9 @@ sendData.userData[t][s] = "";
 // Ensure async data is ready before working with it
 getSetNotes(sendData, false).then(result => {
     console.log(result);
-    console.log(result.userData);
-    console.log(typeof result.userData);
-    if (result && result.userData && result.userData.hasOwnProperty(s)) {
+    console.log(result.data.userData);
+    console.log(typeof result.data.userData);
+    if (result && result.data.userData && result.data.userData.hasOwnProperty(s)) {
         sendData.userData = JSON.parse(result.userData);
         inp.innerHTML = sendData.userData[t][s];
     }
