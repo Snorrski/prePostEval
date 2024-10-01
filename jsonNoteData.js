@@ -23,16 +23,17 @@ const s = window.parent.document.getElementsByClassName('lesson-header__title')[
 const ifrm = window.parent.document.querySelector('iframe[name="' + window.name + '"]');
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
-let sendData = {};
+let sendData = {
+    userData: {},
+    userId: studentId,
+};
 let userData = {};
-userData[s] = {"notes": ""};
-sendData.userData = userData;
-sendData.userId = studentId;
+sendData.userData[s] = {"notes": ""};
 // Ensure async data is ready before working with it
 getSetNotes(sendData, false).then(result => {
     if (result && result.userData && result.userData.hasOwnProperty(s)) {
-        userData = result.userData;
-        inp.innerHTML = userData[s].notes;
+        sendData.userData = result.userData;
+        inp.innerHTML = sendData.userData[s].notes;
     }
 });
 
@@ -57,8 +58,8 @@ prnt.appendChild(div);
 
 // Save input data
 function saveInput(event) {
-    userData[s].notes = this.innerHTML;
-    getSetNotes(userData, true).then(result => {
+    sendData.userData[s].notes = this.innerHTML;
+    getSetNotes(sendData, true).then(result => {
         console.log('The data I got back:', result);
     });
 }
