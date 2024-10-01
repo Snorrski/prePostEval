@@ -1,5 +1,5 @@
 // Script to save
-console.log('15:24');
+console.log('15:30');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
 /*const srcObj = {
@@ -31,6 +31,7 @@ let userData = {};
 sendData.userData[s] = {"notes": ""};
 // Ensure async data is ready before working with it
 getSetNotes(sendData, false).then(result => {
+    console.log(result);
     if (result && result.userData && result.userData.hasOwnProperty(s)) {
         sendData.userData = JSON.parse(result.userData);
         inp.innerHTML = sendData.userData[s].notes;
@@ -69,13 +70,14 @@ function saveInput(event) {
 async function getSetNotes(obj, set) {
     const sendObj = Object.assign({}, obj);
     sendObj["getOrSet"] = set;
+    console.log(sendObj);
     sendObj.userData = JSON.stringify(sendObj.userData);
     console.log(sendObj);
     try {
         const response = await fetch('https://prod-138.westeurope.logic.azure.com:443/workflows/6f8638a8e48d482b9ef535c4fda33cba/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Exdn2JK8CrtQ4Tn2R8HZIEhHxkWIKiYJNkXBgtoDcVM', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(obj),
+            body: JSON.stringify(sendObj),
         });
 
         if (!response.ok) {
