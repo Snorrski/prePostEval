@@ -1,5 +1,5 @@
 // Script to save
-console.log('15:45');
+console.log('20:06');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
 /*const srcObj = {
@@ -34,6 +34,8 @@ sendData.userData[t][s] = "";
 // Ensure async data is ready before working with it
 getSetNotes(sendData, false).then(result => {
     console.log(result);
+    console.log(result.userData);
+    console.log(typeof result.userData);
     if (result && result.userData && result.userData.hasOwnProperty(s)) {
         sendData.userData = JSON.parse(result.userData);
         inp.innerHTML = sendData.userData[t][s];
