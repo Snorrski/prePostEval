@@ -1,5 +1,5 @@
-// Script to save
-console.log('12:18');
+jsonNoteData.js// Script to save
+console.log('12:29');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
 /*const srcObj = {
@@ -48,10 +48,7 @@ const inp = document.createElement('div');
 inp.className = "userInput";
 inp.id = s + "_userInput";
 inp.contentEditable = "true";
-inp.style.margin = "10px";
-inp.style.padding = "10px";
-inp.style.border = "1px solid #001e3c";
-inp.style.height = '1.5em';
+inp.style.cssText = "margin: 10px; padding:  10px; border: 1px solid #001e3c; min-height: 1.5em;";
 
 // Save input on blur event
 inp.addEventListener("blur", saveInput);
