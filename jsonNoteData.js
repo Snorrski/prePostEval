@@ -1,5 +1,5 @@
 // Script to save
-console.log('15:35');
+console.log('15:45');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
 /*const srcObj = {
@@ -20,6 +20,7 @@ srcKey.forEach((key) => {
 });*/
 
 const s = window.parent.document.getElementsByClassName('lesson-header__title')[0].innerText;
+const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
 const ifrm = window.parent.document.querySelector('iframe[name="' + window.name + '"]');
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
@@ -28,13 +29,14 @@ let sendData = {
     userId: studentId,
 };
 let userData = {};
-sendData.userData[s] = {"notes": ""};
+sendData.userData[t] = {};
+sendData.userData[t][s] = "";
 // Ensure async data is ready before working with it
 getSetNotes(sendData, false).then(result => {
     console.log(result);
     if (result && result.userData && result.userData.hasOwnProperty(s)) {
         sendData.userData = JSON.parse(result.userData);
-        inp.innerHTML = sendData.userData[s].notes;
+        inp.innerHTML = sendData.userData[t][s];
     }
 });
 
@@ -60,7 +62,7 @@ prnt.appendChild(div);
 // Save input data
 function saveInput(event) {
     console.log(sendData.userData)
-     console.log(sendData.userData[s])
+     console.log(sendData.userData[t][s])
     //sendData.userData[s]['notes'] = this.innerHTML;
     getSetNotes(sendData, true).then(result => {
         console.log('The data I got back:', result);
