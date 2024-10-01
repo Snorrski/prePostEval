@@ -1,5 +1,5 @@
 // Script to save
-console.log('20:06');
+console.log('20:13');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
 /*const srcObj = {
@@ -36,8 +36,8 @@ getSetNotes(sendData, false).then(result => {
     console.log(result);
     console.log(result.data.userData);
     console.log(typeof result.data.userData);
-    if (result && result.data.userData && result.data.userData.hasOwnProperty(s)) {
-        sendData.userData = JSON.parse(result.userData);
+    if (result && result.data.userData) {
+        sendData.userData = JSON.parse(result.data.userData);
         inp.innerHTML = sendData.userData[t][s];
     }
 });
