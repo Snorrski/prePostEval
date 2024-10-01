@@ -67,7 +67,7 @@ function saveInput(event) {
 
 // Define async function to get/set notes
 async function getSetNotes(obj, obj) {
-    const sendObj = Object.assign({}, myObj);
+    const sendObj = Object.assign({}, obj);
     sendObj["getOrSet"] = set;
     sendObj.userData = JSON.stringify(sendObj.userData);
     console.log(sendObj);
