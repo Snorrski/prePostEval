@@ -87,3 +87,4 @@ async function getSetNotes(obj, set) {
         console.error('Error:', error);
     }
 }
+function jsonNoteData() {}
