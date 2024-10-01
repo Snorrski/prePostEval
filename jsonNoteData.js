@@ -1,5 +1,5 @@
 // Script to save
-console.log('15:20');
+console.log('15:24');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
 /*const srcObj = {
@@ -66,7 +66,7 @@ function saveInput(event) {
 }
 
 // Define async function to get/set notes
-async function getSetNotes(obj, obj) {
+async function getSetNotes(obj, set) {
     const sendObj = Object.assign({}, obj);
     sendObj["getOrSet"] = set;
     sendObj.userData = JSON.stringify(sendObj.userData);
