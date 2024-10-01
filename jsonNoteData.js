@@ -1,5 +1,5 @@
 // Script to save
-console.log('20:13');
+console.log('20:21');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
 /*const srcObj = {
@@ -64,8 +64,7 @@ prnt.appendChild(div);
 // Save input data
 function saveInput(event) {
     console.log(sendData.userData)
-     console.log(sendData.userData[t][s])
-    //sendData.userData[s]['notes'] = this.innerHTML;
+    sendData.userData[t][s] = this.innerHTML;
     getSetNotes(sendData, true).then(result => {
         console.log('The data I got back:', result);
     });
