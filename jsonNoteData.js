@@ -1,4 +1,4 @@
-jsonNoteData.js// Script to save
+// Script to save
 console.log('12:29');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
