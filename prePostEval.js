@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("20:47")
+console.log("20:54")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -161,8 +161,10 @@ function createLikertScale(questionText, minText, maxText, name) {
     likert.appendChild(radioContainer);
     
     // Add the maxText label on the right
-    likert.innerHTML += `<span style="width: 10%; text-align: right;">${maxText}</span>`;
-    
+    const maxLabel = document.createElement('span');
+	maxLabel.style.cssText = "width: 10%; text-align: right;";
+	maxLabel.textContent = maxText;
+	likert.appendChild(maxLabel);
     return likert;
 }
 
