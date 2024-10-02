@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("20:59")
+console.log("21:21")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -133,8 +133,14 @@ function createLikertScale(questionText, minText, maxText, name) {
     likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 10px 0 20px 0;";
     
     // Add the minText label on the left
-    likert.innerHTML = `<span style="width: 10%; text-align: left;">${minText}</span>`;
-    
+    //likert.innerHTML = `<span style="width: 10%; text-align: left;">${minText}</span>`;
+    const minLabel = document.createElement('span');
+	minLabel.style.cssText = "width: 10%; text-align: left;";
+	minLabel.textContent = minText;
+	likert.appendChild(minLabel);
+	console.log(minText);
+	console.log(minLabel);
+	
     // Create a container for the radio buttons and labels
     const radioContainer = document.createElement('div');
     radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px;";
