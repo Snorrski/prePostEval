@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("20:54")
+console.log("20:57")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -147,14 +147,13 @@ function createLikertScale(questionText, minText, maxText, name) {
 
     // Add the connecting line, placing it behind the labels and radio buttons
     const line = document.createElement('div');
-    line.style.cssText = `
+    line.style.cssText = '
         position: absolute; 
         width: 100%; 
         height: 2px; 
         top: 49%; 
         background-color: #14143c; 
-        z-index: 0; /* Ensures it's behind the labels */
-	;
+        z-index: 0;';
     //radioContainer.appendChild(line);
 	radioContainer.insertBefore(line, radioContainer.firstChild); 
     // Append the radio button container to the likert div
