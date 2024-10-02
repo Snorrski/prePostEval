@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("09:37")
+console.log("20:47")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -155,8 +155,8 @@ function createLikertScale(questionText, minText, maxText, name) {
         background-color: #14143c; 
         z-index: 0; /* Ensures it's behind the labels */
 	;
-    radioContainer.appendChild(line);
-
+    //radioContainer.appendChild(line);
+	radioContainer.insertBefore(line, radioContainer.firstChild); 
     // Append the radio button container to the likert div
     likert.appendChild(radioContainer);
     
@@ -190,12 +190,13 @@ function createRadioButton(name, id, value) {
 
     // Create the radio button wrapper
     const radioWrapper = document.createElement('div');
-    radioWrapper.style.cssText = `
-        display: flex; 
-        justify-content: center; 
-        align-items: center; 
-        height: 20px; /* Match the label height to avoid the extra 26px */
-    `;
+   radioWrapper.style.cssText = `
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 20px; /* Match the label height to avoid extra height */
+`;
+
     
     radioWrapper.appendChild(radioInput);
     radioWrapper.appendChild(label);
