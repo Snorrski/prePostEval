@@ -16,7 +16,7 @@ function adjustIframe() {
 }
 
 function highlightLabel(event) {
-	console.log('Label clicked');
+	//console.log('Label clicked');
     const radioWrapper = event.target.closest('.likert');
     const labels = radioWrapper.querySelectorAll('label');
 	const q = event.target.name;
@@ -227,7 +227,7 @@ function addListenersToRadioButtons(form) {
 function createSubmitButton() {
   const btnDiv = document.createElement('div');
   btnDiv.style.cssText = "display: flex; justify-content: center;";
-  btnDiv.innerHTML = '<input type="submit" value="Submit" />';
+  btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;" type="submit" value="Submit" />';
   return btnDiv;
 }
 
