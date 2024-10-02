@@ -151,10 +151,10 @@ function createLikertScale(questionText, minText, maxText, name) {
         position: absolute; 
         width: 100%; 
         height: 2px; 
-        top: 50%; 
+        top: 49%; 
         background-color: #14143c; 
         z-index: 0; /* Ensures it's behind the labels */
-    `;
+	;
     radioContainer.appendChild(line);
 
     // Append the radio button container to the likert div
