@@ -1,5 +1,5 @@
 // Script to save
-console.log('20:21');
+console.log('11:42');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
 /*const srcObj = {
@@ -29,8 +29,8 @@ let sendData = {
     userId: studentId,
 };
 let userData = {};
-sendData.userData[t] = {};
-sendData.userData[t][s] = "";
+sendData.userData[t] = "";
+//sendData.userData[t][s] = "";
 // Ensure async data is ready before working with it
 getSetNotes(sendData, false).then(result => {
     console.log(result);
@@ -38,7 +38,7 @@ getSetNotes(sendData, false).then(result => {
     console.log(typeof result.data.userData);
     if (result && result.data.userData) {
         sendData.userData = JSON.parse(result.data.userData);
-        inp.innerHTML = sendData.userData[t][s];
+        inp.innerHTML = sendData.userData[t];
     }
 });
 
@@ -64,7 +64,7 @@ prnt.appendChild(div);
 // Save input data
 function saveInput(event) {
     console.log(sendData.userData)
-    sendData.userData[t][s] = this.innerHTML;
+    sendData.userData[t] = this.innerHTML;
     getSetNotes(sendData, true).then(result => {
         console.log('The data I got back:', result);
     });
