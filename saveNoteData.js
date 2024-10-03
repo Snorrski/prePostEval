@@ -1,3 +1,6 @@
+// Initialize global variables
+console.log("saveNoteData-10:39")
+
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
 const ifrm = window.parent.document.querySelector('iframe[name="' + window.name + '"]');
