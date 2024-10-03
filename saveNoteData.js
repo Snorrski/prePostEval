@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("saveNoteData-13:25")
+console.log("saveNoteData-13:30")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
@@ -45,8 +45,9 @@ for (var i = 0; i<srcKey.length;i++) {
 };
 
 var parentEl = ifrm.parentElement;
-parentEl.style.innerHTML = "";
-//parentEl.style.cssText = "height: auto; padding: 0; display:none;";
+const targetCOntainer = parentEl.parentElement;
+//parentEl.style.innerHTML = "";
+parentEl.style.cssText = "height: auto; padding: 0; display:none;";
 function generateContainers() {
 	var containerEl = document.createElement('div')
 	containerEl.id = "newContainer";
@@ -79,7 +80,7 @@ function generateContainers() {
 	endDiv.style.marginTop = "1.1em";
 	endDiv.innerHTML = '<h3 style="font-size:1.2em;margin-top: 20"><b>BEMÆRK:</b></h3><p>Når du lukker kurset kan du vælge mellem:</p><p style="text-align: center;"><b>GÅ UD OG AFSLUT</b>   eller  <b> GÅ UD OG FORTSÆT SENERE.</b></p><p>Vælge du at kunne fortsætte senere, markeres modulet ikke som færdigt endnu.<br>Vælger du at afslutte, gemmes dine data ikke længere i kurset. Sørg derfor for at gemme refleksionsarket på egen computer før du afslutter.</p>';
 	containerEl.appendChild(endDiv);
-	parentEl.appendChild(containerEl);
+	targetCOntainer.appendChild(containerEl);
 }
 function generateContainersNoInput() {
 	var containerEl = document.createElement('div')
@@ -92,7 +93,7 @@ function generateContainersNoInput() {
 	printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Du har ikke indtastet noget</b></h3><p></p><br>';
 	//printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Du har ikke indtastet noget</b></h3><p>'+p.GetVar("intro_body")+'</p><br>';
 	containerEl.appendChild(printDiv);
-	parentEl.appendChild(containerEl);
+	targetCOntainer.appendChild(containerEl);
 }
 function arrayRemove(arr, value) {
 	return arr.filter(function(ele){ 
