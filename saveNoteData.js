@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("saveNoteData-12:57")
+console.log("saveNoteData-13:04")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
@@ -7,7 +7,7 @@ console.log(window.name);
 const ifrm = window.parent.document.querySelector('iframe[name="' + window.name + '"]');
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
-
+var d; 
 let sendData = {
     userId: studentId,
 };
@@ -20,6 +20,7 @@ saveNoteData(sendData).then(result => {
         sendData.userData = JSON.parse(result.data.userData);
         userData = sendData.userData[t];
 	    console.log(userData)
+	    d = userData;
     }
 });
 
