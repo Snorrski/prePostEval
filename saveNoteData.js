@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("saveNoteData-13:30")
+console.log("saveNoteData-13:38")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
@@ -81,6 +81,7 @@ function generateContainers() {
 	endDiv.innerHTML = '<h3 style="font-size:1.2em;margin-top: 20"><b>BEMÆRK:</b></h3><p>Når du lukker kurset kan du vælge mellem:</p><p style="text-align: center;"><b>GÅ UD OG AFSLUT</b>   eller  <b> GÅ UD OG FORTSÆT SENERE.</b></p><p>Vælge du at kunne fortsætte senere, markeres modulet ikke som færdigt endnu.<br>Vælger du at afslutte, gemmes dine data ikke længere i kurset. Sørg derfor for at gemme refleksionsarket på egen computer før du afslutter.</p>';
 	containerEl.appendChild(endDiv);
 	targetCOntainer.appendChild(containerEl);
+	loadInput();
 }
 function generateContainersNoInput() {
 	var containerEl = document.createElement('div')
@@ -101,8 +102,9 @@ function arrayRemove(arr, value) {
 	});
 }
 function loadInput() {
-	
 	var printMe = window.parent.document.getElementById('printMe');
+	console.log(printMe)
+	console.log(document.getElementById('printMe'));
 	if (printMe) {
 		if (userData != d) {
 			if (userData != "") {
@@ -181,4 +183,4 @@ async function saveNoteData(obj) {
     }
 }
 
-setInterval(loadInput,200);
+//setInterval(loadInput,200);
