@@ -8,7 +8,16 @@ let sendData = {
     userId: studentId,
 };
 let userData = {};
-
+saveNoteData(sendData, false).then(result => {
+    console.log(result);
+    console.log(result.data.userData);
+    console.log(typeof result.data.userData);
+    if (result && result.data.userData) {
+        sendData.userData = JSON.parse(result.data.userData);
+        userData = sendData.userData[t];
+	    console.log(userData)
+    }
+});
 
 var d = lmsAPI.SCORM2004_CallGetValue('cmi.comments_from_learner.0.comment');
 
@@ -146,7 +155,7 @@ function saveData() {
 if (d!="") {generateContainers()} else {generateContainersNoInput()}
 
 
-async function getSetNotes(obj) {
+async function saveNoteData(obj) {
     const sendObj = Object.assign({}, obj);
     sendObj["getOrSet"] = "get";
     console.log(sendObj);
