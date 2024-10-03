@@ -150,8 +150,8 @@ function saveData() {
 			$('head').append(script);
 		} else  {console.log(srcKey[i] + ' already added')};
 	};
-	var extraContent = p.GetVar('extraContent');
-	var content = '<!DOCTYPE html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>'+parent.window.document.getElementById('printMe').outerHTML + '<table></table>' + extraContent + '</body></html>';
+	
+	var content = '<!DOCTYPE html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>'+parent.window.document.getElementById('printMe').outerHTML + '<table></table></body></html>';
 	setTimeout(function(){
 		var converted = htmlDocx.asBlob(content);
 		saveAs(converted, 'Mine noter om '+t+'.docx');
