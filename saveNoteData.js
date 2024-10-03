@@ -1,5 +1,9 @@
 var lmsAPI = window.parent.parent;
+
+
+
 var d = lmsAPI.SCORM2004_CallGetValue('cmi.comments_from_learner.0.comment');
+
 if (d != "") {
 	var u = JSON.parse(d);
 } else {
@@ -133,4 +137,31 @@ function saveData() {
 	},100);
 };
 if (d!="") {generateContainers()} else {generateContainersNoInput()}
+
+
+async function getSetNotes(obj) {
+    const sendObj = Object.assign({}, obj);
+    sendObj["getOrSet"] = "get";
+    console.log(sendObj);
+    sendObj.userData = JSON.stringify(sendObj.userData);
+    console.log(sendObj);
+    try {
+        const response = await fetch('https://prod-138.westeurope.logic.azure.com:443/workflows/6f8638a8e48d482b9ef535c4fda33cba/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Exdn2JK8CrtQ4Tn2R8HZIEhHxkWIKiYJNkXBgtoDcVM', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(sendObj),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Full Data:', data);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
 setInterval(loadInput,1000);
