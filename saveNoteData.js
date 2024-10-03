@@ -154,7 +154,7 @@ function saveData() {
 	var content = '<!DOCTYPE html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>'+parent.window.document.getElementById('printMe').outerHTML + '<table></table>' + extraContent + '</body></html>';
 	setTimeout(function(){
 		var converted = htmlDocx.asBlob(content);
-		saveAs(converted, 'Mine noter om Hiim & Hippe.docx');
+		saveAs(converted, 'Mine noter om '+t+'.docx');
 	},100);
 };
 
