@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("saveNoteData-13:38")
+console.log("saveNoteData-13:44")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
@@ -21,7 +21,6 @@ saveNoteData(sendData).then(result => {
         userData = sendData.userData[t];
 	    console.log(userData)
 	    d = userData;
-	    loadInput();
 	    if (d!=="") {generateContainers()} else {generateContainersNoInput()}
     }
 });
@@ -81,7 +80,7 @@ function generateContainers() {
 	endDiv.innerHTML = '<h3 style="font-size:1.2em;margin-top: 20"><b>BEMÆRK:</b></h3><p>Når du lukker kurset kan du vælge mellem:</p><p style="text-align: center;"><b>GÅ UD OG AFSLUT</b>   eller  <b> GÅ UD OG FORTSÆT SENERE.</b></p><p>Vælge du at kunne fortsætte senere, markeres modulet ikke som færdigt endnu.<br>Vælger du at afslutte, gemmes dine data ikke længere i kurset. Sørg derfor for at gemme refleksionsarket på egen computer før du afslutter.</p>';
 	containerEl.appendChild(endDiv);
 	targetCOntainer.appendChild(containerEl);
-	loadInput();
+	loadInput(printDiv);
 }
 function generateContainersNoInput() {
 	var containerEl = document.createElement('div')
@@ -101,21 +100,22 @@ function arrayRemove(arr, value) {
 		return ele != value; 
 	});
 }
-function loadInput() {
-	var printMe = window.parent.document.getElementById('printMe');
+function loadInput(printMe) {
+	//var printMe = window.parent.document.getElementById('printMe');
 	console.log(printMe)
-	console.log(document.getElementById('printMe'));
+	
 	if (printMe) {
-		if (userData != d) {
+		//if (userData != d) {
 			if (userData != "") {
-				var subjects = arrayRemove(Object.keys(userData),'JM');
+				/*var subjects = arrayRemove(Object.keys(userData),'JM');
 				for (var i = 0; i<subjects.length; i++) {
 					if (!window.parent.document.getElementById("usrContnt_"+subjects[i])) {
-						printMe.innerHTML += '<div class="usrContnt" id="usrContnt_'+subjects[i]+'"><h4><b>'+subjects[i]+'</b></h4>' + userData[subjects[i]] + '</div>';
+						
 					} else {window.parent.document.getElementById("usrContnt_"+subjects[i]).innerHTML = '<h4><b>'+subjects[i]+'</b></h4>' + userData[subjects[i]]};
-				};
+				};*/
+				printMe.innerHTML += '<div class="usrContnt" id="usrContnt_'+subjects[i]+'"><h4><b>'+t+'</b></h4>' + userData + '</div>';
 			};
-		};
+		//};
 		d = userData;
 	} else {console.log("waiting");};
 };
