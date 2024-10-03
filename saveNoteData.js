@@ -3,6 +3,7 @@ console.log("saveNoteData-10:39")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
+console.log(window.name);
 const ifrm = window.parent.document.querySelector('iframe[name="' + window.name + '"]');
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
@@ -22,14 +23,7 @@ saveNoteData(sendData, false).then(result => {
     }
 });
 
-var d = lmsAPI.SCORM2004_CallGetValue('cmi.comments_from_learner.0.comment');
 
-if (d != "") {
-	var u = JSON.parse(d);
-} else {
-	lmsAPI.SCORM2004_CallSetValue('cmi.comments_from_learner.0.comment','{}');
-};
-console.log(d);
 var p = GetPlayer();
 var srcObj = {
 	JSZip:'https://cdn.jsdelivr.net/npm/jszip@3.7.1/dist/jszip.min.js',
@@ -101,7 +95,7 @@ function arrayRemove(arr, value) {
 	});
 }
 function loadInput() {
-	var userData = JSON.parse(lmsAPI.SCORM2004_CallGetValue('cmi.comments_from_learner.0.comment'));
+	
 	var printMe = window.parent.document.getElementById('printMe');
 	if (printMe) {
 		if (userData != d) {
@@ -183,4 +177,4 @@ async function saveNoteData(obj) {
     }
 }
 
-setInterval(loadInput,1000);
+//setInterval(loadInput,1000);
