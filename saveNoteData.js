@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("saveNoteData-13:08")
+console.log("saveNoteData-13:18")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
@@ -55,7 +55,8 @@ function generateContainers() {
 	var printDiv = document.createElement('div');
 	printDiv.id = "printMe";	
 	printDiv.style.marginBottom = "1.1em";
-	printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>'+p.GetVar("header")+'</b></h3><p>'+p.GetVar("intro_body")+'</p><br>';
+	printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Dine noter for'+t+'</b></h3><p></p><br>';
+	//printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>'+p.GetVar("header")+'</b></h3><p>'+p.GetVar("intro_body")+'</p><br>';
 	containerEl.appendChild(printDiv);
 
 	var printBtn = document.createElement('button');
@@ -88,7 +89,8 @@ function generateContainersNoInput() {
 	var printDiv = document.createElement('div');
 	printDiv.id = "printMe";
 	printDiv.style.marginBottom = "1.1em";
-	printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Du har ikke indtastet noget</b></h3><p>'+p.GetVar("intro_body")+'</p><br>';
+	printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Du har ikke indtastet noget</b></h3><p></p><br>';
+	//printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Du har ikke indtastet noget</b></h3><p>'+p.GetVar("intro_body")+'</p><br>';
 	containerEl.appendChild(printDiv);
 	parentEl.appendChild(containerEl);
 }
