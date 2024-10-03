@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("saveNoteData-13:18")
+console.log("saveNoteData-13:25")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
@@ -22,7 +22,7 @@ saveNoteData(sendData).then(result => {
 	    console.log(userData)
 	    d = userData;
 	    loadInput();
-	    if (d!="") {generateContainers()} else {generateContainersNoInput()}
+	    if (d!=="") {generateContainers()} else {generateContainersNoInput()}
     }
 });
 
@@ -45,8 +45,8 @@ for (var i = 0; i<srcKey.length;i++) {
 };
 
 var parentEl = ifrm.parentElement;
-parentEl.style.cssText = "height: auto; padding: 0; display:none;";
-
+parentEl.style.innerHTML = "";
+//parentEl.style.cssText = "height: auto; padding: 0; display:none;";
 function generateContainers() {
 	var containerEl = document.createElement('div')
 	containerEl.id = "newContainer";
