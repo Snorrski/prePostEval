@@ -1,5 +1,13 @@
 var lmsAPI = window.parent.parent;
+const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
+const ifrm = window.parent.document.querySelector('iframe[name="' + window.name + '"]');
+const studentId = lmsAPI.GetStudentID();
+const studentName = lmsAPI.GetStudentName();
 
+let sendData = {
+    userId: studentId,
+};
+let userData = {};
 
 
 var d = lmsAPI.SCORM2004_CallGetValue('cmi.comments_from_learner.0.comment');
@@ -27,7 +35,6 @@ for (var i = 0; i<srcKey.length;i++) {
 	}
 };
 
-var ifrm = window.parent.document.querySelector('iframe[name="'+window.name);
 var parentEl = ifrm.parentElement;
 parentEl.style.cssText = "height: auto; padding: 0; display:none;";
 
