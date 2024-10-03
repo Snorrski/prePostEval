@@ -22,6 +22,7 @@ saveNoteData(sendData).then(result => {
 	    console.log(userData)
 	    d = userData;
 	    loadInput();
+	    if (d!="") {generateContainers()} else {generateContainersNoInput()}
     }
 });
 
@@ -151,8 +152,6 @@ function saveData() {
 		saveAs(converted, 'Mine noter om Hiim & Hippe.docx');
 	},100);
 };
-if (d!="") {generateContainers()} else {generateContainersNoInput()}
-
 
 async function saveNoteData(obj) {
     const sendObj = Object.assign({}, obj);
