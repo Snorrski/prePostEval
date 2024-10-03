@@ -181,4 +181,4 @@ async function saveNoteData(obj) {
     }
 }
 
-//setInterval(loadInput,1000);
+setInterval(loadInput,200);
