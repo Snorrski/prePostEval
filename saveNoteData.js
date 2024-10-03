@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("saveNoteData-13:04")
+console.log("saveNoteData-13:08")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
@@ -21,6 +21,7 @@ saveNoteData(sendData).then(result => {
         userData = sendData.userData[t];
 	    console.log(userData)
 	    d = userData;
+	    loadInput();
     }
 });
 
