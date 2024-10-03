@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("21:23")
+console.log("prePostEval-10:39")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -60,7 +60,6 @@ function sendDataToAPI(jsonData, check) {
 
 // Handle the response from the API
 function handleAPIResponse(data, check) {
-	console.log(data.message);
 	console.log(data.data);
   	if (check) {
     	data.message !== "answered" ? buildForm() : thankYou(check);
@@ -137,10 +136,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     const minLabel = document.createElement('span');
 	minLabel.style.cssText = "width: 10%; text-align: left;";
 	minLabel.textContent = minText;
-	likert.appendChild(minLabel);
-	console.log(minText);
-	console.log(minLabel);
-	
+	likert.appendChild(minLabel);	
     // Create a container for the radio buttons and labels
     const radioContainer = document.createElement('div');
     radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px;";
