@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("saveNoteData-13:44")
+console.log("saveNoteData-13:49")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
@@ -113,7 +113,7 @@ function loadInput(printMe) {
 						
 					} else {window.parent.document.getElementById("usrContnt_"+subjects[i]).innerHTML = '<h4><b>'+subjects[i]+'</b></h4>' + userData[subjects[i]]};
 				};*/
-				printMe.innerHTML += '<div class="usrContnt" id="usrContnt_'+subjects[i]+'"><h4><b>'+t+'</b></h4>' + userData + '</div>';
+				printMe.innerHTML += '<div class="usrContnt" id="usrContnt_'+t+'"><h4><b>'+t+'</b></h4>' + userData + '</div>';
 			};
 		//};
 		d = userData;
