@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("saveNoteData-10:39")
+console.log("saveNoteData-12:57")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
@@ -12,7 +12,7 @@ let sendData = {
     userId: studentId,
 };
 let userData = {};
-saveNoteData(sendData, false).then(result => {
+saveNoteData(sendData).then(result => {
     console.log(result);
     console.log(result.data.userData);
     console.log(typeof result.data.userData);
@@ -154,7 +154,7 @@ if (d!="") {generateContainers()} else {generateContainersNoInput()}
 
 async function saveNoteData(obj) {
     const sendObj = Object.assign({}, obj);
-    sendObj["getOrSet"] = "get";
+    sendObj["getOrSet"] = false;
     console.log(sendObj);
     sendObj.userData = JSON.stringify(sendObj.userData);
     console.log(sendObj);
