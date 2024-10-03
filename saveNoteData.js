@@ -56,7 +56,7 @@ function generateContainers() {
 	var printDiv = document.createElement('div');
 	printDiv.id = "printMe";	
 	printDiv.style.marginBottom = "1.1em";
-	printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Dine noter for'+t+'</b></h3><p></p><br>';
+	printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Dine noter for '+t+'</b></h3><p></p><br>';
 	//printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>'+p.GetVar("header")+'</b></h3><p>'+p.GetVar("intro_body")+'</p><br>';
 	containerEl.appendChild(printDiv);
 
