@@ -9,6 +9,7 @@ const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
 const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
 const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
 const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
+const loadingDiv = document.createElement('div');
 // Adjust iframe style
 function adjustIframe() {
   	parentElement.style.cssText = "height: auto; padding: 0;";
@@ -16,7 +17,7 @@ function adjustIframe() {
 }
 // Add loading symbol
 function showLoading() {
-    const loadingDiv = document.createElement('div');
+    
     loadingDiv.id = 'loading';
     loadingDiv.style.cssText = `
         display: flex;
@@ -45,6 +46,7 @@ function showLoading() {
 // Remove loading symbol
 function hideLoading() {
     const loadingDiv = document.getElementById('loading');
+	console.log(loadingDiv);
     if (loadingDiv) {
         parentElement.removeChild(loadingDiv);
     }
