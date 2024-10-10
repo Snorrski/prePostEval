@@ -105,7 +105,7 @@ function buildForm() {
   
   const form = document.createElement('form');
   form.id = "likertForm";
-  form.style.margin = "20px";
+  form.style.cssText = "margin 20px; border: 1px solid #14143c; border-radius 15px;";
 form.className = "block-text"
   form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p><br>`;
   
