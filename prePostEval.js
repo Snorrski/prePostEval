@@ -147,8 +147,8 @@ function buildForm() {
   	const preOrPost = p.GetVar('preOrPost');
   	const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
   	const formMessage = preOrPost === "pre" ?
-  		'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet.' :
-  		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet.';
+  		'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet:' :
+  		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet:';
 	const qPretext = preOrPost === "pre" ? "Før du har taget modulet, " : "Efter du har taget modulet, ";
   
   const form = document.createElement('form');
