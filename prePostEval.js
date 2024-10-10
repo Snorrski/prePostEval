@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-12:44")
+console.log("prePostEval-13:08")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -105,7 +105,7 @@ function buildForm() {
   
   const form = document.createElement('form');
   form.id = "likertForm";
-  form.style.cssText = "margin 20px; border: 1px solid #14143c; border-radius 15px;";
+  form.style.cssText = "padding: 20px; border: 1px solid #14143c; border-radius: 15px;";
 form.className = "block-text"
   form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p><br>`;
   
