@@ -106,6 +106,7 @@ function buildForm() {
   const form = document.createElement('form');
   form.id = "likertForm";
   form.style.margin = "20px";
+form.className = "block-text"
   form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p><br>`;
   
   questions.forEach((questionText, index) => {
@@ -113,8 +114,7 @@ function buildForm() {
 	questionDiv.className = "question";
 	const questionP = document.createElement('p');
 	questionP.innerHTML = `${qPretext}${questionText}`;
-	questionP.className = "block-text";
-	  questionP.style.marginBottom = "0";
+	  questionP.style.cssText= "margin-bottom: 0; padding-bottom: 1rem;";
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
 	questionDiv.appendChild(likert);
