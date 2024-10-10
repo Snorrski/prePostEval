@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-13:38")
+console.log("prePostEval-15:28")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -58,9 +58,6 @@ style.innerHTML = `
     @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
-    }
-    form input {
-    	cursor: pointer;
     }
 `;
 document.head.appendChild(style);
@@ -234,6 +231,7 @@ function createRadioButton(name, id, value) {
         border-radius: 50%; 
         background-color: #fff; 
         border: 2px solid #14143c; 
+	cursor: pointer;
         position: relative; /* Ensure z-index works */
         z-index: 1; /* Keep the label in front of the line */
     `;
@@ -278,7 +276,7 @@ function addListenersToRadioButtons(form) {
 function createSubmitButton() {
   const btnDiv = document.createElement('div');
   btnDiv.style.cssText = "display: flex; justify-content: center;";
-  btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;" type="submit" value="Gem" />';
+  btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;" type="submit" value="Gem" />';
   return btnDiv;
 }
 
