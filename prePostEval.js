@@ -162,7 +162,7 @@ form.className = "block-text"
 	questionDiv.className = "question";
 	const questionP = document.createElement('p');
 	questionP.innerHTML = `${qPretext}${questionText}`;
-	  questionP.style.cssText= "margin-bottom: 0; padding-bottom: 1rem;";
+	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem;";
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
 	questionDiv.appendChild(likert);
