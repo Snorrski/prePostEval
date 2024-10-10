@@ -59,6 +59,9 @@ style.innerHTML = `
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+    form input {
+    	cursor: pointer;
+    }
 `;
 document.head.appendChild(style);
 
