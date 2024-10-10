@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-13:28")
+console.log("prePostEval-13:38")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -45,7 +45,7 @@ function showLoading() {
 
 // Remove loading symbol
 function hideLoading() {
-    const loadingDiv = document.getElementById('loading');
+    //const loadingDiv = document.getElementById('loading');
 	console.log(loadingDiv);
     if (loadingDiv) {
         parentElement.removeChild(loadingDiv);
