@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-13:08")
+console.log("prePostEval-13:28")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -14,6 +14,51 @@ function adjustIframe() {
   	parentElement.style.cssText = "height: auto; padding: 0;";
   	iframe.style.display = "none";
 }
+// Add loading symbol
+function showLoading() {
+    const loadingDiv = document.createElement('div');
+    loadingDiv.id = 'loading';
+    loadingDiv.style.cssText = `
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        margin-top: 20px;
+    `;
+
+    // Create a spinner (you can customize this as needed)
+    const spinner = document.createElement('div');
+    spinner.className = 'spinner';
+    spinner.style.cssText = `
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #14143c;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+    `;
+
+    loadingDiv.appendChild(spinner);
+    parentElement.appendChild(loadingDiv);
+}
+
+// Remove loading symbol
+function hideLoading() {
+    const loadingDiv = document.getElementById('loading');
+    if (loadingDiv) {
+        parentElement.removeChild(loadingDiv);
+    }
+}
+
+// Add CSS for spinner animation (you could add this to a <style> tag)
+const style = document.createElement('style');
+style.innerHTML = `
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+`;
+document.head.appendChild(style);
 
 function highlightLabel(event) {
 	//console.log('Label clicked');
@@ -96,6 +141,7 @@ function checkData(event = null, check = true) {
 
 // Build the Likert scale form
 function buildForm() {
+	hideLoading();
   	const preOrPost = p.GetVar('preOrPost');
   	const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
   	const formMessage = preOrPost === "pre" ?
@@ -227,7 +273,7 @@ function addListenersToRadioButtons(form) {
 function createSubmitButton() {
   const btnDiv = document.createElement('div');
   btnDiv.style.cssText = "display: flex; justify-content: center;";
-  btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;" type="submit" value="Submit" />';
+  btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;" type="submit" value="Gem" />';
   return btnDiv;
 }
 
@@ -240,8 +286,9 @@ function thankYou(check) {
 
 // Initialize the script
 function prePostInit() {
-  adjustIframe();
-  checkData(null, true);  // Initially check if the survey is already completed
+	adjustIframe();
+	showLoading();
+	checkData(null, true);  // Initially check if the survey is already completed
 }
 
 prePostInit();
