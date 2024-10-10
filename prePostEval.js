@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-10:39")
+console.log("prePostEval-12:44")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -111,8 +111,10 @@ function buildForm() {
   questions.forEach((questionText, index) => {
 	const questionDiv = document.createElement('div');
 	questionDiv.className = "question";
-	const questionP = document.createElement('p');qPretext
+	const questionP = document.createElement('p');
 	questionP.innerHTML = `${qPretext}${questionText}`;
+	questionP.className = "block-text";
+	  questionP.style.marginBottom = "0";
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
 	questionDiv.appendChild(likert);
