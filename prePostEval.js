@@ -45,13 +45,14 @@ function showLoading(loading) {
 		parentElement.appendChild(loadingDiv);
 	} else {
 		loadingDiv.style.cssText = `
-			    position: absolute;
-			    top: 0;
-			    left: 0;
-			    width: 100%;
-			    height: 100%;
-			    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
-			    display: flex;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+   			border-radius:15px;
+			display: flex;
 		    	justify-content: center;
     			align-items: center;
     			z-index: 1000; /* Ensure it overlaps everything else */
@@ -171,7 +172,7 @@ function buildForm() {
   
   const form = document.createElement('form');
   form.id = "likertForm";
-  form.style.cssText = "padding: 20px; border: 1px solid #14143c; border-radius: 15px;";
+  form.style.cssText = "padding: 20px; border: 1px solid #14143c; border-radius: 15px; position: relative;";
 form.className = "block-text"
   form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p><br>`;
   
