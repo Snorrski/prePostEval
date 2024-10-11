@@ -135,7 +135,55 @@ function handleAPIResponse(data, check) {
 }
 
 // Prepare the data and send it to the API
+// Modify checkData to handle incomplete form submissions
 function checkData(event = null, check = true) {
+    if (event && event.preventDefault) event.preventDefault();
+    
+    // Clear any previous warning messages
+    const warningMessage = document.getElementById('warningMessage');
+    if (warningMessage) {
+        warningMessage.remove();
+    }
+    
+    const studentId = lmsAPI.GetStudentID();
+    const studentName = lmsAPI.GetStudentName();
+    const course = p.GetVar('course');
+    const preOrPost = p.GetVar('preOrPost');
+    
+    const jsonData = {
+        name: studentName,
+        id: studentId,
+        course,
+        check,
+        "pre/post": preOrPost
+    };
+
+    console.log(jsonData);
+    console.log(checked);
+
+    // If the form is being checked (not submitting) or all questions are answered, proceed
+    if (check || checked.length === questions.length) {
+        // If submitting, gather form data
+        if (!check && event) {
+            const formData = new FormData(event.target);
+            formData.forEach((value, key) => jsonData[key] = value);
+        }
+
+        sendDataToAPI(jsonData, check);
+    } else {
+        // If not all questions are answered, display a warning message
+        const form = event.target;
+        const warning = document.createElement('div');
+        warning.id = 'warningMessage';
+        warning.style.cssText = "color: red; text-align: center; margin-top: 10px;";
+        warning.textContent = "Please answer all the questions before submitting.";
+        
+        form.appendChild(warning);
+    }
+}
+
+
+/*function checkData(event = null, check = true) {
 	if (event && event.preventDefault) event.preventDefault();
 	const studentId = lmsAPI.GetStudentID();
 	const studentName = lmsAPI.GetStudentName();
@@ -158,7 +206,7 @@ function checkData(event = null, check = true) {
 	if (check || checked.length === questions.length) {
 		sendDataToAPI(jsonData, check);
 	}
-}
+}*/
 
 // Build the Likert scale form
 function buildForm() {
@@ -250,24 +298,22 @@ function createRadioButton(name, id, value) {
         border-radius: 50%; 
         background-color: #fff; 
         border: 2px solid #14143c; 
-	cursor: pointer;
+		cursor: pointer;
         position: relative; /* Ensure z-index works */
         z-index: 1; /* Keep the label in front of the line */
     `;
 
     // Create the radio button wrapper
-    const radioWrapper = document.createElement('div');
-   radioWrapper.style.cssText = `
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    height: 20px; /* Match the label height to avoid extra height */
-`;
+	const radioWrapper = document.createElement('div');
+   		radioWrapper.style.cssText = `
+    	display: flex; 
+    	justify-content: center; 
+    	align-items: center; 
+    	height: 20px; /* Match the label height to avoid extra height */
+	`;
 
-    
     radioWrapper.appendChild(radioInput);
     radioWrapper.appendChild(label);
-
     return radioWrapper;
 }
 
@@ -282,7 +328,7 @@ function addListenersToRadioButtons(form) {
 
     // Add 'focusout' event listener to the form
     form.addEventListener('focusout', function(event) {
-		console.log('focusOut added');
+	console.log('focusOut added');
         // Check if the focus is moving outside the form
         if (!form.contains(event.relatedTarget)) {
             console.log('Focus left the form, submitting...');
@@ -293,15 +339,17 @@ function addListenersToRadioButtons(form) {
 
 // Create a submit button for the form
 function createSubmitButton() {
-  const btnDiv = document.createElement('div');
-  btnDiv.style.cssText = "display: flex; justify-content: center;";
-  btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;" type="submit" value="Gem" />';
-  return btnDiv;
+	const btnDiv = document.createElement('div');
+	btnDiv.style.cssText = "display: flex; justify-content: center;";
+	btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;" type="submit" value="Gem" />';
+	return btnDiv;
 }
 
 // Display thank you message if the survey is already completed
 function thankYou(check) {
-	hideLoading();
+	console.log('hide')
+	console.log(loadingDiv);
+	//hideLoading();
   	const message = p.GetVar('preOrPost') === "pre" ? "præmålingen" : "postmålingen";
 	const html = check ? `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>` : `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
   	parentElement.innerHTML = html;
