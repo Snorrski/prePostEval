@@ -90,7 +90,7 @@ function highlightLabel(event) {
 	if (!checked.includes(q)) {
 		checked.push(q);
 		if (checked.length === questions.length) {
-			const submitBtn = document.getElementById('submitBtn);
+			const submitBtn = document.getElementById('submitBtn');
 			submitBtn.disabled = false;
 			submitBtn.style.cursor = "pointer";
 			submitBtn.style.background = "#14143c";
