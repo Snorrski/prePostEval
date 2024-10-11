@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-12:30")
+console.log("prePostEval-12:33")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -345,7 +345,7 @@ function createSubmitButton() {
 	const btn = document.createElement('button');
 	btn.style.cssText = "background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;";
 	btn.onclick = submitForm;
-	brnDiv.appendChild(btn);
+	btnDiv.appendChild(btn);
 	//btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;" type="submit" value="Gem" />';
 	return btnDiv;
 }
