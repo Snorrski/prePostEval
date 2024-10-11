@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-12:37")
+console.log("prePostEval-12:50")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -88,7 +88,14 @@ function highlightLabel(event) {
     const labels = radioWrapper.querySelectorAll('label');
 	const q = event.target.name;
 	if (!checked.includes(q)) {
-		checked.push(q)
+		checked.push(q);
+		if (checked.length === questions.length) {
+			const submitBtn = document.getElementById('submitBtn);
+			submitBtn.disabled = false;
+			submitBtn.style.cursor = "pointer";
+			submitBtn.style.background = "#14143c";
+			console.log("enabled");
+		}
 	};
     // Reset background for all labels
     labels.forEach(label => {
@@ -332,6 +339,7 @@ function addListenersToRadioButtons(form) {
         // Check if the focus is moving outside the form
         if (!form.contains(event.relatedTarget)) {
             console.log('Focus left the form, submitting...');
+		submitForm;
             //form.submit();  // Trigger form submission
         }
     });
@@ -345,7 +353,7 @@ function createSubmitButton() {
 	btn.style.cssText = "background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;";
 	btn.onclick = submitForm;
 	//btnDiv.appendChild(btn);
-	btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;" type="submit" value="Gem" />';
+	btnDiv.innerHTML = '<input id="submitBtn" disabled style="background: #434363; color: #fff; padding: 0.5em 2em; border-radius: 5px;" type="submit" value="Gem" />';
 	return btnDiv;
 }
 function submitForm() {
