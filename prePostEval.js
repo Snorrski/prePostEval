@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-11:19")
+console.log("prePostEval-11:56")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -19,7 +19,7 @@ function adjustIframe() {
 }
 
 // Add loading symbol
-function showLoading(loading) 
+function showLoading(loading) {
     // Create a spinner (you can customize this as needed)
     const spinner = document.createElement('div');
     spinner.className = 'spinner';
