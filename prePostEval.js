@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-11:56")
+console.log("prePostEval-12:30")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -11,6 +11,8 @@ const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
 const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
 const loadingDiv = document.createElement('div');
 loadingDiv.id = 'loading';
+const form = document.createElement('form');
+form.id = "likertForm";
 
 // Adjust iframe style
 function adjustIframe() {
@@ -136,7 +138,7 @@ function handleAPIResponse(data, check) {
 // Prepare the data and send it to the API
 // Modify checkData to handle incomplete form submissions
 function checkData(event = null, check = true) {
-	  if (event) event.preventDefault();
+	if (event) event.preventDefault();
 	if (event) console.log(event)
     //if (event && event.preventDefault) event.preventDefault();
     
@@ -219,10 +221,8 @@ function buildForm() {
   		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet:';
 	const qPretext = preOrPost === "pre" ? "Før du har taget modulet, " : "Efter du har taget modulet, ";
   
-  const form = document.createElement('form');
-  form.id = "likertForm";
   form.style.cssText = "padding: 20px; border: 1px solid #14143c; border-radius: 15px; position: relative;";
-form.className = "block-text"
+	form.className = "block-text"
   form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p><br>`;
   
   questions.forEach((questionText, index) => {
@@ -333,7 +333,7 @@ function addListenersToRadioButtons(form) {
         // Check if the focus is moving outside the form
         if (!form.contains(event.relatedTarget)) {
             console.log('Focus left the form, submitting...');
-            form.submit();  // Trigger form submission
+            //form.submit();  // Trigger form submission
         }
     });
 }
@@ -342,8 +342,20 @@ function addListenersToRadioButtons(form) {
 function createSubmitButton() {
 	const btnDiv = document.createElement('div');
 	btnDiv.style.cssText = "display: flex; justify-content: center;";
-	btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;" type="submit" value="Gem" />';
+	const btn = document.createElement('button');
+	btn.style.cssText = "background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;";
+	btn.onclick = submitForm;
+	brnDiv.appendChild(btn);
+	//btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;" type="submit" value="Gem" />';
 	return btnDiv;
+}
+function submitForm() {
+	console.log(checked.length)
+	console.log(questions.length)
+	if (checked.length === questions.length) {
+		form.submit()
+	}
+	
 }
 
 // Display thank you message if the survey is already completed
