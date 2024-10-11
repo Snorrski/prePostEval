@@ -10,22 +10,16 @@ const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
 const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
 const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
 const loadingDiv = document.createElement('div');
+loadingDiv.id = 'loading';
+
 // Adjust iframe style
 function adjustIframe() {
   	parentElement.style.cssText = "height: auto; padding: 0;";
   	iframe.style.display = "none";
 }
+
 // Add loading symbol
-function showLoading() {
-    
-    loadingDiv.id = 'loading';
-    loadingDiv.style.cssText = `
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100px;
-        margin-top: 20px;
-    `;
+function showLoading(loading) {
 
     // Create a spinner (you can customize this as needed)
     const spinner = document.createElement('div');
@@ -40,7 +34,31 @@ function showLoading() {
     `;
 
     loadingDiv.appendChild(spinner);
-    parentElement.appendChild(loadingDiv);
+	if (loading) {
+		loadingDiv.style.cssText = `
+		        display: flex;
+		        justify-content: center;
+		        align-items: center;
+		        height: 100px;
+		        margin-top: 20px;
+		`;
+		parentElement.appendChild(loadingDiv);
+	} else {
+		loadingDiv.style.cssText = `
+			    position: absolute;
+			    top: 0;
+			    left: 0;
+			    width: 100%;
+			    height: 100%;
+			    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+			    display: flex;
+		    	justify-content: center;
+    			align-items: center;
+    			z-index: 1000; /* Ensure it overlaps everything else */
+  		`;
+		form.appendChild(loadingDiv);
+	}
+    
 }
 
 // Remove loading symbol
@@ -282,6 +300,7 @@ function createSubmitButton() {
 
 // Display thank you message if the survey is already completed
 function thankYou(check) {
+	hideLoading();
   	const message = p.GetVar('preOrPost') === "pre" ? "præmålingen" : "postmålingen";
 	const html = check ? `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>` : `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
   	parentElement.innerHTML = html;
@@ -290,7 +309,7 @@ function thankYou(check) {
 // Initialize the script
 function prePostInit() {
 	adjustIframe();
-	showLoading();
+	showLoading(true);
 	checkData(null, true);  // Initially check if the survey is already completed
 }
 
