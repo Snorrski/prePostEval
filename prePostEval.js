@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-11:02")
+console.log("prePostEval-11:19")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -19,8 +19,7 @@ function adjustIframe() {
 }
 
 // Add loading symbol
-function showLoading(loading) {
-
+function showLoading(loading) 
     // Create a spinner (you can customize this as needed)
     const spinner = document.createElement('div');
     spinner.className = 'spinner';
@@ -137,8 +136,9 @@ function handleAPIResponse(data, check) {
 // Prepare the data and send it to the API
 // Modify checkData to handle incomplete form submissions
 function checkData(event = null, check = true) {
-	 event.preventDefault();
-    if (event && event.preventDefault) event.preventDefault();
+	  if (event) event.preventDefault();
+	if (event) console.log(event)
+    //if (event && event.preventDefault) event.preventDefault();
     
     // Clear any previous warning messages
     const warningMessage = document.getElementById('warningMessage');
