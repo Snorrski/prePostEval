@@ -89,13 +89,13 @@ function highlightLabel(event) {
 	const q = event.target.name;
 	if (!checked.includes(q)) {
 		checked.push(q);
-		if (checked.length === questions.length) {
+		/*if (checked.length === questions.length) {
 			const submitBtn = document.getElementById('submitBtn');
 			submitBtn.disabled = false;
 			submitBtn.style.cursor = "pointer";
 			submitBtn.style.background = "#14143c";
 			console.log("enabled");
-		}
+		}*/
 	};
     // Reset background for all labels
     labels.forEach(label => {
@@ -353,7 +353,7 @@ function createSubmitButton() {
 	btn.style.cssText = "background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;";
 	btn.onclick = submitForm;
 	//btnDiv.appendChild(btn);
-	btnDiv.innerHTML = '<input id="submitBtn" disabled style="background: #434363; color: #fff; padding: 0.5em 2em; border-radius: 5px;" type="submit" value="Gem" />';
+	btnDiv.innerHTML = '<input id="submitBtn" style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px; cursor: pointer;" type="submit" value="Gem" />';
 	return btnDiv;
 }
 function submitForm() {
