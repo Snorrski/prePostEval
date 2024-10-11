@@ -179,8 +179,7 @@ function checkData(event = null, check = true) {
         const warning = document.createElement('div');
         warning.id = 'warningMessage';
         warning.style.cssText = "color: red; text-align: center; margin-top: 10px;";
-        warning.textContent = "Please answer all the questions before submitting.";
-        
+        warning.textContent = "Du skal udfylde alle fem spørgsmål, før du kan gemme dit svar.";
         form.appendChild(warning);
     }
 }
@@ -345,8 +344,8 @@ function createSubmitButton() {
 	const btn = document.createElement('button');
 	btn.style.cssText = "background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;";
 	btn.onclick = submitForm;
-	btnDiv.appendChild(btn);
-	//btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;" type="submit" value="Gem" />';
+	//btnDiv.appendChild(btn);
+	btnDiv.innerHTML = '<input style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;" type="submit" value="Gem" />';
 	return btnDiv;
 }
 function submitForm() {
