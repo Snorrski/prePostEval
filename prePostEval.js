@@ -196,7 +196,7 @@ function checkData(event = null, check = true) {
 }
 
 // Build the Likert scale form
-function buildForm() {Før du starter på modulet, Før du starter på modulet, 
+function buildForm() {
 	hideLoading();
   	const preOrPost = p.GetVar('preOrPost');
   	const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
