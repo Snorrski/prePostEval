@@ -5,7 +5,11 @@ var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
 var parentElement = iframe.parentElement;
 var checked = [];
-const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
+//const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
+const questionObj = {
+	pre: ['hvordan vil du betegne dit kendskab til ','hvor sikker er du på din evne til at anvende din viden og færdigheder indenfor ','hvordan vil du betegne dit kendskab til UFST som IT-organisation, når det kommer til '],
+	post: ['hvordan vil du nu betegne dit kendskab til ','hvor sikker er du nu på din evne til at anvende din viden og færdigheder indenfor ','hvordan vil du nu betegne dit kendskab til UFST som IT-organisation, når det kommer til ']
+}
 const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
 const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
 const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
@@ -191,51 +195,25 @@ function checkData(event = null, check = true) {
     }
 }
 
-
-/*function checkData(event = null, check = true) {
-	if (event && event.preventDefault) event.preventDefault();
-	const studentId = lmsAPI.GetStudentID();
-	const studentName = lmsAPI.GetStudentName();
-	const course = p.GetVar('course');
-	const preOrPost = p.GetVar('preOrPost');
-	const jsonData = {
-		name: studentName,
-		id: studentId,
-		course,
-		check,
-		"pre/post": preOrPost
-	};
-  	console.log(jsonData);
-  	// Add form data if not checking
-	console.log(checked);
-  	if (!check && event && checked.length === questions.length) {
-		const formData = new FormData(event.target);
-    	formData.forEach((value, key) => jsonData[key] = value);  
-  	}
-	if (check || checked.length === questions.length) {
-		sendDataToAPI(jsonData, check);
-	}
-}*/
-
 // Build the Likert scale form
-function buildForm() {
+function buildForm() {Før du starter på modulet, Før du starter på modulet, 
 	hideLoading();
   	const preOrPost = p.GetVar('preOrPost');
   	const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
   	const formMessage = preOrPost === "pre" ?
-  		'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet:' :
-  		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet:';
-	const qPretext = preOrPost === "pre" ? "Før du har taget modulet, " : "Efter du har taget modulet, ";
+  		'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:' :
+  		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:';
+	const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter du har taget modulet, ";
   
-  form.style.cssText = "padding: 20px; border: 1px solid #14143c; border-radius: 15px; position: relative;";
-	form.className = "block-text"
-  form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p><br>`;
+	form.style.cssText = "padding: 20px; border: 1px solid #14143c; border-radius: 15px; position: relative;";
+	form.className = "block-text";
+	form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p>`;
   
   questions.forEach((questionText, index) => {
 	const questionDiv = document.createElement('div');
 	questionDiv.className = "question";
 	const questionP = document.createElement('p');
-	questionP.innerHTML = `${qPretext}${questionText}`;
+	questionP.innerHTML = `${qPretext}${questionText}${courseName}`;
 	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem;";
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
