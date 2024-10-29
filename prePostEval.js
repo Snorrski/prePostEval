@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-12:50")
+console.log("prePostEval-10:00")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -197,6 +197,7 @@ function checkData(event = null, check = true) {
 
 // Build the Likert scale form
 function buildForm() {
+	
 	hideLoading();
   	const preOrPost = p.GetVar('preOrPost');
   	const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
@@ -204,7 +205,7 @@ function buildForm() {
   		'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:' :
   		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:';
 	const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter du har taget modulet, ";
-  
+  	const questions = preOrPost === "pre" ? questionObj.pre : questionObj.post;
 	form.style.cssText = "padding: 20px; border: 1px solid #14143c; border-radius: 15px; position: relative;";
 	form.className = "block-text";
 	form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p>`;
