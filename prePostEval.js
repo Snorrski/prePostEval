@@ -87,20 +87,14 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-function highlightLabel(event) {
+/*function highlightLabel(event) {
 	console.log(event.target);
     const radioWrapper = event.target.closest('.likert');
     const labels = radioWrapper.querySelectorAll('label');
 	const q = event.target.name;
 	if (!checked.includes(q)) {
 		checked.push(q);
-		/*if (checked.length === questions.length) {
-			const submitBtn = document.getElementById('submitBtn');
-			submitBtn.disabled = false;
-   			submitBtn.className = submitBtn;
-			//submitBtn.style.cssText = "cursor: pointer; background: #14143c; font-weight: bold;";
-			console.log("enabled");
-		}*/
+		
 	};
     // Reset background for all labels
     labels.forEach(label => {
@@ -112,7 +106,37 @@ function highlightLabel(event) {
     // Highlight the clicked label
     const selectedLabel = event.target.labels[0];
     selectedLabel.style.cssText = "background-color: #14143c; background-repeat: no-repeat; background-position: center; background-size: 10px 10px;border: 2px solid #14143c; background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 8 8%27%3e%3cpath fill=%27%23FFF%27 d=%27M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z%27/%3e%3c/svg%3e');";
+}*/
+function highlightLabel(event) {
+    const selectedInput = event.target; // The clicked radio input
+    const radioWrapper = selectedInput.closest('.likert');
+    const labels = radioWrapper.querySelectorAll('label'); // Only labels in this specific Likert scale
+    const questionName = selectedInput.name;
+
+    // Add the question to checked array if it's not already there
+    if (!checked.includes(questionName)) {
+        checked.push(questionName);
+    }
+
+    // Reset background for all labels in this specific likert scale
+    labels.forEach(label => {
+        label.style.backgroundColor = "#fff";
+        label.style.backgroundImage = "none";
+        label.style.border = "2px solid #14143c";
+    });
+
+    // Highlight the selected label
+    const selectedLabel = selectedInput.labels[0];
+    selectedLabel.style.cssText = `
+        background-color: #14143c; 
+        background-repeat: no-repeat; 
+        background-position: center; 
+        background-size: 10px 10px;
+        border: 2px solid #14143c;
+        background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 8 8%27%3e%3cpath fill=%27%23FFF%27 d=%27M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z%27/%3e%3c/svg%3e');
+    `;
 }
+
 
 // Send the JSON data to the API endpoint
 function sendDataToAPI(jsonData, check) {
