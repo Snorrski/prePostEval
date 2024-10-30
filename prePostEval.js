@@ -15,6 +15,7 @@ const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
 const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
 const loadingDiv = document.createElement('div');
 loadingDiv.id = 'loading';
+loadingDiv.className = "loadingDiv";
 const form = document.createElement('form');
 form.id = "likertForm";
 
@@ -29,40 +30,41 @@ function showLoading(loading) {
     // Create a spinner (you can customize this as needed)
     const spinner = document.createElement('div');
     spinner.className = 'spinner';
-    spinner.style.cssText = `
-        border: 5px solid #f3f3f3;
-        border-top: 5px solid #14143c;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        animation: spin 1s linear infinite;
-    `;
+    // spinner.style.cssText = `border: 5px solid #f3f3f3; border-top: 5px solid #14143c;
+        // border-radius: 50%;
+        // width: 40px;
+        // height: 40px;
+        // animation: spin 1s linear infinite;
+    // `;
 
     loadingDiv.appendChild(spinner);
 	if (loading) {
-		loadingDiv.style.cssText = `
-		        display: flex;
-		        justify-content: center;
-		        align-items: center;
-		        height: 100px;
-		        margin-top: 20px;
-		`;
+		// loadingDiv.style.cssText = `
+		        // display: flex;
+		        // justify-content: center;
+		        // align-items: center;
+		        // height: 100px;
+		        // margin-top: 20px;
+		// `;
+		loadingDiv.classList.add = "loading";
 		parentElement.appendChild(loadingDiv);
 	} else {
-		loadingDiv.style.cssText = `
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
-   			border-radius:15px;
-			display: flex;
-		    	justify-content: center;
-    			align-items: center;
-    			z-index: 1000; /* Ensure it overlaps everything else */
-  		`;
+		// loadingDiv.style.cssText = `
+			// position: absolute;
+			// top: 0;
+			// left: 0;
+			// width: 100%;
+			// height: 100%;
+			// background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+   			// border-radius:15px;
+			// display: flex;
+		    	// justify-content: center;
+    			// align-items: center;
+    			// z-index: 1000; /* Ensure it overlaps everything else */
+  		// `;
+		loadingDiv.classList.remove = "loading";
 		form.appendChild(loadingDiv);
+		
 	}
     
 }
@@ -79,7 +81,72 @@ function hideLoading() {
 // Add CSS for spinner animation (you could add this to a <style> tag)
 const style = document.createElement('style');
 style.innerHTML = `
-    @keyframes spin {
+	.loadingDiv {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+		border-radius:15px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 1000; /* Ensure it overlaps everything else */
+	}
+	.loadingDiv.loading {
+		height: 100px;
+		margin-top: 20px;
+	}
+	.likert {
+ 		display: flex; 
+   		justify-content: space-between; 
+	 	align-items: center; 
+   		margin: 5px 0 20px 0;
+	 }
+  	.submitBtn {
+   		cursor: pointer; 
+	 	background: #14143c; 
+   		font-weight: bold;
+	}
+	.spinner {
+		border: 5px solid #f3f3f3;
+        border-top: 5px solid #14143c;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+	}
+ 	input.customRadio:checked + label {
+		background-color: #14143c;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 10px 10px;border: 2px solid #14143c;
+		background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 8 8%27%3e%3cpath fill=%27%23FFF%27 d=%27M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z%27/%3e%3c/svg%3e');
+	}
+    input.customRadio + label {
+        display: inline-block; 
+        width: 20px; 
+        height: 20px; 
+        border-radius: 50%; 
+        background-color: #fff; 
+        border: 2px solid #14143c; 
+		cursor: pointer;
+        position: relative; /* Ensure z-index works */
+        z-index: 1; /* Keep the label in front of the line */
+    }
+	.radioWrapper {
+    	display: flex; 
+    	justify-content: center; 
+    	align-items: center; 
+    	height: 20px; /* Match the label height to avoid extra height */
+	}
+	customForm: {
+		padding: 20px 20px 50px 20px;
+		border: 1px solid #14143c;
+		position: relative;
+	}
+	@keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
@@ -88,36 +155,30 @@ document.head.appendChild(style);
 
 function highlightLabel(event) {
 	//console.log('Label clicked');
-    const radioWrapper = event.target.closest('.likert');
-    const labels = radioWrapper.querySelectorAll('label');
-	const q = event.target.name;
-	if (!checked.includes(q)) {
-		checked.push(q);
-		/*if (checked.length === questions.length) {
-			const submitBtn = document.getElementById('submitBtn');
-			submitBtn.disabled = false;
+    // const radioWrapper = event.target.closest('.likert');
+    // const labels = radioWrapper.querySelectorAll('label');
+	// const q = event.target.name;
+	// if (!checked.includes(q)) {
+		// checked.push(q);
+		// /*if (checked.length === questions.length) {
+			// const submitBtn = document.getElementById('submitBtn');
+			// submitBtn.disabled = false;
+   			// submitBtn.className = submitBtn;
 			submitBtn.style.cssText = "cursor: pointer; background: #14143c; font-weight: bold;";
-			console.log("enabled");
-		}*/
-	};
-    // Reset background for all labels
-    labels.forEach(label => {
-        label.style.backgroundColor = "#fff";
-        label.style.backgroundImage = "none"; // Remove background image from all labels
-        label.style.border = "2px solid #14143c"; // Restore the border color
-    });
+			// console.log("enabled");
+		// }*/
+	// };
+    //Reset background for all labels
+    // labels.forEach(label => {
+        // label.style.backgroundColor = "#fff";
+        // label.style.backgroundImage = "none"; // Remove background image from all labels
+        // label.style.border = "2px solid #14143c"; // Restore the border color
+    // });
 
-    // Highlight the clicked label
-    const selectedLabel = event.target.labels[0];
-    selectedLabel.style.backgroundColor = "#14143c";
-    selectedLabel.style.backgroundImage = "url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 8 8%27%3e%3cpath fill=%27%23FFF%27 d=%27M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z%27/%3e%3c/svg%3e')";
-    selectedLabel.style.backgroundRepeat = "no-repeat";
-    selectedLabel.style.backgroundPosition = "center";
-    selectedLabel.style.backgroundSize = "10px 10px"; // Adjust size of checkmark
-    selectedLabel.style.border = "2px solid #14143c"; // Ensure border remains visible
+    //Highlight the clicked label
+    // const selectedLabel = event.target.labels[0];
+    //selectedLabel.style.cssText = "background-color: #14143c; background-repeat: no-repeat; background-position: center; background-size: 10px 10px;border: 2px solid #14143c; background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 8 8%27%3e%3cpath fill=%27%23FFF%27 d=%27M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z%27/%3e%3c/svg%3e');";
 }
-
-
 
 // Send the JSON data to the API endpoint
 function sendDataToAPI(jsonData, check) {
@@ -204,8 +265,8 @@ function buildForm() {
   		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:';
 	const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter du har taget modulet, ";
   	const questions = preOrPost === "pre" ? questionObj.pre : questionObj.post;
-	form.style.cssText = "padding: 20px 20px 50px 20px; border: 1px solid #14143c; position: relative;";
-	form.className = "block-text";
+	//form.style.cssText = "padding: 20px 20px 50px 20px; border: 1px solid #14143c; position: relative;";
+	form.className = "block-text customForm";
 	form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p>`;
   
   questions.forEach((questionText, index) => {
@@ -213,7 +274,7 @@ function buildForm() {
 	questionDiv.className = "question";
 	  questionDiv.marginBottom = "30px";
 	const questionP = document.createElement('p');
-	questionP.innerHTML = `${qPretext}${questionText}${courseName}`;
+	questionP.innerHTML = `${qPretext}${questionText}<b>${courseName}</b>`;
 	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem;";
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
@@ -231,12 +292,12 @@ function buildForm() {
 function createLikertScale(questionText, minText, maxText, name) {
     const likert = document.createElement('div');
     likert.className = "likert";
-    likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 5px 0 20px 0;";
+    //likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 5px 0 20px 0;";
     
     // Add the minText label on the left
     
     const minLabel = document.createElement('span');
-	minLabel.style.cssText = "font-weight: bold; text-align: right;line-height: 1.2; margin-right: 10px";
+	minLabel.style.cssText = "text-align: right;line-height: 1.2; margin-right: 10px";
 	//minLabel.textContent = minText;
 	minLabel.innerHTML = minText.replace(' ', '<br>');
 	likert.appendChild(minLabel);	
@@ -260,7 +321,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     
     // Add the maxText label on the right
     const maxLabel = document.createElement('span');
-	maxLabel.style.cssText = "font-weight: bold; margin-left: 10px; text-align: left;line-height: 1.2;";
+	maxLabel.style.cssText = "margin-left: 10px; text-align: left;line-height: 1.2;";
 	maxLabel.innerHTML = maxText.replace(' ', '<br>');
 	likert.appendChild(maxLabel);
     return likert;
@@ -272,12 +333,13 @@ function createRadioButton(name, id, value) {
     radioInput.type = "radio";
     radioInput.name = name;
     radioInput.value = value;
+	radioInput.className = "customRadio";
     radioInput.id = id;
-    radioInput.style.display = "none"; // Hide the actual radio button
+    //radioInput.style.display = "none"; // Hide the actual radio button
   
     const label = document.createElement('label');
     label.setAttribute('for', id);
-    label.style.cssText = `
+    /*label.style.cssText = `
         display: inline-block; 
         width: 20px; 
         height: 20px; 
@@ -285,18 +347,19 @@ function createRadioButton(name, id, value) {
         background-color: #fff; 
         border: 2px solid #14143c; 
 		cursor: pointer;
-        position: relative; /* Ensure z-index works */
-        z-index: 1; /* Keep the label in front of the line */
-    `;
+        position: relative; 
+        z-index: 1; 
+    `;*/
 
     // Create the radio button wrapper
 	const radioWrapper = document.createElement('div');
-   		radioWrapper.style.cssText = `
+ 	radioWrapper.className = "radioWrapper";
+   	/*radioWrapper.style.cssText = `
     	display: flex; 
     	justify-content: center; 
     	align-items: center; 
-    	height: 20px; /* Match the label height to avoid extra height */
-	`;
+    	height: 20px; 
+	`;*/
 
     radioWrapper.appendChild(radioInput);
     radioWrapper.appendChild(label);
