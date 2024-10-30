@@ -245,7 +245,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px 0;";
     
     // Create and append the radio buttons with labels
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 7; i++) {
         const radioId = `${name}-${i}`;
         radioContainer.appendChild(createRadioButton(name, radioId, i));
     }
