@@ -79,38 +79,7 @@ function hideLoading() {
 // Add CSS for spinner animation (you could add this to a <style> tag)
 const style = document.createElement('style');
 style.innerHTML = `
-	// .likert {
- 		// display: flex; 
-   		// justify-content: space-between; 
-	 	// align-items: center; 
-   		// margin: 5px 0 20px 0;
-	 // }
-  	// .submitBtn {
-   		// cursor: pointer; 
-	 	// background: #14143c; 
-   		// font-weight: bold;
-	 // }
-  // input.customRadio {
-  	// display: none;
-  // }
- 	// input.customRadio:checked + label {background-color: #14143c; background-repeat: no-repeat; background-position: center; background-size: 10px 10px;border: 2px solid #14143c; background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 8 8%27%3e%3cpath fill=%27%23FFF%27 d=%27M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z%27/%3e%3c/svg%3e');";
-    // input.customRadio + label {
-        // display: inline-block; 
-        // width: 20px; 
-        // height: 20px; 
-        // border-radius: 50%; 
-        // background-color: #fff; 
-        // border: 2px solid #14143c; 
-		// cursor: pointer;
-        // position: relative; /* Ensure z-index works */
-        // z-index: 1; /* Keep the label in front of the line */
-    // }
-	// .radioWrapper {
-    	// display: flex; 
-    	// justify-content: center; 
-    	// align-items: center; 
-    	// height: 20px; /* Match the label height to avoid extra height */
-	// }
+	
 	@keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
@@ -119,7 +88,7 @@ style.innerHTML = `
 document.head.appendChild(style);
 
 function highlightLabel(event) {
-	//console.log('Label clicked');
+	console.log(event.target);
     const radioWrapper = event.target.closest('.likert');
     const labels = radioWrapper.querySelectorAll('label');
 	const q = event.target.name;
@@ -310,7 +279,7 @@ function createRadioButton(name, id, value) {
         border-radius: 50%; 
         background-color: #fff; 
         border: 2px solid #14143c; 
-		cursor: pointer;
+	cursor: pointer;
         position: relative; /* Ensure z-index works */
         z-index: 1; /* Keep the label in front of the line */
     `;
