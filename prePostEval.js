@@ -213,7 +213,7 @@ function buildForm() {
 	questionDiv.className = "question";
 	  questionDiv.marginBottom = "30px";
 	const questionP = document.createElement('p');
-	questionP.innerHTML = `${qPretext}${questionText}<b>${courseName}</b>`;
+	questionP.innerHTML = `${qPretext}${questionText}${courseName}`;
 	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem;";
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
