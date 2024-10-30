@@ -197,7 +197,6 @@ function checkData(event = null, check = true) {
 
 // Build the Likert scale form
 function buildForm() {
-	
 	hideLoading();
   	const preOrPost = p.GetVar('preOrPost');
   	const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
@@ -206,13 +205,14 @@ function buildForm() {
   		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:';
 	const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter du har taget modulet, ";
   	const questions = preOrPost === "pre" ? questionObj.pre : questionObj.post;
-	form.style.cssText = "padding: 20px; border: 1px solid #14143c; border-radius: 15px; position: relative;";
+	form.style.cssText = "padding: 20px 20px 40px 20px; border: 1px solid #14143c; position: relative;";
 	form.className = "block-text";
 	form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p>`;
   
   questions.forEach((questionText, index) => {
 	const questionDiv = document.createElement('div');
 	questionDiv.className = "question";
+	  questionDiv.marginBottom = 30px;
 	const questionP = document.createElement('p');
 	questionP.innerHTML = `${qPretext}${questionText}<b>${courseName}</b>`;
 	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem;";
@@ -232,17 +232,17 @@ function buildForm() {
 function createLikertScale(questionText, minText, maxText, name) {
     const likert = document.createElement('div');
     likert.className = "likert";
-    likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 10px 0 20px 0;";
+    likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 0 0 20px 0;";
     
     // Add the minText label on the left
-    //likert.innerHTML = `<span style="width: 10%; text-align: left;">${minText}</span>`;
+    /
     const minLabel = document.createElement('span');
-	minLabel.style.cssText = "width: 10%; text-align: left;";
+	minLabel.style.cssText = "font-weight: bold; width: 10%; text-align: left;";
 	minLabel.textContent = minText;
 	likert.appendChild(minLabel);	
     // Create a container for the radio buttons and labels
     const radioContainer = document.createElement('div');
-    radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px;";
+    radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px 0;";
     
     // Create and append the radio buttons with labels
     for (let i = 1; i <= 5; i++) {
@@ -252,7 +252,7 @@ function createLikertScale(questionText, minText, maxText, name) {
 
     // Add the connecting line, placing it behind the labels and radio buttons
     const line = document.createElement('div');
-    line.style.cssText = "position: absolute; width: 100%; height: 2px; top: 49%; background-color: #14143c; z-index: 0;"
+    line.style.cssText = "position: absolute; width: 100%; height: 4px; top: 49%; background-color: #14143c; z-index: 0;"
     //radioContainer.appendChild(line);
 	radioContainer.insertBefore(line, radioContainer.firstChild); 
     // Append the radio button container to the likert div
@@ -260,7 +260,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     
     // Add the maxText label on the right
     const maxLabel = document.createElement('span');
-	maxLabel.style.cssText = "width: 10%; text-align: right;";
+	maxLabel.style.cssText = "font-weight: bold; width: 10%; text-align: right;";
 	maxLabel.textContent = maxText;
 	likert.appendChild(maxLabel);
     return likert;
@@ -332,7 +332,7 @@ function createSubmitButton() {
 	btn.style.cssText = "background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;";
 	btn.onclick = submitForm;
 	//btnDiv.appendChild(btn);
-	btnDiv.innerHTML = '<input id="submitBtn" style="background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px; cursor: pointer;" type="submit" value="Gem" />';
+	btnDiv.innerHTML = '<input id="submitBtn" style="position: absolute; bottom: 0; width: 100%; background: #14143c; color: #fff; padding: 0.5em 0; cursor: pointer;" type="submit" value="Gem" />';
 	return btnDiv;
 }
 function submitForm() {
