@@ -260,8 +260,8 @@ function createLikertScale(questionText, minText, maxText, name) {
     
     // Add the maxText label on the right
     const maxLabel = document.createElement('span');
-	maxLabel.style.cssText = "font-weight: bold; width: 10%; text-align: left;line-height: 1.2;";
-	maxLabel.textContent = maxText;
+	maxLabel.style.cssText = "font-weight: bold; margin-left: 10px; text-align: left;line-height: 1.2;";
+	maxLabel.innerHTML = maxText.replace(' ', '<br>');
 	likert.appendChild(maxLabel);
     return likert;
 }
