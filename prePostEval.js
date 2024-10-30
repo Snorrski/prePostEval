@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("prePostEval-15:33")
+console.log("prePostEval-10:00")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
@@ -79,22 +79,26 @@ function hideLoading() {
 // Add CSS for spinner animation (you could add this to a <style> tag)
 const style = document.createElement('style');
 style.innerHTML = `
-	
-	@keyframes spin {
+    @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
 `;
 document.head.appendChild(style);
 
-/*function highlightLabel(event) {
-	console.log(event.target);
+function highlightLabel(event) {
+	//console.log('Label clicked');
     const radioWrapper = event.target.closest('.likert');
     const labels = radioWrapper.querySelectorAll('label');
 	const q = event.target.name;
 	if (!checked.includes(q)) {
 		checked.push(q);
-		
+		/*if (checked.length === questions.length) {
+			const submitBtn = document.getElementById('submitBtn');
+			submitBtn.disabled = false;
+			submitBtn.style.cssText = "cursor: pointer; background: #14143c; font-weight: bold;";
+			console.log("enabled");
+		}*/
 	};
     // Reset background for all labels
     labels.forEach(label => {
@@ -105,37 +109,14 @@ document.head.appendChild(style);
 
     // Highlight the clicked label
     const selectedLabel = event.target.labels[0];
-    selectedLabel.style.cssText = "background-color: #14143c; background-repeat: no-repeat; background-position: center; background-size: 10px 10px;border: 2px solid #14143c; background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 8 8%27%3e%3cpath fill=%27%23FFF%27 d=%27M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z%27/%3e%3c/svg%3e');";
-}*/
-function highlightLabel(event) {
-    const selectedInput = event.target; // The clicked radio input
-    const radioWrapper = selectedInput.closest('.likert');
-    const labels = radioWrapper.querySelectorAll('label'); // Only labels in this specific Likert scale
-    const questionName = selectedInput.name;
-
-    // Add the question to checked array if it's not already there
-    if (!checked.includes(questionName)) {
-        checked.push(questionName);
-    }
-
-    // Reset background for all labels in this specific likert scale
-    labels.forEach(label => {
-        label.style.backgroundColor = "#fff";
-        label.style.backgroundImage = "none";
-        label.style.border = "2px solid #14143c";
-    });
-
-    // Highlight the selected label
-    const selectedLabel = selectedInput.labels[0];
-    selectedLabel.style.cssText = `
-        background-color: #14143c; 
-        background-repeat: no-repeat; 
-        background-position: center; 
-        background-size: 10px 10px;
-        border: 2px solid #14143c;
-        background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 8 8%27%3e%3cpath fill=%27%23FFF%27 d=%27M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z%27/%3e%3c/svg%3e');
-    `;
+    selectedLabel.style.backgroundColor = "#14143c";
+    selectedLabel.style.backgroundImage = "url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 8 8%27%3e%3cpath fill=%27%23FFF%27 d=%27M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z%27/%3e%3c/svg%3e')";
+    selectedLabel.style.backgroundRepeat = "no-repeat";
+    selectedLabel.style.backgroundPosition = "center";
+    selectedLabel.style.backgroundSize = "10px 10px"; // Adjust size of checkmark
+    selectedLabel.style.border = "2px solid #14143c"; // Ensure border remains visible
 }
+
 
 
 // Send the JSON data to the API endpoint
@@ -200,6 +181,7 @@ function checkData(event = null, check = true) {
             const formData = new FormData(event.target);
             formData.forEach((value, key) => jsonData[key] = value);
         }
+
         sendDataToAPI(jsonData, check);
     } else {
         // If not all questions are answered, display a warning message
@@ -223,7 +205,7 @@ function buildForm() {
 	const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter du har taget modulet, ";
   	const questions = preOrPost === "pre" ? questionObj.pre : questionObj.post;
 	form.style.cssText = "padding: 20px 20px 50px 20px; border: 1px solid #14143c; position: relative;";
-	form.className = "block-text ";
+	form.className = "block-text";
 	form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p>`;
   
   questions.forEach((questionText, index) => {
@@ -231,7 +213,7 @@ function buildForm() {
 	questionDiv.className = "question";
 	  questionDiv.marginBottom = "30px";
 	const questionP = document.createElement('p');
-	questionP.innerHTML = `${qPretext}${questionText}<b>${courseName}</b>`;
+	questionP.innerHTML = `${qPretext}${questionText}${courseName}`;
 	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem;";
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
@@ -254,7 +236,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     // Add the minText label on the left
     
     const minLabel = document.createElement('span');
-	minLabel.style.cssText = "text-align: right;line-height: 1.2; margin-right: 10px";
+	minLabel.style.cssText = "font-weight: bold; text-align: right;line-height: 1.2; margin-right: 10px";
 	//minLabel.textContent = minText;
 	minLabel.innerHTML = minText.replace(' ', '<br>');
 	likert.appendChild(minLabel);	
@@ -278,7 +260,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     
     // Add the maxText label on the right
     const maxLabel = document.createElement('span');
-	maxLabel.style.cssText = "margin-left: 10px; text-align: left;line-height: 1.2;";
+	maxLabel.style.cssText = "font-weight: bold; margin-left: 10px; text-align: left;line-height: 1.2;";
 	maxLabel.innerHTML = maxText.replace(' ', '<br>');
 	likert.appendChild(maxLabel);
     return likert;
@@ -290,7 +272,6 @@ function createRadioButton(name, id, value) {
     radioInput.type = "radio";
     radioInput.name = name;
     radioInput.value = value;
-	radioInput.className = "customRadio";
     radioInput.id = id;
     radioInput.style.display = "none"; // Hide the actual radio button
   
@@ -303,14 +284,13 @@ function createRadioButton(name, id, value) {
         border-radius: 50%; 
         background-color: #fff; 
         border: 2px solid #14143c; 
-	cursor: pointer;
+		cursor: pointer;
         position: relative; /* Ensure z-index works */
         z-index: 1; /* Keep the label in front of the line */
     `;
 
     // Create the radio button wrapper
 	const radioWrapper = document.createElement('div');
- 	radioWrapper.className = "radioWrapper";
    		radioWrapper.style.cssText = `
     	display: flex; 
     	justify-content: center; 
@@ -338,7 +318,7 @@ function addListenersToRadioButtons(form) {
         // Check if the focus is moving outside the form
         if (!form.contains(event.relatedTarget)) {
             console.log('Focus left the form, submitting...');
-			submitForm;
+		submitForm;
             //form.submit();  // Trigger form submission
         }
     });
