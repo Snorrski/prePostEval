@@ -212,7 +212,7 @@ function buildForm() {
   questions.forEach((questionText, index) => {
 	const questionDiv = document.createElement('div');
 	questionDiv.className = "question";
-	  questionDiv.marginBottom = 30px;
+	  questionDiv.marginBottom = "30px";
 	const questionP = document.createElement('p');
 	questionP.innerHTML = `${qPretext}${questionText}<b>${courseName}</b>`;
 	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem;";
