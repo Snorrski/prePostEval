@@ -4,15 +4,15 @@ var lmsAPI = window.parent.parent;
 var p = GetPlayer();
 var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]`);
 var parentElement = iframe.parentElement;
+const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
 var checked = [];
 //const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
 const questionObj = {
 	pre: ['hvordan vil du betegne dit kendskab til ','hvor sikker er du på din evne til at anvende din viden og færdigheder indenfor ','hvordan vil du betegne dit kendskab til UFST som IT-organisation, når det kommer til '],
-	post: ['hvordan vil du nu betegne dit kendskab til ','hvor sikker er du nu på din evne til at anvende din viden og færdigheder indenfor ','hvordan vil du nu betegne dit kendskab til UFST som IT-organisation, når det kommer til ']
+	post: ['hvordan vil du nu betegne dit kendskab til ','hvor sikker er du nu på din evne til at anvende din viden og færdigheder indenfor ','hvor bekendt er du med hvordan man i UFST anvender ']
 }
 const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
 const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
-const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
 const loadingDiv = document.createElement('div');
 loadingDiv.id = 'loading';
 const form = document.createElement('form');
@@ -214,7 +214,7 @@ function buildForm() {
 	const questionDiv = document.createElement('div');
 	questionDiv.className = "question";
 	const questionP = document.createElement('p');
-	questionP.innerHTML = `${qPretext}${questionText}${courseName}`;
+	questionP.innerHTML = `${qPretext}${questionText}<b>${courseName}</b>`;
 	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem;";
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
