@@ -232,7 +232,7 @@ function buildForm() {
 function createLikertScale(questionText, minText, maxText, name) {
     const likert = document.createElement('div');
     likert.className = "likert";
-    likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 0 0 20px 0;";
+    likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 5px 0 20px 0;";
     
     // Add the minText label on the left
     
@@ -252,7 +252,7 @@ function createLikertScale(questionText, minText, maxText, name) {
 
     // Add the connecting line, placing it behind the labels and radio buttons
     const line = document.createElement('div');
-    line.style.cssText = "position: absolute; width: 100%; height: 4px; top: 49%; background-color: #14143c; z-index: 0;"
+    line.style.cssText = "position: absolute; width: 100%; height: 3px; top: 44%; background-color: #14143c; z-index: 0;"
     //radioContainer.appendChild(line);
 	radioContainer.insertBefore(line, radioContainer.firstChild); 
     // Append the radio button container to the likert div
