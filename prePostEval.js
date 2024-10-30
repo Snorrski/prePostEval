@@ -300,7 +300,7 @@ function createRadioButton(name, id, value) {
     radioInput.value = value;
 	radioInput.className = "customRadio";
     radioInput.id = id;
-    //radioInput.style.display = "none"; // Hide the actual radio button
+    radioInput.style.display = "none"; // Hide the actual radio button
   
     const label = document.createElement('label');
     label.setAttribute('for', id);
