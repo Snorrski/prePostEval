@@ -235,7 +235,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 0 0 20px 0;";
     
     // Add the minText label on the left
-    /
+    
     const minLabel = document.createElement('span');
 	minLabel.style.cssText = "font-weight: bold; width: 10%; text-align: left;";
 	minLabel.textContent = minText;
