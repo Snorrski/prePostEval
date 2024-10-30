@@ -238,7 +238,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     const minLabel = document.createElement('span');
 	minLabel.style.cssText = "font-weight: bold; text-align: right;line-height: 1.2; margin-right: 10px";
 	//minLabel.textContent = minText;
-	minLabel.innerHTML = minText;
+	minLabel.innerHTML = minText.replace(' ', '<br>');
 	likert.appendChild(minLabel);	
     // Create a container for the radio buttons and labels
     const radioContainer = document.createElement('div');
