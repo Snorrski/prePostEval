@@ -204,7 +204,7 @@ function buildForm() {
   		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:';
 	const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter du har taget modulet, ";
   	const questions = preOrPost === "pre" ? questionObj.pre : questionObj.post;
-	form.style.cssText = "padding: 20px 20px 40px 20px; border: 1px solid #14143c; position: relative;";
+	form.style.cssText = "padding: 20px 20px 50px 20px; border: 1px solid #14143c; position: relative;";
 	form.className = "block-text";
 	form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p>`;
   
@@ -236,7 +236,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     // Add the minText label on the left
     
     const minLabel = document.createElement('span');
-	minLabel.style.cssText = "font-weight: bold; width: 10%; text-align: left;";
+	minLabel.style.cssText = "font-weight: bold; width: 10%; text-align: right;line-height: 1.2;";
 	minLabel.textContent = minText;
 	likert.appendChild(minLabel);	
     // Create a container for the radio buttons and labels
@@ -259,7 +259,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     
     // Add the maxText label on the right
     const maxLabel = document.createElement('span');
-	maxLabel.style.cssText = "font-weight: bold; width: 10%; text-align: right;";
+	maxLabel.style.cssText = "font-weight: bold; width: 10%; text-align: left;line-height: 1.2;";
 	maxLabel.textContent = maxText;
 	likert.appendChild(maxLabel);
     return likert;
