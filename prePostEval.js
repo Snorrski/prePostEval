@@ -96,8 +96,7 @@ function highlightLabel(event) {
 		/*if (checked.length === questions.length) {
 			const submitBtn = document.getElementById('submitBtn');
 			submitBtn.disabled = false;
-			submitBtn.style.cursor = "pointer";
-			submitBtn.style.background = "#14143c";
+			submitBtn.style.cssText = "cursor: pointer; background: #14143c; font-weight: bold;";
 			console.log("enabled");
 		}*/
 	};
@@ -332,7 +331,7 @@ function createSubmitButton() {
 	btn.style.cssText = "background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;";
 	btn.onclick = submitForm;
 	//btnDiv.appendChild(btn);
-	btnDiv.innerHTML = '<input id="submitBtn" style="position: absolute; bottom: 0; width: 100%; background: #14143c; color: #fff; padding: 0.5em 0; cursor: pointer;" type="submit" value="Gem" />';
+	btnDiv.innerHTML = '<input id="submitBtn" style="font-weight: bold; position: absolute; bottom: 0; width: 100%; background: #14143c; color: #fff; padding: 0.5em 0; cursor: pointer;" type="submit" value="Gem" />';
 	return btnDiv;
 }
 function submitForm() {
