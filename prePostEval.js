@@ -19,7 +19,7 @@ const jsonData = {
 	name: studentName,
 	id: studentId,
 	course,
-	check,
+	check: true,
 	"pre/post": preOrPost
 };
 const questions = preOrPost === "pre" ? questionObj.pre : questionObj.post;
@@ -152,7 +152,7 @@ function sendDataToAPI(jsonData, check) {
 function handleAPIResponse(data, check) {
 	console.log(data.data);
   	if (check) {
-    	data.message !== "answered" ? buildForm() : thankYou(check);
+    		data.message !== "answered" ? buildForm() : thankYou(check);
   	} else {
 	  	thankYou(check)
   	}
