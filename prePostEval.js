@@ -108,7 +108,7 @@ function highlightLabel(event) {
 		if (checked.length === questions.length) {
 			const submitBtn = window.parent.document.getElementById('submitBtn');
 			submitBtn.disabled = false;
-			submitBtn.style.cssText += "cursor: pointer; background: #14143c; font-weight: bold;";
+			submitBtn.style.cssText += "cursor: pointer; background: #14143c; font-weight: bold; color: white;";
 			console.log("enabled");
 		}
 	};
@@ -331,7 +331,7 @@ function createSubmitButton() {
 	btn.style.cssText = "background: #14143c; color: #fff; padding: 0.5em 2em; border-radius: 5px;cursor: pointer;";
 	btn.onclick = submitForm;
 	//btnDiv.appendChild(btn);
-	btnDiv.innerHTML = '<input id="submitBtn" disabled style="font-weight: bold; position: absolute; bottom: 0; width: 100%; background: #434363; color: #fff; padding: 0.5em 0;" type="submit" value="Gem" />';
+	btnDiv.innerHTML = '<input id="submitBtn" disabled style="position: absolute; bottom: 0; width: 100%; background: #72728A; color: #D0D0D8; padding: 0.5em 0;" type="submit" value="Gem" />';
 	return btnDiv;
 }
 function submitForm() {
