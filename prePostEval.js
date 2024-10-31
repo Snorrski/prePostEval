@@ -188,10 +188,10 @@ function checkData(event = null, check = true) {
     if (check || checked.length === questions.length) {
         // If submitting, gather form data
         if (!check && event) {
+			showLoading(false);
             const formData = new FormData(event.target);
             formData.forEach((value, key) => jsonData[key] = value);
         }
-
         sendDataToAPI(jsonData, check);
     } else {
         // If not all questions are answered, display a warning message
