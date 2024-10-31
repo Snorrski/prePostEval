@@ -106,7 +106,7 @@ function highlightLabel(event) {
 	if (!checked.includes(q)) {
 		checked.push(q);
 		if (checked.length === questions.length) {
-			const submitBtn = document.getElementById('submitBtn');
+			const submitBtn = window.parent.document.getElementById('submitBtn');
 			submitBtn.disabled = false;
 			submitBtn.style.cssText = "cursor: pointer; background: #14143c; font-weight: bold;";
 			console.log("enabled");
