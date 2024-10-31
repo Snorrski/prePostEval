@@ -11,6 +11,18 @@ const questionObj = {
 	pre: ['hvordan vil du betegne dit kendskab til ','hvor sikker er du på din evne til at anvende din viden og færdigheder indenfor ','hvordan vil du betegne dit kendskab til UFST som IT-organisation, når det kommer til '],
 	post: ['hvordan vil du nu betegne dit kendskab til ','hvor sikker er du nu på din evne til at anvende din viden og færdigheder indenfor ','hvor bekendt er du med hvordan man i UFST anvender ']
 }
+const studentId = lmsAPI.GetStudentID();
+const studentName = lmsAPI.GetStudentName();
+const course = p.GetVar('course');
+const preOrPost = p.GetVar('preOrPost');
+const jsonData = {
+	name: studentName,
+	id: studentId,
+	course,
+	check,
+	"pre/post": preOrPost
+};
+const questions = preOrPost === "pre" ? questionObj.pre : questionObj.post;
 const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
 const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
 const loadingDiv = document.createElement('div');
@@ -70,7 +82,6 @@ function showLoading(loading) {
 // Remove loading symbol
 function hideLoading() {
     //const loadingDiv = document.getElementById('loading');
-	console.log(loadingDiv);
     if (loadingDiv) {
         parentElement.removeChild(loadingDiv);
     }
@@ -91,15 +102,17 @@ function highlightLabel(event) {
     const radioWrapper = event.target.closest('.likert');
     const labels = radioWrapper.querySelectorAll('label');
 	const q = event.target.name;
+	console.log(checked)
 	if (!checked.includes(q)) {
 		checked.push(q);
-		/*if (checked.length === questions.length) {
+		if (checked.length === questions.length) {
 			const submitBtn = document.getElementById('submitBtn');
 			submitBtn.disabled = false;
 			submitBtn.style.cssText = "cursor: pointer; background: #14143c; font-weight: bold;";
 			console.log("enabled");
-		}*/
+		}
 	};
+	console.log(checked)
     // Reset background for all labels
     labels.forEach(label => {
         label.style.backgroundColor = "#fff";
@@ -157,23 +170,10 @@ function checkData(event = null, check = true) {
     if (warningMessage) {
         warningMessage.remove();
     }
-    
-    const studentId = lmsAPI.GetStudentID();
-    const studentName = lmsAPI.GetStudentName();
-    const course = p.GetVar('course');
-    const preOrPost = p.GetVar('preOrPost');
-    
-    const jsonData = {
-        name: studentName,
-        id: studentId,
-        course,
-        check,
-        "pre/post": preOrPost
-    };
 
     console.log(jsonData);
-    console.log(checked);
-
+    console.log(checked.length);
+	console.log(questions.length);	
     // If the form is being checked (not submitting) or all questions are answered, proceed
     if (check || checked.length === questions.length) {
         // If submitting, gather form data
@@ -203,7 +203,6 @@ function buildForm() {
   		'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:' :
   		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:';
 	const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter du har taget modulet, ";
-  	const questions = preOrPost === "pre" ? questionObj.pre : questionObj.post;
 	form.style.cssText = "padding: 20px 20px 50px 20px; border: 1px solid #14143c; position: relative;";
 	form.className = "block-text";
 	form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p>`;
