@@ -94,6 +94,14 @@ style.innerHTML = `
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+    .line-style {
+	    position: absolute; 
+	    width: 100%; 
+	    height: 4px; /* Consistent thickness */
+	    top: 50%; /* Center in container */
+	    background-color: #14143c; 
+	    z-index: 0;
+	}
 `;
 document.head.appendChild(style);
 
@@ -241,7 +249,7 @@ function createLikertScale(questionText, minText, maxText, name) {
 	likert.appendChild(minLabel);	
     // Create a container for the radio buttons and labels
     const radioContainer = document.createElement('div');
-    radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px 0;";
+    radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px 0; width: 80%;";
     
     // Create and append the radio buttons with labels
     for (let i = 1; i <= 7; i++) {
@@ -251,7 +259,8 @@ function createLikertScale(questionText, minText, maxText, name) {
 
     // Add the connecting line, placing it behind the labels and radio buttons
     const line = document.createElement('div');
-    line.style.cssText = "position: absolute; width: 100%; height: 3px; top: 44%; background-color: #14143c; z-index: 0;"
+	line.className = "line-style";
+    //line.style.cssText = "position: absolute; width: 100%; height: 3px; top: 44%; background-color: #14143c; z-index: 0;"
     //radioContainer.appendChild(line);
 	radioContainer.insertBefore(line, radioContainer.firstChild); 
     // Append the radio button container to the likert div
