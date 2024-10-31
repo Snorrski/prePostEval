@@ -97,8 +97,8 @@ style.innerHTML = `
     .line-style {
 	    position: absolute; 
 	    width: 100%; 
-	    height: 4px; 
-	    top: 50%; 
+	    height: 15%; 
+	    top: 45%; 
 	    background-color: #14143c; 
 	    z-index: 0;
 	}
@@ -244,13 +244,13 @@ function createLikertScale(questionText, minText, maxText, name) {
     // Add the minText label on the left
     
     const minLabel = document.createElement('span');
-	minLabel.style.cssText = "font-weight: bold; text-align: right;line-height: 1.2; margin-right: 10px";
+	minLabel.style.cssText = "width: 9%; font-weight: bold; text-align: right;line-height: 1.2; margin-right: 10px";
 	//minLabel.textContent = minText;
 	minLabel.innerHTML = minText.replace(' ', '<br>');
 	likert.appendChild(minLabel);	
     // Create a container for the radio buttons and labels
     const radioContainer = document.createElement('div');
-    radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px 0; width: 80%;";
+    radioContainer.style.cssText = "position: relative; display: flex; justify-content: space-between; flex-grow: 1; margin: 10px 0;";
     
     // Create and append the radio buttons with labels
     for (let i = 1; i <= 7; i++) {
@@ -269,7 +269,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     
     // Add the maxText label on the right
     const maxLabel = document.createElement('span');
-	maxLabel.style.cssText = "font-weight: bold; margin-left: 10px; text-align: left;line-height: 1.2;";
+	maxLabel.style.cssText = "width: 9%; font-weight: bold; margin-left: 10px; text-align: left;line-height: 1.2;";
 	maxLabel.innerHTML = maxText.replace(' ', '<br>');
 	likert.appendChild(maxLabel);
     return likert;
