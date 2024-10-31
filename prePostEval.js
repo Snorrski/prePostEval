@@ -173,7 +173,8 @@ function checkData(event = null, check = true) {
 	if (event) event.preventDefault();
 	if (event) console.log(event)
     //if (event && event.preventDefault) event.preventDefault();
-    
+    console.log(event)
+	console.log(check)
     // Clear any previous warning messages
     const warningMessage = document.getElementById('warningMessage');
     if (warningMessage) {
@@ -181,6 +182,7 @@ function checkData(event = null, check = true) {
     }
 
     console.log(jsonData);
+	console.log(check);
     console.log(checked.length);
 	console.log(questions.length);	
     // If the form is being checked (not submitting) or all questions are answered, proceed
@@ -323,11 +325,11 @@ function addListenersToRadioButtons(form) {
 
     // Add 'focusout' event listener to the form
     form.addEventListener('focusout', function(event) {
-	console.log('focusOut added');
+		console.log('focusOut added');
         // Check if the focus is moving outside the form
         if (!form.contains(event.relatedTarget)) {
             console.log('Focus left the form, submitting...');
-		submitForm;
+			submitForm;
             //form.submit();  // Trigger form submission
         }
     });
