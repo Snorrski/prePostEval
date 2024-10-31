@@ -103,8 +103,9 @@ style.innerHTML = `
 	    z-index: 0;
 	}
 `;
+style.id = "customStyle";
 document.head.appendChild(style);
-
+window.parent.document.head.appendChild(style);
 function highlightLabel(event) {
 	//console.log('Label clicked');
     const radioWrapper = event.target.closest('.likert');
