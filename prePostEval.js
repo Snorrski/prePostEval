@@ -190,8 +190,11 @@ function checkData(event = null, check = true) {
         if (!check && event) {
 			showLoading(false);
             const formData = new FormData(event.target);
-            formData.forEach((value, key) => jsonData[key] = value);
-        }
+            formData.forEach((value, key) => {
+		    	const modifiedKey = `${key}-${preOrPost}`; // Modify the key
+		    	jsonData[modifiedKey] = value; // Use the modified key
+			});
+		}
         sendDataToAPI(jsonData, check);
     } else {
         // If not all questions are answered, display a warning message
