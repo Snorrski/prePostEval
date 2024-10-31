@@ -97,8 +97,8 @@ style.innerHTML = `
     .line-style {
 	    position: absolute; 
 	    width: 100%; 
-	    height: 4px; /* Consistent thickness */
-	    top: 50%; /* Center in container */
+	    height: 4px; 
+	    top: 50%; 
 	    background-color: #14143c; 
 	    z-index: 0;
 	}
