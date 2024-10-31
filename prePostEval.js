@@ -180,9 +180,8 @@ function checkData(event = null, check = true) {
     if (warningMessage) {
         warningMessage.remove();
     }
-
+	jsonData.check = check;
     console.log(jsonData);
-	console.log(check);
     console.log(checked.length);
 	console.log(questions.length);	
     // If the form is being checked (not submitting) or all questions are answered, proceed
