@@ -17,7 +17,7 @@ const studentName = lmsAPI.GetStudentName();
 const course = courseName;
 //const preOrPost = p.GetVar('preOrPost');
 const preOrPost = getPreOrPost();
-let done = p.GetVar('done'
+let done = p.GetVar('done');
 const jsonData = {
 	name: studentName,
 	id: studentId,
