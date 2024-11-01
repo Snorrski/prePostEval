@@ -146,6 +146,7 @@ function highlightLabel(event) {
 
 // Send the JSON data to the API endpoint
 function sendDataToAPI(jsonData, check) {
+	console.log(JSON.stringify(jsonData));
 	const apiURL = 'https://prod-236.westeurope.logic.azure.com:443/workflows/7fea2dec7f99427689f6b676bfbd5f29/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Nx_u-9wDlM8c7HrkQLIkx-7bhrQ5ml0IPGi452noa_U';
   	fetch(apiURL, {
     	method: 'POST',
@@ -197,6 +198,8 @@ function checkData(event = null, check = true) {
             formData.forEach((value, key) => {
 		    	const modifiedKey = `${key}-${preOrPost}`; // Modify the key
 		    	jsonData[modifiedKey] = value; // Use the modified key
+				console.log(modifiedKey)
+				console.log(value)
 			});
 		}
         sendDataToAPI(jsonData, check);
