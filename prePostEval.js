@@ -368,7 +368,7 @@ function thankYou(check) {
 	//hideLoading();
   	const message = p.GetVar('preOrPost') === "pre" ? "præmålingen" : "postmålingen";
 	const html = check ? `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>` : `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
-  	parentElement.innerHTML = html;
+  	form.innerHTML = html;
 }
 
 // Initialize the script
