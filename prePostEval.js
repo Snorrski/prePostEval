@@ -13,8 +13,10 @@ const questionObj = {
 }
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
-const course = p.GetVar('course');
-const preOrPost = p.GetVar('preOrPost');
+//const course = p.GetVar('course');
+const course = courseName;
+//const preOrPost = p.GetVar('preOrPost');
+const preOrPost = getPreOrPost();
 let done = p.GetVar('done'
 const jsonData = {
 	name: studentName,
@@ -375,5 +377,11 @@ function prePostInit() {
 	showLoading(true);
 	checkData(null, true);  // Initially check if the survey is already completed
 }
-
+function getPreOrPost() {
+	const menuItemName = document.querySelector('.lesson-header__title').textContent
+	const menuItems = []
+	document.querySelector('.nav-sidebar__outline-list').getElementsByClassName('nav-sidebar__outline-list-item').forEach(item => {menuItems.push(item.textContent)})
+	const pORp = menuItems.indexOf(menuItemName) < menuItems.length/2 ? "pre" : "post";
+	return pORp;
+}
 prePostInit();
