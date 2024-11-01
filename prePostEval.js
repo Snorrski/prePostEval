@@ -167,7 +167,7 @@ function handleAPIResponse(data, check) {
     		data.message !== "answered" ? buildForm() : thankYou(check);
   	} else {
 	  	thankYou(check);
-		p.SetVar('done');
+		p.SetVar('done', true);
   	}
 }
 
