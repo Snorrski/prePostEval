@@ -193,7 +193,7 @@ function checkData(event = null, check = true) {
     if (check || checked.length === questions.length) {
         // If submitting, gather form data
         if (!check && event) {
-			showLoading(false);
+		showLoading(false);
             const formData = new FormData(event.target);
             formData.forEach((value, key) => {
 		    	const modifiedKey = `${key}-${preOrPost}`; // Modify the key
@@ -217,7 +217,7 @@ function checkData(event = null, check = true) {
 // Build the Likert scale form
 function buildForm() {
 	hideLoading();
-  	const preOrPost = p.GetVar('preOrPost');
+  	//const preOrPost = p.GetVar('preOrPost');
   	const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
   	const formMessage = preOrPost === "pre" ?
   		'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:' :
@@ -366,11 +366,15 @@ function submitForm() {
 
 // Display thank you message if the survey is already completed
 function thankYou(check) {
-	console.log('hide')
 	console.log(loadingDiv);
-	//hideLoading();
-  	const message = p.GetVar('preOrPost') === "pre" ? "præmålingen" : "postmålingen";
-	const html = check ? `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>` : `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
+	hideLoading();
+	const message = preOrPost === "pre" ? "præmålingen" : "postmålingen";
+	if (check) {
+		p.SetVar('done', true);
+		const html = `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>`;
+	} else {
+		const html = `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
+	}
   	form.innerHTML = html;
 }
 
@@ -378,7 +382,7 @@ function thankYou(check) {
 function prePostInit() {
 	adjustIframe();
 	showLoading(true);
-	checkData(null, true);  // Initially check if the survey is already completed
+	(null, true);  // Initially check if the survey is already completed
 }
 function getPreOrPost() {
 	const menuItemName = window.parent.document.querySelector('.lesson-header__title').textContent
