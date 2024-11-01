@@ -367,14 +367,9 @@ function submitForm() {
 // Display thank you message if the survey is already completed
 function thankYou(check) {
 	console.log(loadingDiv);
-	
 	const message = preOrPost === "pre" ? "præmålingen" : "postmålingen";
-	if (check) {
-		p.SetVar('done', true);
-		const html = `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>`;
-	} else {
-		const html = `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
-	}
+	if (check) p.SetVar('done', true);
+	const html = check ? `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>` : `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
   	form.innerHTML = html;
 	hideLoading();
 }
