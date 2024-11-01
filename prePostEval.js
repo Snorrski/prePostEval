@@ -378,9 +378,9 @@ function prePostInit() {
 	checkData(null, true);  // Initially check if the survey is already completed
 }
 function getPreOrPost() {
-	const menuItemName = document.querySelector('.lesson-header__title').textContent
+	const menuItemName = window.parent.document.querySelector('.lesson-header__title').textContent
 	const menuItems = []
-	document.querySelector('.nav-sidebar__outline-list').getElementsByClassName('nav-sidebar__outline-list-item').forEach(item => {menuItems.push(item.textContent)})
+	window.parent.document.querySelector('.nav-sidebar__outline-list').getElementsByClassName('nav-sidebar__outline-list-item').forEach(item => {menuItems.push(item.textContent)})
 	const pORp = menuItems.indexOf(menuItemName) < menuItems.length/2 ? "pre" : "post";
 	return pORp;
 }
