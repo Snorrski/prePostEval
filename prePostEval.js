@@ -413,7 +413,7 @@ function checkCompletion() {
 	    `;
 	
 	    // Add centered message text
-	    overlay.textContent = "Du skal gennemgå hele modulet før du udfylder post-evalueringen.;
+	    overlay.textContent = "Du skal gennemgå hele modulet før du udfylder post-evalueringen.";
 	
 	    // Append overlay to the form
 	    form.style.position = 'relative'; // Ensure form has relative positioning
