@@ -382,7 +382,7 @@ function thankYou(check) {
 function prePostInit() {
 	adjustIframe();
 	showLoading(true);
-	(null, true);  // Initially check if the survey is already completed
+	checkData(null, true);  // Initially check if the survey is already completed
 }
 function getPreOrPost() {
 	const menuItemName = window.parent.document.querySelector('.lesson-header__title').textContent
