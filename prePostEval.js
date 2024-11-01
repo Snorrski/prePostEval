@@ -15,6 +15,7 @@ const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
 const course = p.GetVar('course');
 const preOrPost = p.GetVar('preOrPost');
+let done = p.GetVar('done'
 const jsonData = {
 	name: studentName,
 	id: studentId,
@@ -163,7 +164,8 @@ function handleAPIResponse(data, check) {
   	if (check) {
     		data.message !== "answered" ? buildForm() : thankYou(check);
   	} else {
-	  	thankYou(check)
+	  	thankYou(check);
+		p.SetVar('done');
   	}
 }
 
