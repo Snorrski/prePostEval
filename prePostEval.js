@@ -1,4 +1,4 @@
-// Initialize global variables
+f// Initialize global variables
 console.log("prePostEval-10:00")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
@@ -243,6 +243,7 @@ function buildForm() {
   form.appendChild(createSubmitButton());
   form.onsubmit = event => checkData(event, false);
   parentElement.appendChild(form);
+	if (preOrPost === "post") checkCompletion();
   addListenersToRadioButtons(form);
 }
 
@@ -387,5 +388,38 @@ function getPreOrPost() {
 	window.parent.document.querySelector('.nav-sidebar__outline-list').getElementsByClassName('nav-sidebar__outline-list-item').forEach(item => {menuItems.push(item.textContent)})
 	const pORp = menuItems.indexOf(menuItemName) < menuItems.length/2 ? "pre" : "post";
 	return pORp;
+}
+function checkCompletion() {
+	let arr = Array.from(window.parent.document.querySelectorAll('button.lesson-progress__action'))
+	arr.pop();
+	let test = arr.every(btn => btn.getAttribute('aria-label') != "Completed. Click to reset");
+	if (test) {
+		const overlay = document.createElement('div');
+		overlay.id = "customOverlay";
+	    overlay.style.cssText = `
+	        position: absolute;
+	        top: 0;
+	        left: 0;
+	        width: 100%;
+	        height: 100%;
+	        background-color: rgba(0, 0, 0, 0.5); /* 50% opacity gray */
+	        display: flex;
+	        justify-content: center;
+	        align-items: center;
+	        color: white;
+	        font-size: 1.5em;
+	        font-weight: bold;
+	        z-index: 1000; /* Ensure overlay is above form content */
+	    `;
+	
+	    // Add centered message text
+	    overlay.textContent = "Du skal gennemgå hele modulet før du udfylder post-evalueringen.;
+	
+	    // Append overlay to the form
+	    form.style.position = 'relative'; // Ensure form has relative positioning
+	    form.appendChild(overlay);
+	} else if (window.parent.document.getElementById('overlay')) {
+		window.parent.document.getElementById('overlay').style.display = "none";
+	}
 }
 prePostInit();
