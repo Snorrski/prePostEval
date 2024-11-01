@@ -1,4 +1,4 @@
-f// Initialize global variables
+// Initialize global variables
 console.log("prePostEval-10:00")
 var lmsAPI = window.parent.parent;
 var p = GetPlayer();
