@@ -419,7 +419,8 @@ function checkCompletion(el) {
 	
 	    // Append overlay to the form
 	    el.style.position = 'relative'; // Ensure form has relative positioning
-	    el.appendChild(overlay);
+	    //form.appendChild(overlay);
+		form.insertBefore(overlay,form.children[0]);
 	} else if (window.parent.document.getElementById('overlay')) {
 		window.parent.document.getElementById('overlay').style.display = "none";
 	}
