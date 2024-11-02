@@ -243,7 +243,7 @@ function buildForm() {
   form.appendChild(createSubmitButton());
   form.onsubmit = event => checkData(event, false);
   parentElement.appendChild(form);
-	if (preOrPost === "post") checkCompletion();
+	if (preOrPost === "post") checkCompletion(form);
   addListenersToRadioButtons(form);
 }
 
@@ -389,7 +389,7 @@ function getPreOrPost() {
 	const pORp = menuItems.indexOf(menuItemName) < menuItems.length/2 ? "pre" : "post";
 	return pORp;
 }
-function checkCompletion() {
+function checkCompletion(el) {
 	let arr = Array.from(window.parent.document.querySelectorAll('button.lesson-progress__action'))
 	arr.pop();
 	console.log(arr)
@@ -418,8 +418,8 @@ function checkCompletion() {
 	    overlay.textContent = "Du skal gennemgå hele modulet før du udfylder post-evalueringen.";
 	
 	    // Append overlay to the form
-	    form.style.position = 'relative'; // Ensure form has relative positioning
-	    form.appendChild(overlay);
+	    el.style.position = 'relative'; // Ensure form has relative positioning
+	    el.appendChild(overlay);
 	} else if (window.parent.document.getElementById('overlay')) {
 		window.parent.document.getElementById('overlay').style.display = "none";
 	}
