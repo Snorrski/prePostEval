@@ -392,11 +392,13 @@ function getPreOrPost() {
 function checkCompletion() {
 	let arr = Array.from(window.parent.document.querySelectorAll('button.lesson-progress__action'))
 	arr.pop();
+	console.log(arr)
 	let test = arr.every(btn => btn.getAttribute('aria-label') != "Completed. Click to reset");
+	console.log(test)
 	if (test) {
 		const overlay = document.createElement('div');
 		overlay.id = "customOverlay";
-	    overlay.style.cssText = `
+	    	overlay.style.cssText = `
 	        position: absolute;
 	        top: 0;
 	        left: 0;
