@@ -408,6 +408,7 @@ function checkCompletion(el) {
 	        display: flex;
 	        justify-content: center;
 	        align-items: center;
+	 	text-align: center;
 	        color: white;
 	        font-size: 1.5em;
 	        font-weight: bold;
