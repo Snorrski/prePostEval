@@ -84,8 +84,9 @@ function showLoading(loading) {
 
 // Remove loading symbol
 function hideLoading() {
-    //const loadingDiv = document.getElementById('loading');
+    const loadingDiv = window.parent.document.getElementById('loading');
     if (loadingDiv) {
+		console.log('hiding');
         parentElement.removeChild(loadingDiv);
     }
 }
@@ -193,7 +194,7 @@ function checkData(event = null, check = true) {
     if (check || checked.length === questions.length) {
         // If submitting, gather form data
         if (!check && event) {
-		showLoading(false);
+			showLoading(false);
             const formData = new FormData(event.target);
             formData.forEach((value, key) => {
 		    	const modifiedKey = `${key}-${preOrPost}`; // Modify the key
@@ -392,35 +393,31 @@ function getPreOrPost() {
 function checkCompletion(el) {
 	let arr = Array.from(window.parent.document.querySelectorAll('button.lesson-progress__action'))
 	arr.pop();
-	console.log(arr)
 	let test = arr.every(btn => btn.getAttribute('aria-label') == "Completed. Click to reset");
-	console.log(test)
 	if (!test) {
 		const overlay = document.createElement('div');
 		overlay.id = "customOverlay";
 	    	overlay.style.cssText = `
-	        position: absolute;
-	        top: 0;
-	        left: 0;
-	        width: 100%;
-	        height: 100%;
-	        background-color: rgba(0, 0, 0, 0.5); /* 50% opacity gray */
-	        display: flex;
-	        justify-content: center;
-	        align-items: center;
-	 	text-align: center;
-	        color: white;
-	        font-size: 1.5em;
-	        font-weight: bold;
-	        z-index: 1000; /* Ensure overlay is above form content */
-	    `;
-	
+		        position: absolute;
+		        top: 0;
+		        left: 0;
+		        width: 100%;
+		        height: 100%;
+		        background-color: rgba(0, 0, 0, 0.5); /* 50% opacity gray */
+		        display: flex;
+		        justify-content: center;
+		        align-items: center;
+		 		text-align: center;
+		        color: white;
+		        font-size: 1.5em;
+		        font-weight: bold;
+		        z-index: 1000; /* Ensure overlay is above form content */
+		    `;
 	    // Add centered message text
 	    overlay.textContent = "Du skal gennemgå hele modulet før du udfylder post-evalueringen.";
 	
 	    // Append overlay to the form
-	    el.style.position = 'relative'; // Ensure form has relative positioning
-	    //form.appendChild(overlay);
+	    form.style.position = 'relative'; // Ensure form has relative positioning
 		form.insertBefore(overlay,form.children[0]);
 	} else if (window.parent.document.getElementById('overlay')) {
 		window.parent.document.getElementById('overlay').style.display = "none";
