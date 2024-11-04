@@ -6,11 +6,13 @@ var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]
 var parentElement = iframe.parentElement;
 const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
 var checked = [];
+const q3 = courseName.includes('UFST') ? 'hvor bekendt er du med hvordan man anvender ' : 'hvor bekendt er du med hvordan man i UFST anvender ';
 //const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
 const questionObj = {
-	pre: ['hvordan vil du betegne dit kendskab til ','hvor sikker er du på din evne til at anvende din viden og færdigheder indenfor ','hvordan vil du betegne dit kendskab til UFST som IT-organisation, når det kommer til '],
-	post: ['hvordan vil du nu betegne dit kendskab til ','hvor sikker er du nu på din evne til at anvende din viden og færdigheder indenfor ','hvor bekendt er du med hvordan man i UFST anvender ']
+	pre: ['hvordan vil du betegne dit kendskab til ','hvor sikker er du på din evne til at anvende din viden og færdigheder indenfor ', q3],
+	post: ['hvordan vil du nu betegne dit kendskab til ','hvor sikker er du nu på din evne til at anvende din viden og færdigheder indenfor ', q3]
 }
+
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
 //const course = p.GetVar('course');
@@ -219,7 +221,7 @@ function checkData(event = null, check = true) {
 function buildForm() {
 	hideLoading();
   	//const preOrPost = p.GetVar('preOrPost');
-  	const formHeading = preOrPost === "pre" ? "Præmåling" : "Postmåling";
+  	const formHeading = preOrPost === "pre" ? "Før-måling" : "Efter-måling";
   	const formMessage = preOrPost === "pre" ?
   		'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:' :
   		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:';
@@ -369,7 +371,7 @@ function submitForm() {
 // Display thank you message if the survey is already completed
 function thankYou(check) {
 	console.log(loadingDiv);
-	const message = preOrPost === "pre" ? "præmålingen" : "postmålingen";
+	const message = preOrPost === "pre" ? "før-målingen" : "efter-målingen";
 	if (check) p.SetVar('done', true);
 	//const html = check ? `<div style="color: grey;">Du har allerede udfyldt ${message} for ${courseName}.</div>` : `<div style="color: grey;"><strong>Tak.</strong> Du har udfyldt ${message} for ${courseName}.</div>`;
   	//form.innerHTML = html;
