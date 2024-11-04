@@ -236,7 +236,7 @@ function buildForm() {
 	  questionDiv.marginBottom = "30px";
 	const questionP = document.createElement('p');
 	questionP.innerHTML = `${qPretext}${questionText}${courseName}?`;
-	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem;";
+	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem; line-height: 1.2;";
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
 	questionDiv.appendChild(likert);
@@ -254,7 +254,7 @@ function buildForm() {
 function createLikertScale(questionText, minText, maxText, name) {
     const likert = document.createElement('div');
     likert.className = "likert";
-    likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 5px 0 20px 0;";
+    likert.style.cssText = "display: flex; justify-content: space-between; align-items: center; margin: 10px 0 25px 0;";
     
     // Add the minText label on the left
     
