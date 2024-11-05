@@ -6,24 +6,31 @@ var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]
 var parentElement = iframe.parentElement;
 const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
 var checked = [];
-const q3 = courseName.includes('UFST') ? 'hvor bekendt er du med hvordan man anvender ' : 'hvor bekendt er du med hvordan man i UFST anvender ';
+const q3 = courseName.includes('UFST') ? 'hvor godt mener du, at du kender UFST's tilgang til Risikostyring? ' : 'hvor bekendt er du med hvordan man i UFST anvender ';
+hvor godt synes du, at du kender UFST's tilgang til Risikostyring? 
 //const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
 const questionObj = {
-	pre: ['hvordan vil du vurdere dit kendskab til ','hvor sikker er du på din evne til at anvende din viden og færdigheder indenfor ', q3],
-	post: ['hvordan vil du nu vurdere dit kendskab til ','hvor sikker er du nu på din evne til at anvende din viden og færdigheder indenfor ', q3]
+	pre: ['hvordan vil du vurdere, at du ved om ','hvor sikker er du på, at du kan bruge din viden og dine færdigheder indenfor ', 'hvor godt mener du, at du kender UFST's tilgang til '],
+	post: ['hvordan vil du nu vurdere, at du ved om ','hvor sikker er du nu på, at du kan bruge din viden og dine færdigheder indenfor ', 'hvor godt mener du nu, at du kender UFST's tilgang til ']
 }
+//old
+//const q3 = courseName.includes('UFST') ? 'hvor bekendt er du med hvordan man anvender ' : 'hvor bekendt er du med hvordan man i UFST anvender ';
+//const questionObj = {
+//	pre: ['hvordan vil du vurdere dit kendskab til ','hvor sikker er du på din evne til at anvende din viden og færdigheder indenfor ', q3],
+//	post: ['hvordan vil du nu vurdere dit kendskab til ','hvor sikker er du nu på din evne til at anvende din viden og færdigheder indenfor ', q3]
+//}
 
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
 //const course = p.GetVar('course');
-const course = courseName;
+const course = courseName.includes('UFST') ? courseName.replace('i UFST','') : courseName;
 //const preOrPost = p.GetVar('preOrPost');
 const preOrPost = getPreOrPost();
 let done = p.GetVar('done');
 const jsonData = {
 	name: studentName,
 	id: studentId,
-	course,
+	courseName,
 	check: true,
 	"pre/post": preOrPost
 };
@@ -235,7 +242,7 @@ function buildForm() {
 	questionDiv.className = "question";
 	  questionDiv.marginBottom = "30px";
 	const questionP = document.createElement('p');
-	questionP.innerHTML = `${qPretext}${questionText}${courseName}?`;
+	questionP.innerHTML = `${qPretext}${questionText}${course}?`;
 	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem; line-height: 1.3;";
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
