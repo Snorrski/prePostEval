@@ -9,8 +9,8 @@ var checked = [];
 const q3 = courseName.includes('UFST') ? "hvor godt mener du, at du kender UFST's tilgang til Risikostyring? " : 'hvor bekendt er du med hvordan man i UFST anvender ';
 //const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
 const questionObj = {
-	pre: ['hvordan vil du vurdere, at du ved om ','hvor sikker er du på, at du kan bruge din viden og dine færdigheder indenfor ', "hvor godt mener du, at du kender UFST's tilgang til "],
-	post: ['hvordan vil du nu vurdere, at du ved om ','hvor sikker er du nu på, at du kan bruge din viden og dine færdigheder indenfor ', "hvor godt mener du nu, at du kender UFST's tilgang til "]
+	pre: ['hvor meget vil du vurdere, at du ved om ','hvor sikker er du på, at du kan bruge din viden og dine færdigheder indenfor ', "hvor godt mener du, at du kender UFST's tilgang til "],
+	post: ['hvor meget vil du nu vurdere, at du ved om ','hvor sikker er du nu på, at du kan bruge din viden og dine færdigheder indenfor ', "hvor godt mener du nu, at du kender UFST's tilgang til "]
 }
 //old
 //const q3 = courseName.includes('UFST') ? 'hvor bekendt er du med hvordan man anvender ' : 'hvor bekendt er du med hvordan man i UFST anvender ';
