@@ -6,24 +6,29 @@ var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]
 var parentElement = iframe.parentElement;
 const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
 var checked = [];
-const q3 = courseName.includes('UFST') ? "hvor godt mener du, at du kender UFST's tilgang til Risikostyring? " : 'hvor bekendt er du med hvordan man i UFST anvender ';
-//const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
-const questionObj = {
-	pre: ['hvor meget vil du vurdere, at du ved om ','hvor sikker er du på, at du kan bruge din viden og dine færdigheder indenfor ', "hvor godt mener du, at du kender UFST's tilgang til "],
-	post: ['hvor meget vil du nu vurdere, at du ved om ','hvor sikker er du nu på, at du kan bruge din viden og dine færdigheder indenfor ', "hvor godt mener du nu, at du kender UFST's tilgang til "]
-}
+
 //old
+//const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
 //const q3 = courseName.includes('UFST') ? 'hvor bekendt er du med hvordan man anvender ' : 'hvor bekendt er du med hvordan man i UFST anvender ';
 //const questionObj = {
 //	pre: ['hvordan vil du vurdere dit kendskab til ','hvor sikker er du på din evne til at anvende din viden og færdigheder indenfor ', q3],
 //	post: ['hvordan vil du nu vurdere dit kendskab til ','hvor sikker er du nu på din evne til at anvende din viden og færdigheder indenfor ', q3]
 //}
+//const q3 = courseName.includes('UFST') ? "hvor godt mener du, at du kender UFST's tilgang til Risikostyring? " : 'hvor bekendt er du med hvordan man i UFST anvender ';
+//const course = p.GetVar('course');
+//const preOrPost = p.GetVar('preOrPost');
+//const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
+//const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
+
+const questionObj = {
+	pre: ['hvor meget vil du vurdere, at du ved om ','hvor sikker er du på, at du kan bruge din viden og dine færdigheder indenfor ', "hvor godt mener du, at du kender UFST's tilgang til "],
+	post: ['hvor meget vil du nu vurdere, at du ved om ','hvor sikker er du nu på, at du kan bruge din viden og dine færdigheder indenfor ', "hvor godt mener du nu, at du kender UFST's tilgang til "]
+}
 
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
-//const course = p.GetVar('course');
+
 const course = courseName.includes('UFST') ? courseName.replace('i UFST','') : courseName;
-//const preOrPost = p.GetVar('preOrPost');
 const preOrPost = getPreOrPost();
 let done = p.GetVar('done');
 const jsonData = {
@@ -34,8 +39,8 @@ const jsonData = {
 	"pre/post": preOrPost
 };
 const questions = preOrPost === "pre" ? questionObj.pre : questionObj.post;
-const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
-const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
+const min = ['Meget lidt', 'Meget usikker', 'Slet ikke'];
+const max = ['Rigtig meget', 'Meget sikker', 'Rigtig godt'];
 const loadingDiv = document.createElement('div');
 loadingDiv.id = 'loading';
 const form = document.createElement('form');
