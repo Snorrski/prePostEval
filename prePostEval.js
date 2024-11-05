@@ -7,7 +7,6 @@ var parentElement = iframe.parentElement;
 const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
 var checked = [];
 const q3 = courseName.includes('UFST') ? "hvor godt mener du, at du kender UFST's tilgang til Risikostyring? " : 'hvor bekendt er du med hvordan man i UFST anvender ';
-hvor godt synes du, at du kender UFST's tilgang til Risikostyring? 
 //const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
 const questionObj = {
 	pre: ['hvordan vil du vurdere, at du ved om ','hvor sikker er du på, at du kan bruge din viden og dine færdigheder indenfor ', "hvor godt mener du, at du kender UFST's tilgang til "],
