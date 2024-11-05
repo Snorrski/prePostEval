@@ -239,7 +239,7 @@ function buildForm() {
 	const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter du har taget modulet, ";
 	form.style.cssText = "padding: 20px 20px 50px 20px; border: 1px solid #14143c; position: relative;";
 	form.className = "block-text";
-	form.innerHTML = `<div style="font-weight: bold; ">${formHeading} for ${courseName}</div><p style="line-height: 1.2;">${formMessage}</p>`;
+	form.innerHTML = `<div style="font-weight: bold; ">${formHeading} for ${courseName}</div><p style="line-height: 1.3;">${formMessage}</p>`;
   
   questions.forEach((questionText, index) => {
 	const questionDiv = document.createElement('div');
