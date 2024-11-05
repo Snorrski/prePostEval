@@ -20,16 +20,22 @@ var checked = [];
 //const min = JSON.parse(p.GetVar('min').replace(/'/g, '"'));
 //const max = JSON.parse(p.GetVar('max').replace(/'/g, '"'));
 
+//Set relevant consts
+const preOrPost = getPreOrPost();
 const questionObj = {
 	pre: ['hvor meget vil du vurdere, at du ved om ','hvor sikker er du på, at du kan bruge din viden og dine færdigheder indenfor ', "hvor godt mener du, at du kender UFST's tilgang til "],
 	post: ['hvor meget vil du nu vurdere, at du ved om ','hvor sikker er du nu på, at du kan bruge din viden og dine færdigheder indenfor ', "hvor godt mener du nu, at du kender UFST's tilgang til "]
 }
-
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
 
 const course = courseName.includes('UFST') ? courseName.replace('i UFST','') : courseName;
-const preOrPost = getPreOrPost();
+const formHeading = preOrPost === "pre" ? "Før-måling" : "Efter-måling";
+const formMessage = preOrPost === "pre" ?
+	'Før du gennemfører modulet, vil vi gerne have dig til at vurdere din egen viden, kompetenceniveau og fortrolighed med den UFST-specifikke tilgang til emnet:' :
+	'Du har nu gernnemført det faglige indhold i modulet. Før du går videre til afrundingen, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, kompetenceniveau og fortrolighed med den UFST-specifikke tilgang til emnet:';
+const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter du har taget modulet, ";
+
 let done = p.GetVar('done');
 const jsonData = {
 	name: studentName,
@@ -231,12 +237,6 @@ function checkData(event = null, check = true) {
 // Build the Likert scale form
 function buildForm() {
 	hideLoading();
-  	//const preOrPost = p.GetVar('preOrPost');
-  	const formHeading = preOrPost === "pre" ? "Før-måling" : "Efter-måling";
-  	const formMessage = preOrPost === "pre" ?
-  		'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:' :
-  		'Du har nu gernnemført det faglige indhold i modulet. Før du går videre til afrundingen, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:';
-	const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter du har taget modulet, ";
 	form.style.cssText = "padding: 20px 20px 50px 20px; border: 1px solid #14143c; position: relative;";
 	form.className = "block-text";
 	form.innerHTML = `<div style="font-weight: bold; ">${formHeading} for ${courseName}</div><p style="line-height: 1.3;">${formMessage}</p>`;
