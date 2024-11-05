@@ -9,8 +9,8 @@ var checked = [];
 const q3 = courseName.includes('UFST') ? 'hvor bekendt er du med hvordan man anvender ' : 'hvor bekendt er du med hvordan man i UFST anvender ';
 //const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
 const questionObj = {
-	pre: ['hvordan vil du betegne dit kendskab til ','hvor sikker er du på din evne til at anvende din viden og færdigheder indenfor ', q3],
-	post: ['hvordan vil du nu betegne dit kendskab til ','hvor sikker er du nu på din evne til at anvende din viden og færdigheder indenfor ', q3]
+	pre: ['hvordan vil du vurdere dit kendskab til ','hvor sikker er du på din evne til at anvende din viden og færdigheder indenfor ', q3],
+	post: ['hvordan vil du nu vurdere dit kendskab til ','hvor sikker er du nu på din evne til at anvende din viden og færdigheder indenfor ', q3]
 }
 
 const studentId = lmsAPI.GetStudentID();
@@ -224,11 +224,11 @@ function buildForm() {
   	const formHeading = preOrPost === "pre" ? "Før-måling" : "Efter-måling";
   	const formMessage = preOrPost === "pre" ?
   		'Før du gennemfører modulet, vil vi gerne have dig til at vurdere <i>din egen</i> viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:' :
-  		'Efter du har gennemført modulet, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:';
+  		'Du har nu gernnemført det faglige indhold i modulet. Før du går videre til afrundingen, vil vi gerne have dig til <i>igen</i> at vurdere din egen viden, ekspertise og fortrolighed med emnet, med særligt fokus på hvordan det anvendes i UFST:';
 	const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter du har taget modulet, ";
 	form.style.cssText = "padding: 20px 20px 50px 20px; border: 1px solid #14143c; position: relative;";
 	form.className = "block-text";
-	form.innerHTML = `<div style="font-weight: bold;">${formHeading} for ${courseName}</div><p>${formMessage}</p>`;
+	form.innerHTML = `<div style="font-weight: bold; ">${formHeading} for ${courseName}</div><p style="line-height: 1.2;">${formMessage}</p>`;
   
   questions.forEach((questionText, index) => {
 	const questionDiv = document.createElement('div');
@@ -236,7 +236,7 @@ function buildForm() {
 	  questionDiv.marginBottom = "30px";
 	const questionP = document.createElement('p');
 	questionP.innerHTML = `${qPretext}${questionText}${courseName}?`;
-	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem; line-height: 1.2;";
+	  questionP.style.cssText= "margin-bottom: 0; padding-top: 1rem; line-height: 1.3;";
 	questionDiv.appendChild(questionP);
 	const likert = createLikertScale(questionText, min[index], max[index], `question${index + 1}`);
 	questionDiv.appendChild(likert);
@@ -259,7 +259,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     // Add the minText label on the left
     
     const minLabel = document.createElement('span');
-	minLabel.style.cssText = "width: 9%; font-weight: bold; text-align: right;line-height: 1.2; margin-right: 10px";
+	minLabel.style.cssText = "width: 9%; font-weight: bold; text-align: right;line-height: 1.3; margin-right: 10px";
 	//minLabel.textContent = minText;
 	minLabel.innerHTML = minText.replace(' ', '<br>');
 	likert.appendChild(minLabel);	
@@ -284,7 +284,7 @@ function createLikertScale(questionText, minText, maxText, name) {
     
     // Add the maxText label on the right
     const maxLabel = document.createElement('span');
-	maxLabel.style.cssText = "width: 9%; font-weight: bold; margin-left: 10px; text-align: left;line-height: 1.2;";
+	maxLabel.style.cssText = "width: 9%; font-weight: bold; margin-left: 10px; text-align: left;line-height: 1.3;";
 	maxLabel.innerHTML = maxText.replace(' ', '<br>');
 	likert.appendChild(maxLabel);
     return likert;
