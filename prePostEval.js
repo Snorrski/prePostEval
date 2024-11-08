@@ -6,7 +6,7 @@ var iframe = window.parent.document.querySelector(`iframe[name="${window.name}"]
 var parentElement = iframe.parentElement;
 const courseName = window.parent.document.querySelector('.nav-sidebar-header__title').text;
 var checked = [];
-const courseId = courseName.trim().replace(/ /g, "_").replace(/-/g, "_");
+const courseId = courseName.trim().replace(/ /g, "_").replace(/-/g, "_").toLowerCase();
 //old
 //const questions = JSON.parse(p.GetVar('questions').replace(/'/g, '"'));
 //const q3 = courseName.includes('UFST') ? 'hvor bekendt er du med hvordan man anvender ' : 'hvor bekendt er du med hvordan man i UFST anvender ';
