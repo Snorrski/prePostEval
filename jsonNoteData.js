@@ -26,8 +26,8 @@ getSetNotes(sendData, "get").then(result => {
     console.log(typeof result.data.userData);
     if (result && result.data.userData) {
         sendData.userData = JSON.parse(result.data.userData);
-        inp.innerHTML = sendData.userData[t];
-        console.log(sendData.userData[t]);
+        inp.innerHTML = sendData.userData[lessonTitle ];
+        console.log(sendData.userData[lessonTitle ]);
     }
 });
 
