@@ -3,9 +3,9 @@ console.log('11:42');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
 
-const s = window.parent.document.getElementsByClassName('lesson-header__title')[0].innerText;
-const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
-const course_id = s.trim().replace(/ /g, "_").replace(/-/g, "_").replace(/,/g, "_").toLowerCase();
+const courseName = window.parent.document.getElementsByClassName('lesson-header__title')[0].innerText;
+const lessonTitle =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
+const course_id = courseName.trim().replace(/ /g, "_").replace(/-/g, "_").replace(/,/g, "_").toLowerCase();
 const ifrm = window.parent.document.querySelector('iframe[name="' + window.name + '"]');
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
@@ -14,11 +14,11 @@ let sendData = {
     user_id: studentId,
     user_name: studentName,
     course_id: course_id,
-    course_name: s
+    course_name: courseName
 };
 let userData = {};
-sendData.userData[t] = "";
-//sendData.userData[t][s] = "";
+sendData.userData[lessonTitle] = "";
+
 // Ensure async data is ready before working with it
 getSetNotes(sendData, "get").then(result => {
     console.log(result);
@@ -40,7 +40,7 @@ const div = document.createElement('div');
 div.id = "newContainer";
 const inp = document.createElement('div');
 inp.className = "userInput";
-inp.id = s + "_userInput";
+inp.id = lessonTitle + "_userInput";
 inp.contentEditable = "true";
 inp.style.cssText = "margin: 10px; padding:  10px; border: 1px solid #001e3c; min-height: 1.5em;";
 // Save input on blur event
@@ -51,7 +51,7 @@ prnt.appendChild(div);
 // Save input data
 function saveInput(event) {
     console.log(sendData.userData)
-    sendData.userData[t] = this.innerHTML;
+    sendData.userData[lessonTitle] = this.innerHTML;
     getSetNotes(sendData, "set").then(result => {
         console.log('The data I got back:', result);
     });
