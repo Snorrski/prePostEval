@@ -2,11 +2,6 @@
 console.log('11:42');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
-/*const srcObj = {
-    JSZip: 'https://cdn.jsdelivr.net/npm/jszip@3.7.1/dist/jszip.min.js',
-    saveAs: 'https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js',
-    htmlDocx: 'https://cdn.jsdelivr.net/npm/html-docx-js@0.3.1/dist/html-docx.js'
-};
 const head = document.getElementsByTagName("head")[0];
 const srcKey = Object.keys(srcObj);
 srcKey.forEach((key) => {
@@ -21,12 +16,16 @@ srcKey.forEach((key) => {
 
 const s = window.parent.document.getElementsByClassName('lesson-header__title')[0].innerText;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
+const course_id = courseName.trim().replace(/ /g, "_").replace(/-/g, "_").replace(/,/g, "_").toLowerCase();
 const ifrm = window.parent.document.querySelector('iframe[name="' + window.name + '"]');
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
 let sendData = {
     userData: {},
-    userId: studentId,
+    user_id: studentId,
+    user_name: studentName,
+    course_id: course_id,
+    course_name: s
 };
 let userData = {};
 sendData.userData[t] = "";
@@ -55,7 +54,6 @@ inp.className = "userInput";
 inp.id = s + "_userInput";
 inp.contentEditable = "true";
 inp.style.cssText = "margin: 10px; padding:  10px; border: 1px solid #001e3c; min-height: 1.5em;";
-
 // Save input on blur event
 inp.addEventListener("blur", saveInput);
 div.appendChild(inp);
