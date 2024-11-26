@@ -12,7 +12,7 @@ srcKey.forEach((key) => {
         script.src = srcObj[key];
         head.appendChild(script);
     }
-});*/
+});
 
 const s = window.parent.document.getElementsByClassName('lesson-header__title')[0].innerText;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
