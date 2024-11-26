@@ -62,7 +62,7 @@ async function getSetNotes(obj, set) {
     const sendObj = Object.assign({}, obj);
     sendObj["getOrSet"] = set;
     console.log(sendObj);
-    //sendObj.userData = JSON.stringify(sendObj.userData);
+    sendObj.userData = JSON.stringify(sendObj.userData);
     console.log(sendObj);
     try {
         const response = await fetch('https://prod-115.westeurope.logic.azure.com:443/workflows/b003239656634116ade3badb0af27eab/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=pKpSDjY3kS4p_Q5DCwzP588whroaJe0xcmubkOcyoUE', {
