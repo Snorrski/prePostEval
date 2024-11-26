@@ -31,7 +31,7 @@ let userData = {};
 sendData.userData[t] = "";
 //sendData.userData[t][s] = "";
 // Ensure async data is ready before working with it
-getSetNotes(sendData, false).then(result => {
+getSetNotes(sendData, "get").then(result => {
     console.log(result);
     console.log(result.data.userData);
     console.log(typeof result.data.userData);
@@ -63,7 +63,7 @@ prnt.appendChild(div);
 function saveInput(event) {
     console.log(sendData.userData)
     sendData.userData[t] = this.innerHTML;
-    getSetNotes(sendData, true).then(result => {
+    getSetNotes(sendData, "set").then(result => {
         console.log('The data I got back:', result);
     });
 }
