@@ -5,7 +5,7 @@ const p = GetPlayer();
 
 const s = window.parent.document.getElementsByClassName('lesson-header__title')[0].innerText;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
-const course_id = courseName.trim().replace(/ /g, "_").replace(/-/g, "_").replace(/,/g, "_").toLowerCase();
+const course_id = s.trim().replace(/ /g, "_").replace(/-/g, "_").replace(/,/g, "_").toLowerCase();
 const ifrm = window.parent.document.querySelector('iframe[name="' + window.name + '"]');
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
