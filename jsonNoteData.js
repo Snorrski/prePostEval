@@ -23,11 +23,10 @@ sendData.userData[lessonTitle] = "";
 getSetNotes(sendData, "get").then(result => {
     console.log(result);
     console.log(result.data.userData);
-    console.log(typeof result.data.userData);
     if (result && result.data.userData) {
         sendData.userData = JSON.parse(result.data.userData);
-        inp.innerHTML = sendData.userData[lessonTitle ];
-        console.log(sendData.userData[lessonTitle ]);
+        inp.innerHTML = typeof sendData.userData[lessonTitle] != "undefinded"? sendData.userData[lessonTitle] : "";
+        console.log(sendData.userData[lessonTitle]); 
     }
 });
 
