@@ -3,8 +3,8 @@ console.log('11:42');
 const lmsAPI = window.parent.parent;
 const p = GetPlayer();
 
-const courseName = window.parent.document.getElementsByClassName('lesson-header__title')[0].innerText;
-const lessonTitle =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
+const lessonTitle = window.parent.document.getElementsByClassName('lesson-header__title')[0].innerText;
+const courseName =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
 const course_id = courseName.trim().replace(/ /g, "_").replace(/-/g, "_").replace(/,/g, "_").toLowerCase();
 const ifrm = window.parent.document.querySelector('iframe[name="' + window.name + '"]');
 const studentId = lmsAPI.GetStudentID();
