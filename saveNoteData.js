@@ -4,12 +4,19 @@ console.log("saveNoteData-13:49")
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
 console.log(window.name);
+var d; 
+const lessonTitle = window.parent.document.getElementsByClassName('lesson-header__title')[0].innerText;
+const courseName =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
+const course_id = courseName.trim().replace(/ /g, "_").replace(/-/g, "_").replace(/,/g, "_").toLowerCase();
 const ifrm = window.parent.document.querySelector('iframe[name="' + window.name + '"]');
 const studentId = lmsAPI.GetStudentID();
 const studentName = lmsAPI.GetStudentName();
-var d; 
 let sendData = {
-    userId: studentId,
+    userData: {},
+    user_id: studentId,
+    user_name: studentName,
+    course_id: course_id,
+    course_name: courseName
 };
 let userData = {};
 saveNoteData(sendData).then(result => {
@@ -18,7 +25,7 @@ saveNoteData(sendData).then(result => {
     console.log(typeof result.data.userData);
     if (result && result.data.userData) {
         sendData.userData = JSON.parse(result.data.userData);
-        userData = sendData.userData[t];
+        userData = sendData.userData;
 	    console.log(userData)
 	    d = userData;
 	    if (d!=="") {generateContainers()} else {generateContainersNoInput()}
