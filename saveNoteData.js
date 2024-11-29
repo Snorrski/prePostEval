@@ -107,22 +107,18 @@ function arrayRemove(arr, value) {
 		return ele != value; 
 	});
 }
+
 function loadInput(printMe) {
 	//var printMe = window.parent.document.getElementById('printMe');
 	console.log(printMe)
 	
 	if (printMe) {
-		//if (userData != d) {
-			if (userData != "") {
-				/*var subjects = arrayRemove(Object.keys(userData),'JM');
-				for (var i = 0; i<subjects.length; i++) {
-					if (!window.parent.document.getElementById("usrContnt_"+subjects[i])) {
-						
-					} else {window.parent.document.getElementById("usrContnt_"+subjects[i]).innerHTML = '<h4><b>'+subjects[i]+'</b></h4>' + userData[subjects[i]]};
-				};*/
-				printMe.innerHTML += '<div class="usrContnt" id="usrContnt_'+t+'"><h4><b>'+t+'</b></h4>' + userData + '</div>';
+		let html;
+			var subjects = arrayRemove(Object.keys(userData),'JM');
+			for (let subj in userData) {
+				html += '<h4><b>'+subj+'</b></h4>' + userData[subj]};
 			};
-		//};
+			printMe.innerHTML = html
 		d = userData;
 	} else {console.log("waiting");};
 };
@@ -167,7 +163,8 @@ function saveData() {
 
 async function saveNoteData(obj) {
     const sendObj = Object.assign({}, obj);
-    sendObj["getOrSet"] = get;
+    sendObj["getOrSet"] = "Bruger manual Medtronic Minimed 780G - Simplera Sync
+get";
     console.log(sendObj);
     sendObj.userData = JSON.stringify(sendObj.userData);
     console.log(sendObj);
