@@ -17,7 +17,7 @@ let sendData = {
     user_name: studentName,
     course_id: course_id,
     course_name: courseName,
-	getOrSet: "get";
+	getOrSet: "get"
 };
 let userData = {};
 saveNoteData(sendData).then(result => {
