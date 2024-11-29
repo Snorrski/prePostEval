@@ -57,7 +57,7 @@ parentEl.style.cssText = "height: auto; padding: 0; display:none;";
 function generateContainers() {
 	var containerEl = document.createElement('div')
 	containerEl.id = "newContainer";
-	containerEl.setAttribute("style", "margin: 0px; padding: 20px; border: 1px solid #001e3c; border-radius: 0px;");
+	containerEl.setAttribute("style", "margin: 0px; padding: 20px 20px 50px; border: 1px solid #001e3c; border-radius: 0px;");
 
 	var printDiv = document.createElement('div');
 	printDiv.id = "printMe";	
@@ -71,7 +71,7 @@ function generateContainers() {
 	gemBtn.id = "gemBtn";
 	gemBtn.innerText = "Gem";
 	gemBtn.addEventListener('click', saveData, false);
-	gemBtn.setAttribute("style", "position: absolute; bottom: 0; width: 100%; background-color: #001e3c; border: none; color: white; padding: 0.5em 0; text-align: center; display: inline-block; cursor: pointer;")
+	gemBtn.setAttribute("style", "position: absolute; bottom: 0; left: 0; width: 100%; background-color: #001e3c; border: none; color: white; padding: 0.5em 0; text-align: center; display: inline-block; cursor: pointer;")
 	containerEl.appendChild(gemBtn);
 	targetCOntainer.appendChild(containerEl);
 	loadInput(printDiv);
