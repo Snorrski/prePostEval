@@ -115,11 +115,10 @@ function loadInput(printMe) {
 	
 	if (printMe) {
 		let html;
-			var subjects = arrayRemove(Object.keys(userData),'JM');
-			for (let subj in userData) {
-				html += '<h4><b>'+subj+'</b></h4>' + userData[subj];
-			};
-			printMe.innerHTML = html
+		for (let subj in userData) {
+			html += '<h4><b>'+subj+'</b></h4>' + userData[subj];
+		};
+		printMe.innerHTML = html
 		d = userData;
 	} else {console.log("waiting");};
 };
