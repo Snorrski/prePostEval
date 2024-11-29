@@ -40,13 +40,12 @@ var srcObj = {
 	saveAs: 'https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js',
 	htmlDocx: 'https://cdn.jsdelivr.net/npm/html-docx-js@0.3.1/dist/html-docx.js'
 };
-var srcKey = Object.keys(srcObj);
-for (var i = 0; i<srcKey.length;i++) {
-	if(typeof window[srcKey[i]] == "undefined") {
-		console.log('add ' + srcKey[i] + ' at init');
+for (let key in srcObj) {
+	if(typeof window[key] == "undefined") {
+		console.log('add ' + key + ' at init');
 		var script = document.createElement('script');
 		script.type = 'text/javascript';
-		script.src = srcObj[srcKey[i]]; 
+		script.src = srcObj[key]; 
 		$('head').append(script);
 	}
 };
@@ -114,10 +113,11 @@ function loadInput(printMe) {
 	console.log(printMe)
 	
 	if (printMe) {
-		let html;
+		let html = "";
 		for (let subj in userData) {
 			html += '<h4><b>'+subj+'</b></h4>' + userData[subj];
 		};
+		console.log(html)
 		printMe.innerHTML = html
 		d = userData;
 	} else {console.log("waiting");};
