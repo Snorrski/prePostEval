@@ -116,7 +116,7 @@ function loadInput(printMe) {
 		let html;
 			var subjects = arrayRemove(Object.keys(userData),'JM');
 			for (let subj in userData) {
-				html += '<h4><b>'+subj+'</b></h4>' + userData[subj]};
+				html += '<h4><b>'+subj+'</b></h4>' + userData[subj];
 			};
 			printMe.innerHTML = html
 		d = userData;
