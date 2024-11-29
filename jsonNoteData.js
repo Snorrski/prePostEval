@@ -43,7 +43,7 @@ const inp = document.createElement('div');
 inp.className = "userInput";
 inp.id = lessonTitle + "_userInput";
 inp.contentEditable = "true";
-inp.style.cssText = "margin: 10px; padding:  10px; border: 1px solid #001e3c; min-height: 1.5em;";
+inp.style.cssText = "padding: 10px; border: 1px solid #001e3c; min-height: 1.5em;";
 // Save input on blur event
 inp.addEventListener("blur", saveInput);
 div.appendChild(inp);
