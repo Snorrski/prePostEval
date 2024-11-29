@@ -57,7 +57,7 @@ parentEl.style.cssText = "height: auto; padding: 0; display:none;";
 function generateContainers() {
 	var containerEl = document.createElement('div')
 	containerEl.id = "newContainer";
-	containerEl.setAttribute("style", "margin: 10px; padding: 20px; border: 1px solid #001e3c; border-radius: 10px;");
+	containerEl.setAttribute("style", "margin: 0px; padding: 20px; border: 1px solid #001e3c; border-radius: 0px;");
 
 	var printDiv = document.createElement('div');
 	printDiv.id = "printMe";	
@@ -108,7 +108,7 @@ function loadInput(printMe) {
 	console.log(printMe)
 	
 	if (printMe) {
-		let html = `<p style="font-weight: bold; font-size: large;">Noter om ${courseName}</h1><p>Her finder du dine noter om {$courseName}, indelt efter emnerne i modulet.</p>`;
+		let html = `<p style="font-weight: bold; font-size: large;">Noter: ${courseName}</p><p>Her finder du dine noter om {$courseName}, indelt efter emnerne i modulet.</p>`;
 		for (let subj in userData) {
 			html += '<h4><b>'+subj+'</b></h4>' + userData[subj];
 		};
