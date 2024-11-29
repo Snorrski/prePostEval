@@ -65,21 +65,13 @@ function generateContainers() {
 	printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Dine noter for '+t+'</b></h3><p></p><br>';
 	//printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>'+p.GetVar("header")+'</b></h3><p>'+p.GetVar("intro_body")+'</p><br>';
 	containerEl.appendChild(printDiv);
-
-	var printBtn = document.createElement('button');
-	printBtn.className = "usrBtns";
-	printBtn.id = "printBtn";
-	printBtn.innerText = "Print";
-	printBtn.addEventListener('click', printData, false);
-	printBtn.setAttribute("style", "background-color: #001e3c; border: none; color: white; padding: 5px 25px; margin: 5px; text-align: center; border-radius: 5px; display: inline-block; cursor: pointer;")
-	containerEl.appendChild(printBtn);
 	
 	var gemBtn = document.createElement('button');
 	gemBtn.className = "usrBtns";
 	gemBtn.id = "gemBtn";
 	gemBtn.innerText = "Gem";
 	gemBtn.addEventListener('click', saveData, false);
-	gemBtn.setAttribute("style", "background-color: #001e3c; border: none; color: white; padding: 5px 25px; margin: 5px; text-align: center; border-radius: 5px; display: inline-block; cursor: pointer;")
+	gemBtn.setAttribute("style", "position: absolute; bottom: 0; width: 100%; background-color: #001e3c; border: none; color: white; padding: 0.5em 0; text-align: center; display: inline-block; cursor: pointer;")
 	containerEl.appendChild(gemBtn);
 	targetCOntainer.appendChild(containerEl);
 	loadInput(printDiv);
