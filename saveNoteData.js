@@ -16,7 +16,8 @@ let sendData = {
     user_id: studentId,
     user_name: studentName,
     course_id: course_id,
-    course_name: courseName
+    course_name: courseName,
+	getOrSet: "get";
 };
 let userData = {};
 saveNoteData(sendData).then(result => {
@@ -163,8 +164,6 @@ function saveData() {
 
 async function saveNoteData(obj) {
     const sendObj = Object.assign({}, obj);
-    sendObj["getOrSet"] = "Bruger manual Medtronic Minimed 780G - Simplera Sync
-get";
     console.log(sendObj);
     sendObj.userData = JSON.stringify(sendObj.userData);
     console.log(sendObj);
