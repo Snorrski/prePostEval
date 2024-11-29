@@ -57,7 +57,7 @@ parentEl.style.cssText = "height: auto; padding: 0; display:none;";
 function generateContainers() {
 	var containerEl = document.createElement('div')
 	containerEl.id = "newContainer";
-	containerEl.setAttribute("style", "margin: 0px; padding: 20px 20px 50px; border: 1px solid #001e3c; border-radius: 0px;");
+	containerEl.setAttribute("style", "position: relative; margin: 0px; padding: 20px 20px 50px; border: 1px solid #001e3c; border-radius: 0px;");
 
 	var printDiv = document.createElement('div');
 	printDiv.id = "printMe";	
