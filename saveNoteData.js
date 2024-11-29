@@ -81,11 +81,6 @@ function generateContainers() {
 	gemBtn.addEventListener('click', saveData, false);
 	gemBtn.setAttribute("style", "background-color: #001e3c; border: none; color: white; padding: 5px 25px; margin: 5px; text-align: center; border-radius: 5px; display: inline-block; cursor: pointer;")
 	containerEl.appendChild(gemBtn);
-	
-	var endDiv = document.createElement('div');
-	endDiv.style.marginTop = "1.1em";
-	endDiv.innerHTML = '<h3 style="font-size:1.2em;margin-top: 20"><b>BEMÆRK:</b></h3><p>Når du lukker kurset kan du vælge mellem:</p><p style="text-align: center;"><b>GÅ UD OG AFSLUT</b>   eller  <b> GÅ UD OG FORTSÆT SENERE.</b></p><p>Vælge du at kunne fortsætte senere, markeres modulet ikke som færdigt endnu.<br>Vælger du at afslutte, gemmes dine data ikke længere i kurset. Sørg derfor for at gemme refleksionsarket på egen computer før du afslutter.</p>';
-	containerEl.appendChild(endDiv);
 	targetCOntainer.appendChild(containerEl);
 	loadInput(printDiv);
 }
@@ -113,7 +108,7 @@ function loadInput(printMe) {
 	console.log(printMe)
 	
 	if (printMe) {
-		let html = `<h1>Noter om ${courseName}</h1><p>Her finder du dine noter om {$courseName}, indelt efter emnerne i modulet.</p>`;
+		let html = `<p style="font-weight: bold; font-size: large;">Noter om ${courseName}</h1><p>Her finder du dine noter om {$courseName}, indelt efter emnerne i modulet.</p>`;
 		for (let subj in userData) {
 			html += '<h4><b>'+subj+'</b></h4>' + userData[subj];
 		};
