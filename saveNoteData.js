@@ -113,7 +113,7 @@ function loadInput(printMe) {
 	console.log(printMe)
 	
 	if (printMe) {
-		let html = "";
+		let html = ´<h1>Noter om {$courseName}</h1><p>Her finder du dine noter om {$courseName}, indelt efter emnerne i modulet.´;
 		for (let subj in userData) {
 			html += '<h4><b>'+subj+'</b></h4>' + userData[subj];
 		};
