@@ -38,9 +38,10 @@ const qPretext = preOrPost === "pre" ? "Før du starter på modulet, " : "Efter 
 
 let done = p.GetVar('done');
 const jsonData = {
-	name: studentName,
-	id: studentId,
-	course: courseId,
+	user_name: studentName,
+	user_id: studentId,
+	course_id: courseId,
+	course_name: courseName,
 	check: true,
 	"pre/post": preOrPost
 };
