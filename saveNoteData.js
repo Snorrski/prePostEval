@@ -102,7 +102,7 @@ function loadInput(printMe) {
 	if (printMe) {
 		let html = `<p style="font-weight: bold; font-size: large;">Noter: ${courseName}</p><p>Her finder du dine noter om ${courseName}, inddelt efter emnerne i modulet.</p><br>`;
 		for (let subj in userData) {
-			html += '<h4><b>'+subj+'</b></h4>' + userData[subj];
+			html += '<div><h4><b>'+subj+'</b></h4><p>' + userData[subj] + '</p></div>';
 		};
 		console.log(html)
 		printMe.innerHTML = html
