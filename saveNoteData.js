@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("saveNoteData-13:24")
+console.log("saveNoteData-13:36")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
@@ -102,7 +102,7 @@ function loadInput(printMe) {
 	if (printMe) {
 		let html = `<p style="font-weight: bold; font-size: large;">Noter: ${courseName}</p><p>Her finder du dine noter om ${courseName}, inddelt efter emnerne i modulet.</p><br>`;
 		for (let subj in userData) {
-			html += '<div><h4><b>'+subj+'</b></h4><p>' + userData[subj] + '</p></div>';
+			html += '<div><h4 style="font-weight: bold; margin-bottom: 0;">'+subj+'</h4><p>' + userData[subj] + '</p></div>';
 		};
 		console.log(html)
 		printMe.innerHTML = html
