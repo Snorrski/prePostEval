@@ -183,9 +183,9 @@ function sendDataToAPI(jsonData, check) {
 // Handle the response from the API
 function handleAPIResponse(data, check) {
 	console.log(data.data);
-	console.log("answered? " + data.data.ansered);
+	console.log("answered? " + data.data.answered);
   	if (check) {
-    		!data.data.ansered? buildForm() : thankYou(check);
+    		!data.data.answered? buildForm() : thankYou(check);
   	} else {
 	  	thankYou(check);
 		p.SetVar('done', true);
