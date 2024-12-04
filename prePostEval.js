@@ -135,7 +135,6 @@ function highlightLabel(event) {
     const radioWrapper = event.target.closest('.likert');
     const labels = radioWrapper.querySelectorAll('label');
 	const q = event.target.name;
-	console.log(checked)
 	if (!checked.includes(q)) {
 		checked.push(q);
 		if (checked.length === questions.length) {
@@ -145,7 +144,6 @@ function highlightLabel(event) {
 			console.log("enabled");
 		}
 	};
-	console.log(checked)
     // Reset background for all labels
     labels.forEach(label => {
         label.style.backgroundColor = "#fff";
@@ -185,8 +183,9 @@ function sendDataToAPI(jsonData, check) {
 // Handle the response from the API
 function handleAPIResponse(data, check) {
 	console.log(data.data);
+	console.log("answered? " + data.data.ansered);
   	if (check) {
-    		data.message !== "answered" ? buildForm() : thankYou(check);
+    		!data.data.ansered? buildForm() : thankYou(check);
   	} else {
 	  	thankYou(check);
 		p.SetVar('done', true);
