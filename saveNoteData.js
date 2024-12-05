@@ -1,5 +1,5 @@
 // Initialize global variables
-console.log("saveNoteData-13:36")
+console.log("saveNoteData-11:48")
 
 var lmsAPI = window.parent.parent;
 const t =  window.parent.document.getElementsByClassName('nav-sidebar-header__title')[0].innerText;
@@ -50,29 +50,35 @@ for (let key in srcObj) {
 	}
 };
 
-var parentEl = ifrm.parentElement;
-const targetContainer = parentEl.parentElement;
-parentEl.style.cssText = "height: auto; padding: 0; display:none;";
+//var parentEl = ifrm.parentElement;
+//const targetContainer = parentEl.parentElement;
+//parentEl.style.cssText = "height: auto; padding: 0; display:none;";
+const parentEl = ifrm.parentElement;
+parentEl.style.height = "auto";
+parentEl.style.paddingBottom = 0;
+parentEl.parentElement.style.padding = 0;
+ifrm.style.display = "none";
+const containerEl = document.createElement('div');
+containerEl.id = "newContainer";
+
 function generateContainers() {
-	var containerEl = document.createElement('div')
-	containerEl.id = "newContainer";
 	containerEl.setAttribute("style", "position: relative; margin: 0px; padding: 20px 20px 50px; border: 1px solid #001e3c; border-radius: 0px;");
 
-	var printDiv = document.createElement('div');
+	const printDiv = document.createElement('div');
 	printDiv.id = "printMe";	
 	printDiv.style.marginBottom = "1.1em";
 	printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Dine noter for '+t+'</b></h3><p></p><br>';
 	//printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>'+p.GetVar("header")+'</b></h3><p>'+p.GetVar("intro_body")+'</p><br>';
 	containerEl.appendChild(printDiv);
 	
-	var gemBtn = document.createElement('button');
+	const gemBtn = document.createElement('button');
 	gemBtn.className = "usrBtns";
 	gemBtn.id = "gemBtn";
 	gemBtn.innerText = "Gem";
 	gemBtn.addEventListener('click', saveData, false);
 	gemBtn.setAttribute("style", "position: absolute; bottom: 0; left: 0; width: 100%; background-color: #001e3c; border: none; color: white; padding: 0.5em 0; text-align: center; display: inline-block; cursor: pointer;")
 	containerEl.appendChild(gemBtn);
-	targetContainer.appendChild(containerEl);
+	parentEl.appendChild(containerEl);
 	loadInput(printDiv);
 }
 function generateContainersNoInput() {
