@@ -51,8 +51,7 @@ for (let key in srcObj) {
 };
 
 var parentEl = ifrm.parentElement;
-const targetCOntainer = parentEl.parentElement;
-//parentEl.style.innerHTML = "";
+const targetContainer = parentEl.parentElement;
 parentEl.style.cssText = "height: auto; padding: 0; display:none;";
 function generateContainers() {
 	var containerEl = document.createElement('div')
@@ -73,7 +72,7 @@ function generateContainers() {
 	gemBtn.addEventListener('click', saveData, false);
 	gemBtn.setAttribute("style", "position: absolute; bottom: 0; left: 0; width: 100%; background-color: #001e3c; border: none; color: white; padding: 0.5em 0; text-align: center; display: inline-block; cursor: pointer;")
 	containerEl.appendChild(gemBtn);
-	targetCOntainer.appendChild(containerEl);
+	targetContainer.appendChild(containerEl);
 	loadInput(printDiv);
 }
 function generateContainersNoInput() {
@@ -87,7 +86,7 @@ function generateContainersNoInput() {
 	printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Du har ikke indtastet noget</b></h3><p></p><br>';
 	//printDiv.innerHTML = '<h3 style="font-size:1.2em"><b>Du har ikke indtastet noget</b></h3><p>'+p.GetVar("intro_body")+'</p><br>';
 	containerEl.appendChild(printDiv);
-	targetCOntainer.appendChild(containerEl);
+	targetContainer.appendChild(containerEl);
 }
 function arrayRemove(arr, value) {
 	return arr.filter(function(ele){ 
